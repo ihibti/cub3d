@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/25 14:37:11 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:57:33 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	init(t_ori *ori)
 		return (free(ori->player), -1);
 	init_player(ori);
 	if (check_init_p(ori))
+		return (1);
+	if (start_mlx(ori))
 		return (1);
 	return (0);
 }

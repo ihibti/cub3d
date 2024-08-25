@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/25 14:47:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:57:16 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # define _USE_MATH_DEFINES
+# include "mlx.h"
 # include "stdio.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -60,5 +61,6 @@ int				init_x_pl(t_ori *ori);
 int				init_y_pl(t_ori *ori);
 void			init_dirangle(t_ori *ori);
 int				check_init_p(t_ori *ori);
+int				start_mlx(t_ori *ori);
 
 #endif
