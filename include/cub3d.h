@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 15:02:41 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 20:24:30 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define SCREEN_W 1500
-# define SCREEN_H 700
+# define MOVE_SPEED 0.15
+# define CAMERA_SPEED (M_PI / 20)
+# define SCREEN_W 1200
+# define SCREEN_H 500
 # define UP 222
 # define LEFT_V 223
 # define RIGHT_V 224
@@ -44,7 +46,7 @@
 # define RIGHT_M 228
 # define LEFT_M 229
 # define delta 0.1
-# define FOV (M_PI / 4)
+# define FOV (M_PI / 2)
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define VIOLET 0x00FF00FF
@@ -81,11 +83,10 @@ typedef struct s_ray
 	double		sideDistX;
 	double		sideDistY;
 	double		plane_angle;
-	double		calcX;
-	double		calcY;
 	int			mapY;
 	int			mapX;
 	int			last_hit;
+	double		cameraX;
 }				t_ray;
 typedef struct s_player
 {
@@ -109,6 +110,7 @@ typedef struct s_ori
 	int			sky;
 	int			wall;
 	int			floor;
+	bool		recast;
 }				t_ori;
 
 char			**allocate_map(void);
@@ -123,6 +125,6 @@ int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
 int				han_inp(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
-double			dda_alg(t_ori *ori, t_ray *ray);
+void			dda_alg(t_ori *ori, t_ray *ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/25 11:52:29 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 19:32:26 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_x_pl(t_ori *ori)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] != '0' && map[i][j] != '1')
+			if (map[i][j] != '0' && map[i][j] == 'N')
 				return (j);
 			j++;
 		}
@@ -48,7 +48,7 @@ int	init_y_pl(t_ori *ori)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] != '0' && map[i][j] != '1')
+			if (map[i][j] != '0' && map[i][j] == 'N')
 				return (i);
 			j++;
 		}
