@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/26 14:29:58 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 13:34:20 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	brexit(t_ori *ori)
 {
 	if (ori->map)
 		free_map(ori->map);
+	if (ori->player->ray)
+		free(ori->player->ray);
 	if (ori->player)
 		free(ori->player);
 	if (ori->mlxwin)

@@ -5,7 +5,8 @@ LIBFTDIR = ./libft
 MLXDIR = ./minilibx-linux
 MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 
-FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c
+FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c \
+		algorithms.c
 
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle

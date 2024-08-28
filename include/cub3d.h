@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 13:25:46 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 15:02:41 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,14 @@ typedef struct s_ray
 	int			stepy;
 	float		delta_x;
 	float		delta_y;
+	double		sideDistX;
+	double		sideDistY;
 	double		plane_angle;
 	double		calcX;
 	double		calcY;
+	int			mapY;
+	int			mapX;
+	int			last_hit;
 }				t_ray;
 typedef struct s_player
 {
@@ -118,5 +123,6 @@ int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
 int				han_inp(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
+double			dda_alg(t_ori *ori, t_ray *ray);
 
 #endif
