@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/25 14:57:33 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/27 13:19:46 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**allocate_map(void)
 	data[5] = "10000001";
 	data[6] = "1000N001";
 	data[7] = "11111111";
-	map = (char **)malloc(8 * sizeof(char *));
+	map = (char **)malloc(9 * sizeof(char *));
 	if (map == NULL)
 	{
 		perror("Erreur d'allocation de mémoire");
@@ -83,6 +83,9 @@ int	init_player(t_ori *ori)
 int	init(t_ori *ori)
 {
 	ori->player = malloc(sizeof(t_player));
+	ori->floor = RED;
+	ori->sky = BLUE;
+	ori->wall = BLACK;
 	if (!ori->player)
 		return (-1);
 	ori->map = allocate_map();
@@ -91,7 +94,7 @@ int	init(t_ori *ori)
 	init_player(ori);
 	if (check_init_p(ori))
 		return (1);
-	if (start_mlx(ori))
-		return (1);
+	// if (start_mlx(ori))
+	// 	return (1);
 	return (0);
 }

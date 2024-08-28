@@ -1,12 +1,11 @@
 NAME = cub3d
 CC = cc
-CFLAG = -MMD -g3 -Wall -Wextra -Werror 
-LDFLAG = -lreadline -lncurses -lm
+CFLAG = -MMD -g3 -Wall -Wextra -Werror -O3 -ffast-math
 LIBFTDIR = ./libft
 MLXDIR = ./minilibx-linux
 MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 
-FILES = main.c init.c init_utils.c mlx_main.c
+FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c
 
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle
