@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:30:53 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 11:29:56 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:12:30 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	main(int ac, char **av)
 	if (init(&ori))
 		return (printf("error init\n"), 1);
 	printf("diretion boussole :%f\n", ori.player->dir_angle);
-	printf("horizontl%f vertical:%f\n", ori.player->orientation_x,
-		ori.player->orientation_y);
-	printf("%f\n", get_firstte(0.4, -1));
+	printf("horizontl%f vertical:%f\n", ori.player->dir_x, ori.player->dir_y);
 	return (0);
 }

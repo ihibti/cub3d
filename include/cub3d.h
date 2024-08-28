@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 11:29:11 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 13:25:46 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,37 @@
 # define LIGHT_GRAY 0x00D3D3D3
 # define DARK_GRAY 0x00A9A9A9
 
+typedef struct s_ray
+{
+	double		dirangle;
+	double		pos_rayX;
+	double		pos_rayY;
+	double		dir_ray_x;
+	double		dir_ray_y;
+	double		perp_dist;
+	double		plane_dirx;
+	double		plane_diry;
+	double		plane_posx;
+	double		plane_posy;
+	int			hit;
+	int			stepx;
+	int			stepy;
+	float		delta_x;
+	float		delta_y;
+	double		plane_angle;
+	double		calcX;
+	double		calcY;
+}				t_ray;
 typedef struct s_player
 {
 	double		pos_x;
 	double		pos_y;
-	double		orientation_x;
-	double		orientation_y;
+	double		dir_x;
+	double		dir_y;
 	int			x_map;
 	int			y_map;
 	float		dir_angle;
-	int			hit;
-	int			step;
-	double		delt_distx;
-	double		delt_disty;
-	double		perpwalldist;
+	t_ray		*ray;
 
 }				t_player;
 
@@ -100,5 +117,6 @@ int				check_init_p(t_ori *ori);
 int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
 int				han_inp(int key, t_ori *ori);
+int				raycasting(t_ori *ori);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/27 13:19:46 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:22:15 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**allocate_map(void)
 	data[3] = "10001001";
 	data[4] = "10000001";
 	data[5] = "10000001";
-	data[6] = "1000N001";
+	data[6] = "1000E001";
 	data[7] = "11111111";
 	map = (char **)malloc(9 * sizeof(char *));
 	if (map == NULL)
@@ -72,11 +72,14 @@ void	free_map(char **map)
 
 int	init_player(t_ori *ori)
 {
+	ori->player->ray = malloc(sizeof(t_ray));
+	if (!ori->player->ray)
+		return (1);
 	ori->player->pos_x = init_x_pl(ori);
 	ori->player->pos_y = init_y_pl(ori);
 	init_dirangle(ori);
-	ori->player->orientation_x = cos(ori->player->dir_angle);
-	ori->player->orientation_y = sin(ori->player->dir_angle);
+	ori->player->dir_x = cos(ori->player->dir_angle);
+	ori->player->dir_y = sin(ori->player->dir_angle);
 	return (0);
 }
 
@@ -94,7 +97,12 @@ int	init(t_ori *ori)
 	init_player(ori);
 	if (check_init_p(ori))
 		return (1);
-	// if (start_mlx(ori))
-	// 	return (1);
+	printf("diretion boussole :%f\n", ori->player->dir_angle);
+	printf("horizontl%f vertical:%f\n", ori->player->dir_x, ori->player->dir_y);
+	printf("posxplayer %f pos_yplayer %f\n", ori->player->pos_x,
+		ori->player->pos_y);
+	raycasting(ori);
+	if (start_mlx(ori))
+		return (1);
 	return (0);
 }
