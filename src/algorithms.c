@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 18:29:38 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 19:27:52 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_firsttep(t_ray *ray)
 	}
 }
 
-void	dda_alg(t_ori *ori, t_ray *ray)
+void	dda_alg(t_ori *ori, t_ray *ray, int x)
 {
 	char	**map;
 
@@ -46,7 +46,7 @@ void	dda_alg(t_ori *ori, t_ray *ray)
 	get_firsttep(ray);
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->sideDistX < ray->sideDistY && ray->dir_ray_x != 0)
 		{
 			ray->sideDistX += ray->delta_x;
 			ray->mapX += ray->stepx;
@@ -70,5 +70,10 @@ void	dda_alg(t_ori *ori, t_ray *ray)
 	{
 		ray->color = 0;
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
+	}
+	if (x == 0 || x == SCREEN_W - 1 || x == SCREEN_W / 2)
+	{
+		printf("x:%d perp:%.10f\n", x, ray->perp_dist);
+		
 	}
 }

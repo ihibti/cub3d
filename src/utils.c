@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 13:34:20 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 18:59:48 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,32 @@ int	brexit(t_ori *ori)
 	}
 	exit(0);
 	return (0);
+}
+
+void	debugging(t_ori *ori)
+{
+	t_player	*player;
+	t_ray		*ray;
+
+	player = ori->player;
+	ray = player->ray;
+	int x, y;
+	x = 0;
+	y = 0;
+	printf("map:\n");
+	while (ori->map[y])
+	{
+		while (ori->map[y][x])
+		{
+			if (y == player->y_map && x == player->x_map)
+				printf("P");
+			else
+				printf("%c", ori->map[y][x]);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	}
+	printf("playerx %.10f playery %.10f\n", player->dir_x, player->dir_y);
 }

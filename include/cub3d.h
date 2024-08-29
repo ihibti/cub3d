@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 17:53:06 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 19:18:47 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
 int				han_inp(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
-void			dda_alg(t_ori *ori, t_ray *ray);
+void			dda_alg(t_ori *ori, t_ray *ray, int x);
+void			debugging(t_ori *ori);
 
 #endif
