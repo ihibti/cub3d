@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 20:21:38 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 00:23:00 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	copy_play_ray(t_player *player)
 	ray = player->ray;
 	ray->pos_rayX = player->pos_x;
 	ray->pos_rayY = player->pos_y;
-	ray->mapX = (int)player->pos_x;
-	ray->mapY = (int)player->pos_y;
+	ray->mapX = player->x_map;
+	ray->mapY = player->y_map;
 	ray->hit = 0;
 	ray->perp_dist = 0;
 	ray->last_hit = 0;
 	ray->color = 0;
-	ray->dir_ray_x = cos(player->dir_angle);
-	ray->dir_ray_y = sin(player->dir_angle);
+	ray->dir_ray_x = player->dir_x;
+	ray->dir_ray_y = player->dir_y;
 }
 
 void	init_ray(t_player *player, int x)
