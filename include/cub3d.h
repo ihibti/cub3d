@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 20:24:30 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:17:58 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE_SPEED 0.15
+# define MOVE_SPEED 0.115
 # define CAMERA_SPEED (M_PI / 20)
 # define SCREEN_W 1200
 # define SCREEN_H 500
@@ -78,14 +78,15 @@ typedef struct s_ray
 	int			hit;
 	int			stepx;
 	int			stepy;
-	float		delta_x;
-	float		delta_y;
+	double		delta_x;
+	double		delta_y;
 	double		sideDistX;
 	double		sideDistY;
 	double		plane_angle;
 	int			mapY;
 	int			mapX;
 	int			last_hit;
+	int			color;
 	double		cameraX;
 }				t_ray;
 typedef struct s_player
@@ -96,7 +97,7 @@ typedef struct s_player
 	double		dir_y;
 	int			x_map;
 	int			y_map;
-	float		dir_angle;
+	double		dir_angle;
 	t_ray		*ray;
 
 }				t_player;

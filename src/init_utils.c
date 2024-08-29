@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 19:32:26 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 13:16:36 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_x_pl(t_ori *ori)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] != '0' && map[i][j] == 'N')
+			if (map[i][j] == 'N')
 				return (j);
 			j++;
 		}
@@ -48,7 +48,7 @@ int	init_y_pl(t_ori *ori)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] != '0' && map[i][j] == 'N')
+			if (map[i][j] == 'N')
 				return (i);
 			j++;
 		}
@@ -67,12 +67,17 @@ void	init_dirangle(t_ori *ori)
 	y = ori->player->pos_y;
 	if (ori->map[y][x] == 'N')
 		ori->player->dir_angle = M_PI / 2;
-	if (ori->map[y][x] == 'S')
+	else if (ori->map[y][x] == 'S')
 		ori->player->dir_angle = (3 * M_PI) / 2;
-	if (ori->map[y][x] == 'E')
+	else if (ori->map[y][x] == 'E')
 		ori->player->dir_angle = 0;
-	if (ori->map[y][x] == 'W')
+	else if (ori->map[y][x] == 'W')
 		ori->player->dir_angle = M_PI;
+	else
+		printf("probleme\n");
+	ori->player->x_map = x;
+	ori->player->y_map = y;
+	ori->map[y][x] = '0';
 }
 
 // TODO : free ori pour juste return

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 20:30:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:30:30 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	move_a(t_ori *ori, t_player *player)
 		player->pos_x -= MOVE_SPEED;
 		ori->recast = true;
 	}
+	player->x_map = (int)player->pos_x;
 	raycasting(ori);
 }
 
@@ -29,6 +30,7 @@ void	move_d(t_ori *ori, t_player *player)
 		player->pos_x += MOVE_SPEED;
 		ori->recast = true;
 	}
+	player->x_map = (int)player->pos_x;
 	raycasting(ori);
 }
 void	move_w(t_ori *ori, t_player *player)
@@ -39,6 +41,7 @@ void	move_w(t_ori *ori, t_player *player)
 		player->pos_y -= MOVE_SPEED;
 		ori->recast = true;
 	}
+	player->y_map = (int)player->pos_y;
 	raycasting(ori);
 }
 void	move_s(t_ori *ori, t_player *player)
@@ -48,6 +51,7 @@ void	move_s(t_ori *ori, t_player *player)
 		player->pos_y += MOVE_SPEED;
 		ori->recast = true;
 	}
+	player->y_map = (int)player->pos_y;
 	raycasting(ori);
 }
 
@@ -58,7 +62,15 @@ void	look_left(t_ori *ori)
 		ori->player->dir_angle = 0;
 	ori->recast = 1;
 	raycasting(ori);
-	ori->recast = 0;
+}
+
+void	look_right(t_ori *ori)
+{
+	ori->player->dir_angle -= CAMERA_SPEED;
+	if (ori->player->dir_angle < 0)
+		ori->player->dir_angle = 2 * M_PI;
+	ori->recast = 1;
+	raycasting(ori);
 }
 
 int	han_inp(int key, t_ori *ori)
@@ -75,5 +87,7 @@ int	han_inp(int key, t_ori *ori)
 		move_a(ori, ori->player);
 	if (key == 'l')
 		look_left(ori);
+	if (key == 'p')
+		look_right(ori);
 	return (0);
 }
