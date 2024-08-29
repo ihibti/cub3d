@@ -6,13 +6,21 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 13:16:36 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 00:12:24 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_x_pl(t_ori *ori)
+int	is_player(char c)
+{
+	if (c == 'N' || c == 'E' || c == 'S')
+		return (1);
+	if (c == 'W')
+		return (1);
+	return (0);
+}
+int	init_pl(t_ori *ori)
 {
 	char	**map;
 	int		i;
@@ -25,8 +33,13 @@ int	init_x_pl(t_ori *ori)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N')
-				return (j);
+			if (is_player(map[i][j]))
+			{
+				ori->player->x_map = j;
+				ori->player->pos_x = (double)j;
+				ori->player->y_map = ;
+				ori->player->pos_y = (double)j;
+			}
 			j++;
 		}
 		i++;
@@ -63,8 +76,8 @@ void	init_dirangle(t_ori *ori)
 	int	x;
 	int	y;
 
-	x = ori->player->pos_x;
-	y = ori->player->pos_y;
+	x = ori->player->x_map;
+	y = ori->player->y_map;
 	if (ori->map[y][x] == 'N')
 		ori->player->dir_angle = M_PI / 2;
 	else if (ori->map[y][x] == 'S')

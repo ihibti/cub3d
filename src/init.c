@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 19:39:27 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 00:11:23 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	init_player(t_ori *ori)
 	ori->player->ray = malloc(sizeof(t_ray));
 	if (!ori->player->ray)
 		return (1);
-	ori->player->pos_x = init_x_pl(ori);
-	ori->player->pos_y = init_y_pl(ori);
+	if (init_pl(ori))
+		return (free(ori->player), 1);
 	init_dirangle(ori);
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);

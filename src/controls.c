@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 20:23:42 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 00:15:15 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	move_a(t_ori *ori, t_player *player)
 		player->pos_x = new_x;
 		player->pos_y = new_y;
 		ori->recast = 1;
+		player->x_map = (int)player->pos_x;
+		player->y_map = (int)player->pos_y;
 	}
-	player->x_map = (int)player->pos_x;
-	player->y_map = (int)player->pos_y;
 	raycasting(ori);
 }
 
@@ -50,9 +50,9 @@ void	move_d(t_ori *ori, t_player *player)
 		player->pos_x = new_x;
 		player->pos_y = new_y;
 		ori->recast = 1;
+		player->x_map = (int)player->pos_x;
+		player->y_map = (int)player->pos_y;
 	}
-	player->x_map = (int)player->pos_x;
-	player->y_map = (int)player->pos_y;
 	raycasting(ori);
 }
 void	move_s(t_ori *ori, t_player *player)
@@ -63,7 +63,7 @@ void	move_s(t_ori *ori, t_player *player)
 
 	in_front = player->dir_angle + M_PI;
 	new_x = (MOVE_SPEED * cos(in_front)) + player->pos_x;
-	new_y = player->pos_y -(MOVE_SPEED * sin(in_front));
+	new_y = player->pos_y - (MOVE_SPEED * sin(in_front));
 	printf("old x: %.10f new x %.10f\n", player->pos_x, new_x);
 	printf("old y: %.10f new y %.10f\n", player->pos_y, new_y);
 	if (ori->map[(int)new_y][(int)(new_x)] == '0')
@@ -71,9 +71,9 @@ void	move_s(t_ori *ori, t_player *player)
 		player->pos_x = new_x;
 		player->pos_y = new_y;
 		ori->recast = 1;
+		player->x_map = (int)player->pos_x;
+		player->y_map = (int)player->pos_y;
 	}
-	player->x_map = (int)player->pos_x;
-	player->y_map = (int)player->pos_y;
 	raycasting(ori);
 }
 void	move_w(t_ori *ori, t_player *player)

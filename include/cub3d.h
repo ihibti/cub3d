@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 19:18:47 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 00:10:05 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,7 @@ char			**allocate_map(void);
 void			free_map(char **map);
 int				init_player(t_ori *ori);
 int				init(t_ori *ori);
-int				init_x_pl(t_ori *ori);
-int				init_y_pl(t_ori *ori);
+int				init_pl(t_ori *ori);
 void			init_dirangle(t_ori *ori);
 int				check_init_p(t_ori *ori);
 int				start_mlx(t_ori *ori);
