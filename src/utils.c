@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 18:59:48 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 19:43:44 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	debugging(t_ori *ori)
 		x = 0;
 		y++;
 	}
-	printf("playerx %.10f playery %.10f\n", player->dir_x, player->dir_y);
+	printf("playerx %.10f playery %.10f\n", player->pos_x, player->pos_y);
+	printf("playerdirx %.10f playerdiry %.10f\n", player->dir_x, player->dir_y);
 }

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 19:27:52 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 19:41:42 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	dda_alg(t_ori *ori, t_ray *ray, int x)
 		ray->color = 0;
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
 	}
-	if (x == 0 || x == SCREEN_W - 1 || x == SCREEN_W / 2)
+	if (x == 0 || x == SCREEN_W - 1 || x == SCREEN_W / 2 || x == SCREEN_W / 4
+		|| x == 3 * SCREEN_W / 4)
 	{
 		printf("x:%d perp:%.10f\n", x, ray->perp_dist);
-		
 	}
 }

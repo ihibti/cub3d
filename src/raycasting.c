@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 19:30:53 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 20:21:38 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ray_len(t_ori *ori, t_player *player, int x)
 
 	ray = player->ray;
 	init_ray(player, x);
-	dda_alg(ori, ray,x);
+	dda_alg(ori, ray, x);
 	draw_line(ray, x, ori);
 }
 
@@ -99,6 +99,8 @@ int	raycasting(t_ori *ori)
 	t_ray		*ray;
 	int			x;
 
+	if (ori->recast == 0)
+		return (0);
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
@@ -108,5 +110,6 @@ int	raycasting(t_ori *ori)
 		ray_len(ori, player, x);
 		x++;
 	}
+	ori->recast = 0;
 	return (0);
 }
