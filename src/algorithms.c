@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 17:43:35 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 18:29:38 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	get_firsttep(t_ray *ray)
 {
-	if (ray->dir_ray_x > 0)
+	if (ray->dir_ray_x < 0)
 	{
-		ray->stepx = 1;
+		ray->stepx = -1;
 		ray->sideDistX = ((double)ray->mapX + 1.0 - ray->pos_rayX)
 			* ray->delta_x;
 	}
 	else
 	{
-		ray->stepx = -1;
+		ray->stepx = 1;
 		ray->sideDistX = (ray->pos_rayX - (double)ray->mapX) * ray->delta_x;
 	}
 	if (ray->dir_ray_y > 0)
@@ -36,9 +36,6 @@ void	get_firsttep(t_ray *ray)
 		ray->sideDistY = ((double)ray->mapY + 1.0 - ray->pos_rayY)
 			* ray->delta_y;
 	}
-	// printf("ray dirx :%.5f, raydiry %.5f\n", ray->dir_ray_x, ray->dir_ray_y);
-	// printf("stepx:%d sidedistx %f\n", ray->stepx, ray->sideDistX);
-	// printf("stepy:%d sidedisty %f\n", ray->stepy, ray->sideDistY);
 }
 
 void	dda_alg(t_ori *ori, t_ray *ray)
@@ -47,7 +44,6 @@ void	dda_alg(t_ori *ori, t_ray *ray)
 
 	map = ori->map;
 	get_firsttep(ray);
-	// printf("delta x : %.5f deltay %.5f\n", ray->delta_x, ray->delta_y);
 	while (ray->hit == 0)
 	{
 		if (ray->sideDistX < ray->sideDistY)

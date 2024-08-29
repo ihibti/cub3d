@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 17:41:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 18:08:42 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ void	copy_play_ray(t_player *player)
 	ray->pos_rayX = player->pos_x;
 	ray->pos_rayY = player->pos_y;
 	ray->mapX = (int)player->pos_x;
-	ray->mapY = (int)player->pos_x;
+	ray->mapY = (int)player->pos_y;
 	ray->hit = 0;
 	ray->perp_dist = 0;
 	ray->sideDistX = 0;
 	ray->sideDistY = 0;
 	ray->last_hit = 0;
-	ray->sideDistX = 0;
-	ray->sideDistY = 0;
 	ray->color = 0;
 	ray->dir_ray_x = cos(player->dir_angle);
 	ray->dir_ray_y = sin(player->dir_angle);
@@ -49,13 +47,14 @@ void	init_ray(t_player *player, int x)
 	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->cameraX);
 	// printf("raydiry %.5f \n", ray->dir_ray_y);
 	if (ray->dir_ray_x == 0)
-		ray->delta_x = 1e30;
+		ray->delta_x = DBL_MAX;
 	else
 		ray->delta_x = fabs(1 / ray->dir_ray_x);
 	if (ray->dir_ray_y == 0)
-		ray->delta_y = 1e30;
+		ray->delta_y = DBL_MAX;
 	else
 		ray->delta_y = fabs(1 / ray->dir_ray_y);
+	printf("rayx:%.5f rayY:%.5f\n", ray->dir_ray_x, ray->dir_ray_y);
 }
 
 // TODO calculer calc_offset car constante
@@ -103,7 +102,7 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = SCREEN_H - 1;
 	if (draw_end < 0)
-		draw_end = SCREEN_H - 1;
+		draw_end = 0;
 	if (drawstart >= SCREEN_H)
 		drawstart = SCREEN_H - 1;
 	if (ray->color == 1)
@@ -133,9 +132,9 @@ int	raycasting(t_ori *ori)
 	t_player	*player;
 	t_ray		*ray;
 	int			x;
-	int			i;
-	int			y;
 
+	// int			i;
+	// int			y;
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
@@ -148,18 +147,18 @@ int	raycasting(t_ori *ori)
 	// printf("%c%c%c\n", ori->map[player->y_map + 1][player->x_map - 1],
 	// 	ori->map[player->y_map + 1][player->x_map], ori->map[player->y_map
 	// + 1][player->x_map + 1]);
-	i = 0;
-	y = 0;
-	while (ori->map[i])
-	{
-		if (i == (int)player->pos_y)
-		{
-			while (y++ < (int)player->pos_x)
-				printf(" ");
-			printf("player\n");
-		}
-		printf("%s\n", ori->map[i++]);
-	}
+	// i = 0;
+	// y = 0;
+	// while (ori->map[i])
+	// {
+	// 	if (i == (int)player->pos_y)
+	// 	{
+	// 		while (y++ < (int)player->pos_x)
+	// 			printf(" ");
+	// 		printf("player\n");
+	// 	}
+	// 	printf("%s\n", ori->map[i++]);
+	// }
 	printf("x:%f y:%f\n", player->pos_x, player->pos_y);
 	while (x < SCREEN_W)
 	{
