@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 14:17:37 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 15:30:01 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	copy_play_ray(t_player *player)
 	ray->sideDistX = 0;
 	ray->sideDistY = 0;
 	ray->color = 0;
-	ray->dir_ray_x = player->dir_x;
-	ray->dir_ray_y = player->dir_y;
+	ray->dir_ray_x = cos(player->dir_angle);
+	ray->dir_ray_y = sin(player->dir_angle);
 }
 
 void	init_ray(t_player *player, int x)
@@ -41,11 +41,13 @@ void	init_ray(t_player *player, int x)
 	ratio = (double)x / (double)SCREEN_W;
 	ray = player->ray;
 	copy_play_ray(player);
+	printf("dirangle%f\n\n", player->dir_angle);
 	ray->plane_dirx = -sin(player->dir_angle) * 0.66;
 	ray->plane_diry = cos(player->dir_angle) * 0.66;
 	ray->cameraX = (2.0 * (ratio)) - 1;
 	ray->dir_ray_y = ray->dir_ray_y + (ray->plane_diry * ray->cameraX);
 	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->cameraX);
+	printf("raydiry %.5f \n", ray->dir_ray_y);
 	if (ray->dir_ray_x == 0)
 		ray->delta_x = 1e30;
 	else
