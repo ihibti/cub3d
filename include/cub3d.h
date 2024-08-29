@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 14:17:58 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 17:23:28 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define RIGHT_M 228
 # define LEFT_M 229
 # define delta 0.1
-# define FOV (M_PI / 2)
+# define FOV 0.66
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define VIOLET 0x00FF00FF

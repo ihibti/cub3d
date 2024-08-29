@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/29 15:30:01 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/29 17:41:17 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	init_ray(t_player *player, int x)
 	ratio = (double)x / (double)SCREEN_W;
 	ray = player->ray;
 	copy_play_ray(player);
-	printf("dirangle%f\n\n", player->dir_angle);
-	ray->plane_dirx = -sin(player->dir_angle) * 0.66;
-	ray->plane_diry = cos(player->dir_angle) * 0.66;
+	// printf("dirangle%f\n\n", player->dir_angle);
+	ray->plane_dirx = -sin(player->dir_angle) * FOV;
+	ray->plane_diry = cos(player->dir_angle) * FOV;
 	ray->cameraX = (2.0 * (ratio)) - 1;
 	ray->dir_ray_y = ray->dir_ray_y + (ray->plane_diry * ray->cameraX);
 	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->cameraX);
-	printf("raydiry %.5f \n", ray->dir_ray_y);
+	// printf("raydiry %.5f \n", ray->dir_ray_y);
 	if (ray->dir_ray_x == 0)
 		ray->delta_x = 1e30;
 	else
@@ -133,10 +133,34 @@ int	raycasting(t_ori *ori)
 	t_player	*player;
 	t_ray		*ray;
 	int			x;
+	int			i;
+	int			y;
 
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
+	// printf("%c%c%c\n", ori->map[player->y_map - 1][player->x_map - 1],
+	// 	ori->map[player->y_map - 1][player->x_map], ori->map[player->y_map
+	// 	- 1][player->x_map + 1]);
+	// printf("%c%c%c\n", ori->map[player->y_map][player->x_map - 1],
+	// 	ori->map[player->y_map][player->x_map],
+	// 	ori->map[player->y_map][player->x_map + 1]);
+	// printf("%c%c%c\n", ori->map[player->y_map + 1][player->x_map - 1],
+	// 	ori->map[player->y_map + 1][player->x_map], ori->map[player->y_map
+	// + 1][player->x_map + 1]);
+	i = 0;
+	y = 0;
+	while (ori->map[i])
+	{
+		if (i == (int)player->pos_y)
+		{
+			while (y++ < (int)player->pos_x)
+				printf(" ");
+			printf("player\n");
+		}
+		printf("%s\n", ori->map[i++]);
+	}
+	printf("x:%f y:%f\n", player->pos_x, player->pos_y);
 	while (x < SCREEN_W)
 	{
 		ray_len(ori, player, x);
