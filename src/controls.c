@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:40:43 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 12:56:15 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ void	move_s(t_ori *ori, t_player *player)
 	behind = player->dir_angle;
 	new_x = (MOVE_SPEED * (cos(behind))) + player->pos_x;
 	new_y = player->pos_y + (MOVE_SPEED * (sin(behind)));
-	printf("old x: %.10f new x %.10f\n", player->pos_x, new_x);
-	printf("old y: %.10f new y %.10f\n", player->pos_y, new_y);
 	if (ori->map[(int)new_y][(int)(new_x)] == '0')
 	{
 		player->pos_x = new_x;
@@ -100,7 +98,17 @@ void	move_s(t_ori *ori, t_player *player)
 
 void	look_left(t_ori *ori)
 {
-	ori->player->dir_angle += CAMERA_SPEED;
+	double	temp;
+
+	temp = ori->player->dir_angle + CAMERA_SPEED;
+	while (temp > ori->player->dir_angle)
+	{
+		ori->recast = 1;
+		ori->player->dir_angle += PIXEL;
+		ori->player->dir_x = cos(ori->player->dir_angle);
+		ori->player->dir_y = sin(ori->player->dir_angle);
+		raycasting(ori);
+	}
 	if (ori->player->dir_angle > (2 * M_PI))
 		ori->player->dir_angle = 0;
 	ori->player->dir_x = cos(ori->player->dir_angle);
@@ -111,7 +119,17 @@ void	look_left(t_ori *ori)
 
 void	look_right(t_ori *ori)
 {
-	ori->player->dir_angle -= CAMERA_SPEED;
+	double	temp;
+
+	temp = ori->player->dir_angle - CAMERA_SPEED;
+	while (temp < ori->player->dir_angle)
+	{
+		ori->recast = 1;
+		ori->player->dir_angle -= PIXEL;
+		ori->player->dir_x = cos(ori->player->dir_angle);
+		ori->player->dir_y = sin(ori->player->dir_angle);
+		raycasting(ori);
+	}
 	if (ori->player->dir_angle < 0)
 		ori->player->dir_angle = 2 * M_PI;
 	ori->player->dir_x = cos(ori->player->dir_angle);

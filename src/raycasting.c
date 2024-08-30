@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:32:54 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 13:52:03 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ void	copy_play_ray(t_player *player)
 	ray->dir_ray_x = player->dir_x;
 	ray->dir_ray_y = player->dir_y;
 }
+// void	reset_ray(t_ray *ray, t_player *player)
+// {
+// 	ray->hit = 0;
+// 	ray->perp_dist = 0;
+// 	ray->last_hit = 0;
+// 	ray->color = 0;
+// 	ray->mapX = player->x_map;
+// 	ray->mapY = player->y_map;
+// 	ray->dir_ray_x = player->dir_x;
+// 	ray->dir_ray_y = player->dir_y;
+// }
 
 void	init_ray(t_player *player, int x)
 {
@@ -38,8 +49,9 @@ void	init_ray(t_player *player, int x)
 		ratio = (double)x / (double)SCREEN_W;
 	else
 		ratio = 0;
-	ray = player->ray;
 	copy_play_ray(player);
+	ray = player->ray;
+	ray->odd = true;
 	ray->plane_dirx = -sin(player->dir_angle) * FOV;
 	ray->plane_diry = cos(player->dir_angle) * FOV;
 	ray->cameraX = (2.0 * (ratio)) - 1;
@@ -72,9 +84,19 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	if (drawstart >= SCREEN_H)
 		drawstart = SCREEN_H - 1;
 	if (ray->color == 1)
-		wall_c = YELLOW;
+	{
+		if (ray->odd)
+			wall_c = LIGHT_GRAY;
+		else
+			wall_c = DARK_GRAY;
+	}
 	else
-		wall_c = RED;
+	{
+		if (ray->odd)
+			wall_c = PINK;
+		else
+			wall_c = VIOLET;
+	}
 	while (y > draw_end)
 		mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
 	while (y > drawstart)

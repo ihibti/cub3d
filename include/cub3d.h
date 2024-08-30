@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:43:52 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 13:17:00 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define CAMERA_SPEED (M_PI / 50)
 # define SCREEN_W 1200
 # define SCREEN_H 500
+# define PIXEL (M_PI) / (SCREEN_H)
 # define UP 222
 # define LEFT_V 223
 # define RIGHT_V 224
@@ -86,6 +87,7 @@ typedef struct s_ray
 	int			mapY;
 	int			mapX;
 	int			last_hit;
+	bool		odd;
 	int			color;
 	double		cameraX;
 }				t_ray;

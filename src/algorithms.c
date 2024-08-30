@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:34:15 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 13:23:48 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,14 @@ void	dda_alg(t_ori *ori, t_ray *ray, int x)
 	{
 		ray->perp_dist = ray->sideDistY - ray->delta_y;
 		ray->color = 1;
+		if (ray->mapX % 2 == 0)
+			ray->odd = false;
 	}
 	else
 	{
 		ray->color = 0;
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
+		if (ray->mapY % 2 == 0)
+			ray->odd = false;
 	}
 }
