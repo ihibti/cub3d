@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 00:23:00 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 12:32:54 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	raycasting(t_ori *ori)
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
-	// debugging(ori);
 	while (x < SCREEN_W)
 	{
 		ray_len(ori, player, x);

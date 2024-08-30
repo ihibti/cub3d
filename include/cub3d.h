@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 00:10:05 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 12:43:52 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # endif
 
 # define MOVE_SPEED 0.115
-# define CAMERA_SPEED (M_PI / 20)
+# define CAMERA_SPEED (M_PI / 50)
 # define SCREEN_W 1200
 # define SCREEN_H 500
 # define UP 222

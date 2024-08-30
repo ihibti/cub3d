@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 00:12:24 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/08/30 12:44:29 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int	init_pl(t_ori *ori)
 			{
 				ori->player->x_map = j;
 				ori->player->pos_x = (double)j;
-				ori->player->y_map = ;
-				ori->player->pos_y = (double)j;
+				ori->player->y_map = i;
+				ori->player->pos_y = (double)i;
+				return (0);
 			}
 			j++;
 		}
