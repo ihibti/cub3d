@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 13:52:03 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/01 14:17:43 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	init_ray(t_player *player, int x)
 	copy_play_ray(player);
 	ray = player->ray;
 	ray->odd = true;
-	ray->plane_dirx = -sin(player->dir_angle) * FOV;
-	ray->plane_diry = cos(player->dir_angle) * FOV;
 	ray->cameraX = (2.0 * (ratio)) - 1;
 	ray->dir_ray_y = ray->dir_ray_y + (ray->plane_diry * ray->cameraX);
 	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->cameraX);
@@ -126,6 +124,8 @@ int	raycasting(t_ori *ori)
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
+	ray->plane_dirx = -sin(player->dir_angle) * FOV;
+	ray->plane_diry = cos(player->dir_angle) * FOV;
 	while (x < SCREEN_W)
 	{
 		ray_len(ori, player, x);

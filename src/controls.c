@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:56:15 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/01 14:16:51 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	look_right(t_ori *ori)
 
 int	han_inp(int key, t_ori *ori)
 {
-	if (key == 'e')
+	if (key == XK_Escape)
 		brexit(ori);
 	if (key == 'w')
 		move_w(ori, ori->player);
@@ -150,9 +150,9 @@ int	han_inp(int key, t_ori *ori)
 		move_d(ori, ori->player);
 	if (key == 'a')
 		move_a(ori, ori->player);
-	if (key == 'l')
+	if (key == XK_Left)
 		look_left(ori);
-	if (key == 'p')
+	if (key == XK_Right)
 		look_right(ori);
 	return (0);
 }
