@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/01 14:37:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/02 15:48:17 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,9 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	if (drawstart >= SCREEN_H)
 		drawstart = SCREEN_H - 1;
 	if (ray->color == 1)
-	{
-		if (ray->odd)
-			wall_c = LIGHT_GRAY;
-		else
-			wall_c = DARK_GRAY;
-	}
+		wall_c = RED;
 	else
-	{
-		if (ray->odd)
-			wall_c = PINK;
-		else
-			wall_c = VIOLET;
-	}
+		wall_c = GREEN;
 	while (y > draw_end)
 		mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
 	while (y > drawstart)

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/01 14:16:51 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/02 15:49:42 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	move_d(t_ori *ori, t_player *player)
 	}
 	raycasting(ori);
 }
+
 void	move_w(t_ori *ori, t_player *player)
 {
 	double	new_x;
@@ -76,6 +77,7 @@ void	move_w(t_ori *ori, t_player *player)
 	}
 	raycasting(ori);
 }
+
 void	move_s(t_ori *ori, t_player *player)
 {
 	double	new_x;

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/28 16:57:05 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/02 15:48:13 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	start_mlx(t_ori *ori)
 	if (!ori->mlxwin)
 		return (free(ori->mlxptr), 1);
 	mlx_key_hook(ori->mlxwin, han_inp, ori);
-	// mlx_hook(ori->mlxwin, 3, 2L, han_inp, ori);
 	mlx_hook(ori->mlxwin, 17, 1, brexit, ori);
 	mlx_loop_hook(ori->mlxptr, raycasting, ori);
 	mlx_loop(ori->mlxptr);

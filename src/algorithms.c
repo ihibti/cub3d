@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 13:23:48 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/02 15:49:20 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,23 @@ void	get_firsttep(t_ray *ray)
 	}
 }
 
+void	color_ray(t_ray *ray)
+{
+	if (ray->last_hit == 1)
+	{
+		ray->perp_dist = ray->sideDistY - ray->delta_y;
+		ray->color = 1;
+		if (ray->mapX % 2 == 0)
+			ray->odd = false;
+	}
+	else
+	{
+		ray->color = 0;
+		ray->perp_dist = ray->sideDistX - ray->delta_x;
+		if (ray->mapY % 2 == 0)
+			ray->odd = false;
+	}
+}
 void	dda_alg(t_ori *ori, t_ray *ray, int x)
 {
 	char	**map;
@@ -62,18 +79,5 @@ void	dda_alg(t_ori *ori, t_ray *ray, int x)
 		if (map[ray->mapY][ray->mapX] != '0')
 			ray->hit = 1;
 	}
-	if (ray->last_hit == 1)
-	{
-		ray->perp_dist = ray->sideDistY - ray->delta_y;
-		ray->color = 1;
-		if (ray->mapX % 2 == 0)
-			ray->odd = false;
-	}
-	else
-	{
-		ray->color = 0;
-		ray->perp_dist = ray->sideDistX - ray->delta_x;
-		if (ray->mapY % 2 == 0)
-			ray->odd = false;
-	}
+	color_ray(ray);
 }

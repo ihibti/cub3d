@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 12:44:29 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/02 15:50:13 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	is_player(char c)
 		return (1);
 	return (0);
 }
+
 int	init_pl(t_ori *ori)
 {
 	char	**map;
@@ -97,7 +98,7 @@ void	init_dirangle(t_ori *ori)
 // TODO : free ori pour juste return
 int	check_init_p(t_ori *ori)
 {
-	t_player *player;
+	t_player	*player;
 
 	if (!ori || !ori->player || !ori->map)
 		return (1);
