@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/02 15:48:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:43:54 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,18 @@ void	init_ray(t_player *player, int x)
 		ray->delta_y = fabs(1 / ray->dir_ray_y);
 }
 
-void	draw_line(t_ray *ray, int x, t_ori *ori)
+void	draw_line(t_ray *ray, int x, t_ori *ori, int **tab)
 {
-	int	line_h;
-	int	drawstart;
-	int	draw_end;
-	int	y;
-	int	wall_c;
+	int		line_h;
+	int		drawstart;
+	int		draw_end;
+	int		y;
+	int		wall_c;
+	double	ratio;
+	int		i;
 
 	line_h = (int)((double)SCREEN_H / ray->perp_dist);
+	ratio = 64 / line_h;
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = SCREEN_H - 1;
@@ -81,26 +84,35 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		draw_end = 0;
 	if (drawstart >= SCREEN_H)
 		drawstart = SCREEN_H - 1;
+	i = 0;
 	if (ray->color == 1)
 		wall_c = RED;
 	else
 		wall_c = GREEN;
 	while (y > draw_end)
-		mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
+	{
+		tab[y--][x] = BLACK;
+		// mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
+	}
 	while (y > drawstart)
+	{
+		tab[y--][x] = (int)ori->img_wall1[i][ray->coord_stripe];
 		mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, wall_c);
+	}
 	while (y > 0)
+	{
 		mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLUE);
+	}
 }
 
-void	ray_len(t_ori *ori, t_player *player, int x)
+void	ray_len(t_ori *ori, t_player *player, int x, int **tab)
 {
 	t_ray	*ray;
 
 	ray = player->ray;
 	init_ray(player, x);
 	dda_alg(ori, ray, x);
-	draw_line(ray, x, ori);
+	draw_line(ray, x, ori, tab);
 }
 
 int	raycasting(t_ori *ori)
@@ -108,6 +120,7 @@ int	raycasting(t_ori *ori)
 	t_player	*player;
 	t_ray		*ray;
 	int			x;
+	int			tab[SCREEN_H][SCREEN_W];
 
 	if (ori->recast == 0)
 		return (0);
@@ -118,7 +131,7 @@ int	raycasting(t_ori *ori)
 	ray->plane_diry = cos(player->dir_angle) * FOV;
 	while (x < SCREEN_W)
 	{
-		ray_len(ori, player, x);
+		ray_len(ori, player, x, tab);
 		x++;
 	}
 	ori->recast = 0;

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/08/30 13:17:00 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:41:37 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct s_ray
 	bool		odd;
 	int			color;
 	double		cameraX;
+	double		wall_stripe;
+	int			coord_stripe;
 }				t_ray;
 typedef struct s_player
 {
@@ -114,6 +116,10 @@ typedef struct s_ori
 	int			wall;
 	int			floor;
 	bool		recast;
+	void		*img_wall2;
+	void		*img_wall1;
+	int			img_w;
+	int			img_h;
 }				t_ori;
 
 char			**allocate_map(void);

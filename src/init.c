@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/02 15:47:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:36:30 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ int	init_player(t_ori *ori)
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
+	ori->img_h = 64;
+	ori->img_w = 64;
+	ori->img_wall1 = mlx_xpm_file_to_image(ori->mlxptr,
+			"/textures/colorstone.xpm", &ori->img_w, ori->img_h);
+	ori->img_wall2 = mlx_xpm_file_to_image(ori->mlxptr, "/textures/eagle.xpm",
+			&ori->img_w, ori->img_h);
 	return (0);
 }
 

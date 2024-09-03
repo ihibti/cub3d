@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/02 15:49:20 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:43:18 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	color_ray(t_ray *ray)
 	{
 		ray->perp_dist = ray->sideDistY - ray->delta_y;
 		ray->color = 1;
-		if (ray->mapX % 2 == 0)
-			ray->odd = false;
+		ray->wall_stripe = ray->pos_rayX + (ray->perp_dist * ray->dir_ray_x);
 	}
 	else
 	{
@@ -53,7 +52,10 @@ void	color_ray(t_ray *ray)
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
 		if (ray->mapY % 2 == 0)
 			ray->odd = false;
+		ray->wall_stripe = ray->pos_rayY + (ray->perp_dist * ray->dir_ray_y);
 	}
+	ray->wall_stripe -= floor(ray->wall_stripe);
+	ray->coord_stripe = (int)(ray->wall_stripe * 64);
 }
 void	dda_alg(t_ori *ori, t_ray *ray, int x)
 {
