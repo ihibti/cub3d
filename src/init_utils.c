@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/02 15:50:13 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/03 15:28:05 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_dirangle(t_ori *ori)
 	ori->player->x_map = x;
 	ori->player->y_map = y;
 	ori->map[y][x] = '0';
+	printf("tout va bien\n");
 }
 
 // TODO : free ori pour juste return
