@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/05 17:41:21 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:30:17 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	move_w(t_ori *ori, t_player *player)
 	double	new_y;
 	double	in_front;
 
-	in_front = player->dir_angle + M_PI;
+	in_front = player->dir_angle;
 	new_x = (MOVE_SPEED * cos(in_front)) + player->pos_x;
 	new_y = player->pos_y - (MOVE_SPEED * sin(in_front));
 	printf("old x: %.10f new x %.10f\n", player->pos_x, new_x);
@@ -84,9 +84,9 @@ void	move_s(t_ori *ori, t_player *player)
 	double	new_y;
 	double	behind;
 
-	behind = player->dir_angle;
+	behind = player->dir_angle + M_PI;
 	new_x = (MOVE_SPEED * (cos(behind))) + player->pos_x;
-	new_y = player->pos_y + (MOVE_SPEED * (sin(behind)));
+	new_y = player->pos_y - (MOVE_SPEED * (sin(behind)));
 	if (ori->map[(int)new_y][(int)(new_x)] == '0')
 	{
 		player->pos_x = new_x;
