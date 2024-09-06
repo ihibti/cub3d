@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/05 18:18:11 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/06 19:58:06 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	ratio = 64 / (double)line_h;
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
-	y = SCREEN_H - 1;
+	y = 0;
 	if (drawstart < 0)
 		drawstart = 0;
 	if (draw_end >= SCREEN_H)
@@ -94,22 +94,22 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		wall_c = RED;
 	else
 		wall_c = GREEN;
-	while (y > draw_end)
+	while (y < drawstart)
 	{
-		*((int *)ori->display.data + y-- * SCREEN_W + x) = RED;
-		// mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
+		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
 	}
-	while (y > drawstart)
+	while (y < draw_end)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
 				* 64 + (int)i);
 		i += ratio;
-		--y;
+		++y;
 	}
-	while (y > 0)
+	while (y < SCREEN_H)
 	{
-		*((int *)ori->display.data + y-- * SCREEN_W + x) = BLUE;
+		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
+		// mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
 	}
 }
 
