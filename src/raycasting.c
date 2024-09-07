@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/06 19:58:06 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/07 14:36:08 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,17 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	else
 		wall_c = GREEN;
 	while (y < drawstart)
-	{
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
-	}
 	while (y < draw_end)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
-				* 64 + (int)i);
+				+ (int)i * 64);
 		i += ratio;
 		++y;
 	}
 	while (y < SCREEN_H)
-	{
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
-		// mlx_pixel_put(ori->mlxptr, ori->mlxwin, x, y--, BLACK);
-	}
 }
 
 void	ray_len(t_ori *ori, t_player *player, int x)
@@ -129,6 +124,10 @@ int	raycasting(t_ori *ori)
 	t_ray		*ray;
 	int			x;
 
+	printf("recast ?");
+	if (!ori->recast)
+		return (printf("no\n"), 0);
+	printf("oui\n");
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
@@ -140,5 +139,6 @@ int	raycasting(t_ori *ori)
 		x++;
 	}
 	mlx_put_image_to_window(ori->mlxptr, ori->mlxwin, ori->display.img, 0, 0);
+	ori->recast = 0;
 	return (0);
 }

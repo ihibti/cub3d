@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/06 18:07:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/07 16:02:07 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	move_a(t_ori *ori, t_player *player)
 		player->x_map = (int)player->pos_x;
 		player->y_map = (int)player->pos_y;
 	}
-	raycasting(ori);
+	// raycasting(ori);
 }
 
 void	move_d(t_ori *ori, t_player *player)
@@ -49,18 +49,18 @@ void	move_d(t_ori *ori, t_player *player)
 		player->x_map = (int)player->pos_x;
 		player->y_map = (int)player->pos_y;
 	}
-	raycasting(ori);
+	// raycasting(ori);
 }
 
 void	move_s(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	in_front;
+	double	behind;
 
-	in_front = player->dir_angle;
-	new_x = (MOVE_SPEED * cos(in_front)) + player->pos_x;
-	new_y = player->pos_y + (MOVE_SPEED * sin(in_front));
+	behind = player->dir_angle + M_PI;
+	new_x = player->pos_x + (MOVE_SPEED * cos(behind));
+	new_y = player->pos_y - (MOVE_SPEED * sin(behind));
 	if (ori->map[(int)new_y][(int)(new_x)] == '0')
 	{
 		player->pos_x = new_x;
@@ -69,18 +69,18 @@ void	move_s(t_ori *ori, t_player *player)
 		player->x_map = (int)player->pos_x;
 		player->y_map = (int)player->pos_y;
 	}
-	raycasting(ori);
+	// raycasting(ori);
 }
 
 void	move_w(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	behind;
+	double	front;
 
-	behind = player->dir_angle;
-	new_x = player->pos_x - (MOVE_SPEED * (cos(behind)));
-	new_y = player->pos_y - (MOVE_SPEED * (sin(behind)));
+	front = player->dir_angle;
+	new_x = player->pos_x + (MOVE_SPEED * (cos(front)));
+	new_y = player->pos_y - (MOVE_SPEED * (sin(front)));
 	if (ori->map[(int)new_y][(int)(new_x)] == '0')
 	{
 		player->pos_x = new_x;
@@ -88,7 +88,7 @@ void	move_w(t_ori *ori, t_player *player)
 		player->x_map = (int)player->pos_x;
 		player->y_map = (int)player->pos_y;
 		ori->recast = 1;
-		raycasting(ori);
+		// raycasting(ori);
 	}
 }
 
@@ -103,47 +103,46 @@ void	look_left(t_ori *ori)
 		ori->player->dir_angle += PIXEL;
 		ori->player->dir_x = cos(ori->player->dir_angle);
 		ori->player->dir_y = sin(ori->player->dir_angle);
-		raycasting(ori);
+		// raycasting(ori);
 	}
 	if (ori->player->dir_angle > (2 * M_PI))
-		ori->player->dir_angle = 0;
+		ori->player->dir_angle = fmod(ori->player->dir_angle, 2 * M_PI);
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
-	raycasting(ori);
+	// raycasting(ori);
 }
 
 void	look_right(t_ori *ori)
 {
-	double	temp;
-
-	temp = ori->player->dir_angle - CAMERA_SPEED;
-	while (temp < ori->player->dir_angle)
-	{
-		ori->player->dir_angle -= PIXEL;
-		ori->player->dir_x = cos(ori->player->dir_angle);
-		ori->player->dir_y = sin(ori->player->dir_angle);
-		raycasting(ori);
-	}
+	// double	temp;
+	ori->player->dir_angle = ori->player->dir_angle - CAMERA_SPEED;
+	// while (temp < ori->player->dir_angle)
+	// {
+	// 	ori->player->dir_angle -= PIXEL;
+	// 	ori->player->dir_x = cos(ori->player->dir_angle);
+	// 	ori->player->dir_y = sin(ori->player->dir_angle);
+	// 	raycasting(ori);
+	// }
 	if (ori->player->dir_angle < 0)
-		ori->player->dir_angle = 2 * M_PI;
+		ori->player->dir_angle = 2 * M_PI - ori->player->dir_angle;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
-	raycasting(ori);
+	// raycasting(ori);
 }
 
 int	han_inp(int key, t_ori *ori)
 {
 	if (key == XK_Escape)
 		brexit(ori);
-	if (key == 'w')
+	if (key == XK_w)
 		move_w(ori, ori->player);
-	if (key == 's')
+	if (key == XK_s)
 		move_s(ori, ori->player);
-	if (key == 'd')
+	if (key == XK_d)
 		move_d(ori, ori->player);
-	if (key == 'a')
+	if (key == XK_a)
 		move_a(ori, ori->player);
 	if (key == XK_Left)
 		look_left(ori);

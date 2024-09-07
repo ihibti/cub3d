@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/05 17:21:04 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/07 13:37:25 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	draw_win(t_ori *ori)
 int	start_mlx(t_ori *ori)
 {
 	ori->mlxptr = mlx_init();
+	ori->recast = 1;
 	if (!ori->mlxptr)
 		return (1);
 	ori->mlxwin = mlx_new_window(ori->mlxptr, SCREEN_W, SCREEN_H, "cub3d");

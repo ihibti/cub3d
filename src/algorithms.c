@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/06 18:02:44 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/07 14:30:58 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void	color_ray(t_ray *ray)
 	if (ray->last_hit == 1)
 	{
 		ray->perp_dist = ray->sideDistY - ray->delta_y;
+		// if (ray->perp_dist < 1)
+		// 	ray->perp_dist = 1;
 		ray->color = 1;
-		ray->wall_stripe = fabs(ray->pos_rayX - (ray->perp_dist * ray->dir_ray_x));
+		ray->wall_stripe = fabs(ray->pos_rayX - (ray->perp_dist
+					* ray->dir_ray_x));
 		ray->wall_stripe -= floor(ray->wall_stripe);
 		ray->coord_stripe = (int)(ray->wall_stripe * 64);
 	}
@@ -52,6 +55,8 @@ void	color_ray(t_ray *ray)
 	{
 		ray->color = 0;
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
+		// if (ray->perp_dist < 1.0)
+		// 	ray->perp_dist = 1.0;
 		ray->wall_stripe = fabs(ray->pos_rayY - (ray->perp_dist
 					* ray->dir_ray_y));
 		ray->wall_stripe -= floor(ray->wall_stripe);
