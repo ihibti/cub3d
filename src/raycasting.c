@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/07 14:36:08 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/08 13:48:43 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	int		drawstart;
 	int		draw_end;
 	int		y;
-	int		wall_c;
 	double	ratio;
 	double	i;
 	int		wall;
@@ -90,10 +89,6 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		wall = 0;
 	else
 		wall = 1;
-	if (ray->color == 1)
-		wall_c = RED;
-	else
-		wall_c = GREEN;
 	while (y < drawstart)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
 	while (y < draw_end)
@@ -108,6 +103,19 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
 }
 
+int	correction_close(t_player *player, t_ray *ray)
+{
+	double	delta_angle;
+
+	if (ray->perp_dist < 0.3)
+		ray->perp_dist = 0.3;
+	delta_angle = atan2(ray->dir_ray_y, ray->dir_ray_x) - player->dir_angle;
+	ray->perp_dist *= cos(delta_angle);
+	if (ray->perp_dist < 0.1)
+		ray->perp_dist = 0.1;
+	return (0);
+}
+
 void	ray_len(t_ori *ori, t_player *player, int x)
 {
 	t_ray	*ray;
@@ -115,6 +123,8 @@ void	ray_len(t_ori *ori, t_player *player, int x)
 	ray = player->ray;
 	init_ray(player, x);
 	dda_alg(ori, ray, x);
+	// if (ray->perp_dist < 0.4)
+	// 	correction_close(player, ray);
 	draw_line(ray, x, ori);
 }
 
@@ -124,15 +134,11 @@ int	raycasting(t_ori *ori)
 	t_ray		*ray;
 	int			x;
 
-	printf("recast ?");
-	if (!ori->recast)
-		return (printf("no\n"), 0);
-	printf("oui\n");
 	player = ori->player;
 	x = 0;
 	ray = player->ray;
-	ray->plane_dirx = -sin(player->dir_angle) * FOV;
-	ray->plane_diry = cos(player->dir_angle) * FOV;
+	ray->plane_dirx = sin(player->dir_angle) * FOV;
+	ray->plane_diry = -cos(player->dir_angle) * FOV;
 	while (x < SCREEN_W)
 	{
 		ray_len(ori, player, x);

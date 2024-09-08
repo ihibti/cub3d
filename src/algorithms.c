@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/07 14:30:58 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/08 13:32:17 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_firsttep(t_ray *ray)
 {
-	if (ray->dir_ray_x > 0)
+	if (ray->dir_ray_x < 0)
 	{
 		ray->stepx = -1;
 		ray->sideDistX = (ray->pos_rayX - (double)ray->mapX) * ray->delta_x;
@@ -46,10 +46,8 @@ void	color_ray(t_ray *ray)
 		// if (ray->perp_dist < 1)
 		// 	ray->perp_dist = 1;
 		ray->color = 1;
-		ray->wall_stripe = fabs(ray->pos_rayX - (ray->perp_dist
+		ray->wall_stripe = fabs(ray->pos_rayX + (ray->perp_dist
 					* ray->dir_ray_x));
-		ray->wall_stripe -= floor(ray->wall_stripe);
-		ray->coord_stripe = (int)(ray->wall_stripe * 64);
 	}
 	else
 	{
@@ -59,9 +57,9 @@ void	color_ray(t_ray *ray)
 		// 	ray->perp_dist = 1.0;
 		ray->wall_stripe = fabs(ray->pos_rayY - (ray->perp_dist
 					* ray->dir_ray_y));
-		ray->wall_stripe -= floor(ray->wall_stripe);
-		ray->coord_stripe = (int)(ray->wall_stripe * 64);
 	}
+	ray->wall_stripe -= floor(ray->wall_stripe);
+	ray->coord_stripe = (int)(ray->wall_stripe * 64);
 }
 void	dda_alg(t_ori *ori, t_ray *ray, int x)
 {
@@ -72,7 +70,7 @@ void	dda_alg(t_ori *ori, t_ray *ray, int x)
 	(void)x;
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY && ray->dir_ray_x != 0)
+		if (ray->sideDistX < ray->sideDistY)
 		{
 			ray->sideDistX += ray->delta_x;
 			ray->mapX += ray->stepx;

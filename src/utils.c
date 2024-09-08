@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/02 15:48:23 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/08 12:21:26 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	brexit(t_ori *ori)
 		free(ori->player->ray);
 	if (ori->player)
 		free(ori->player);
+	mlx_destroy_image(ori->mlxptr, ori->textures[0].img);
+	mlx_destroy_image(ori->mlxptr, ori->textures[1].img);
+	mlx_destroy_image(ori->mlxptr, ori->display.img);
 	if (ori->mlxwin)
 		mlx_destroy_window(ori->mlxptr, ori->mlxwin);
 	if (ori->mlxptr)

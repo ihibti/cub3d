@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/07 16:02:07 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/08 12:04:27 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	move_a(t_ori *ori, t_player *player)
 
 	left = player->dir_angle + (M_PI / 2);
 	new_x = (MOVE_SPEED * cos(left)) + player->pos_x;
-	new_y = player->pos_y + (MOVE_SPEED * sin(left));
-	if (ori->map[(int)new_y][(int)(new_x)] == '0')
+	new_y = player->pos_y - (MOVE_SPEED * sin(left));
+	if (!move_unsafe(ori, player, new_x, new_y))
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
@@ -40,8 +40,8 @@ void	move_d(t_ori *ori, t_player *player)
 
 	player_right = (player->dir_angle - (M_PI / 2));
 	new_x = (MOVE_SPEED * cos(player_right)) + player->pos_x;
-	new_y = player->pos_y + (MOVE_SPEED * sin(player_right));
-	if (ori->map[(int)new_y][(int)(new_x)] == '0')
+	new_y = player->pos_y - (MOVE_SPEED * sin(player_right));
+	if (!move_unsafe(ori, player, new_x, new_y))
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
@@ -61,7 +61,7 @@ void	move_s(t_ori *ori, t_player *player)
 	behind = player->dir_angle + M_PI;
 	new_x = player->pos_x + (MOVE_SPEED * cos(behind));
 	new_y = player->pos_y - (MOVE_SPEED * sin(behind));
-	if (ori->map[(int)new_y][(int)(new_x)] == '0')
+	if (!move_unsafe(ori, player, new_x, new_y))
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
@@ -81,7 +81,7 @@ void	move_w(t_ori *ori, t_player *player)
 	front = player->dir_angle;
 	new_x = player->pos_x + (MOVE_SPEED * (cos(front)));
 	new_y = player->pos_y - (MOVE_SPEED * (sin(front)));
-	if (ori->map[(int)new_y][(int)(new_x)] == '0')
+	if (!move_unsafe(ori, player, new_x, new_y))
 	{
 		player->pos_x = new_x;
 		player->pos_y = new_y;
@@ -90,6 +90,33 @@ void	move_w(t_ori *ori, t_player *player)
 		ori->recast = 1;
 		// raycasting(ori);
 	}
+}
+
+int	move_unsafe(t_ori *ori, t_player *player, double new_x, double new_y)
+{
+	char	**map;
+
+	map = ori->map;
+	(void)player;
+	if (map[(int)(new_y + 0.20)][(int)(new_x)] != '0')
+		return (1);
+	if (map[(int)(new_y - 0.20)][(int)(new_x)] != '0')
+		return (1);
+	if (map[(int)(new_y)][(int)(new_x + 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y)][(int)(new_x - 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y + 0.20)][(int)(new_x + 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y - 0.20)][(int)(new_x - 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y + 0.20)][(int)(new_x - 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y - 0.20)][(int)(new_x + 0.20)] != '0')
+		return (1);
+	if (map[(int)(new_y)][(int)(new_x)] != '0')
+		return (1);
+	return (0);
 }
 
 void	look_left(t_ori *ori)
@@ -106,7 +133,7 @@ void	look_left(t_ori *ori)
 		// raycasting(ori);
 	}
 	if (ori->player->dir_angle > (2 * M_PI))
-		ori->player->dir_angle = fmod(ori->player->dir_angle, 2 * M_PI);
+		ori->player->dir_angle -= 2 * M_PI;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
@@ -125,7 +152,7 @@ void	look_right(t_ori *ori)
 	// 	raycasting(ori);
 	// }
 	if (ori->player->dir_angle < 0)
-		ori->player->dir_angle = 2 * M_PI - ori->player->dir_angle;
+		ori->player->dir_angle += 2 * M_PI;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;

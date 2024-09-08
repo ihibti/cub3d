@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/05 16:59:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/07 19:40:53 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,7 @@ int				han_inp(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
 void			dda_alg(t_ori *ori, t_ray *ray, int x);
 void			debugging(t_ori *ori);
+int				move_unsafe(t_ori *ori, t_player *player, double new_x,
+					double new_y);
 
 #endif
