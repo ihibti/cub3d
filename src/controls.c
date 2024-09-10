@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/08 12:04:27 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 18:23:40 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ void	move_a(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	left;
+	double	dir_m;
 
-	left = player->dir_angle + (M_PI / 2);
-	new_x = (MOVE_SPEED * cos(left)) + player->pos_x;
-	new_y = player->pos_y - (MOVE_SPEED * sin(left));
-	if (!move_unsafe(ori, player, new_x, new_y))
-	{
-		player->pos_x = new_x;
-		player->pos_y = new_y;
-		ori->recast = 1;
-		player->x_map = (int)player->pos_x;
-		player->y_map = (int)player->pos_y;
-	}
+	dir_m = player->dir_angle + (M_PI / 2);
+	new_x = (MOVE_SPEED * cos(dir_m)) + player->pos_x;
+	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
+	slide_x(ori, player, dir_m);
+	slide_y(ori, player, dir_m);
 	// raycasting(ori);
 }
 
@@ -36,19 +30,13 @@ void	move_d(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	player_right;
+	double	dir_m;
 
-	player_right = (player->dir_angle - (M_PI / 2));
-	new_x = (MOVE_SPEED * cos(player_right)) + player->pos_x;
-	new_y = player->pos_y - (MOVE_SPEED * sin(player_right));
-	if (!move_unsafe(ori, player, new_x, new_y))
-	{
-		player->pos_x = new_x;
-		player->pos_y = new_y;
-		ori->recast = 1;
-		player->x_map = (int)player->pos_x;
-		player->y_map = (int)player->pos_y;
-	}
+	dir_m = (player->dir_angle - (M_PI / 2));
+	new_x = (MOVE_SPEED * cos(dir_m)) + player->pos_x;
+	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
+	slide_x(ori, player, dir_m);
+	slide_y(ori, player, dir_m);
 	// raycasting(ori);
 }
 
@@ -56,19 +44,13 @@ void	move_s(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	behind;
+	double	dir_m;
 
-	behind = player->dir_angle + M_PI;
-	new_x = player->pos_x + (MOVE_SPEED * cos(behind));
-	new_y = player->pos_y - (MOVE_SPEED * sin(behind));
-	if (!move_unsafe(ori, player, new_x, new_y))
-	{
-		player->pos_x = new_x;
-		player->pos_y = new_y;
-		ori->recast = 1;
-		player->x_map = (int)player->pos_x;
-		player->y_map = (int)player->pos_y;
-	}
+	dir_m = player->dir_angle + M_PI;
+	new_x = player->pos_x + (MOVE_SPEED * cos(dir_m));
+	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
+	slide_x(ori, player, dir_m);
+	slide_y(ori, player, dir_m);
 	// raycasting(ori);
 }
 
@@ -76,104 +58,135 @@ void	move_w(t_ori *ori, t_player *player)
 {
 	double	new_x;
 	double	new_y;
-	double	front;
+	double	dir_m;
 
-	front = player->dir_angle;
-	new_x = player->pos_x + (MOVE_SPEED * (cos(front)));
-	new_y = player->pos_y - (MOVE_SPEED * (sin(front)));
-	if (!move_unsafe(ori, player, new_x, new_y))
-	{
-		player->pos_x = new_x;
-		player->pos_y = new_y;
-		player->x_map = (int)player->pos_x;
-		player->y_map = (int)player->pos_y;
-		ori->recast = 1;
-		// raycasting(ori);
-	}
+	dir_m = player->dir_angle;
+	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
+	slide_x(ori, player, dir_m);
+	slide_y(ori, player, dir_m);
 }
 
-int	move_unsafe(t_ori *ori, t_player *player, double new_x, double new_y)
+int	slide_x(t_ori *ori, t_player *player, double dir_m)
 {
 	char	**map;
+	double	new_x;
 
 	map = ori->map;
-	(void)player;
-	if (map[(int)(new_y + 0.20)][(int)(new_x)] != '0')
-		return (1);
-	if (map[(int)(new_y - 0.20)][(int)(new_x)] != '0')
-		return (1);
-	if (map[(int)(new_y)][(int)(new_x + 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y)][(int)(new_x - 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y + 0.20)][(int)(new_x + 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y - 0.20)][(int)(new_x - 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y + 0.20)][(int)(new_x - 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y - 0.20)][(int)(new_x + 0.20)] != '0')
-		return (1);
-	if (map[(int)(new_y)][(int)(new_x)] != '0')
-		return (1);
+	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	if (cos(dir_m) > 0)
+	{
+		if (map[player->y_map][(int)(new_x + 0.2)] == '0')
+			player->pos_x = new_x;
+		else
+			player->pos_x = (double)((int)new_x + 1) - 0.2;
+	}
+	else
+	{
+		if (map[player->y_map][(int)(new_x - 0.2)] == '0')
+			player->pos_x = new_x;
+		else
+			player->pos_x = (double)((int)new_x - 1) + 0.2;
+	}
+	player->pos_x = (int)player->pos_x;
+	return (0);
+}
+
+int	slide_y(t_ori *ori, t_player *player, double dir_m)
+{
+	char	**map;
+	double	new_y;
+
+	map = ori->map;
+	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
+	if (sin(dir_m) < 0)
+	{
+		if (map[(int)(new_y - 0.2)][player->x_map] == '0')
+			player->pos_y = new_y;
+		else
+			player->pos_y = (double)((int)new_y - 1) + 0.2;
+	}
+	else
+	{
+		if (map[(int)(new_y + 0.2)][player->x_map] == '0')
+			player->pos_y = new_y;
+		else
+			player->pos_y = (double)((int)new_y + 1) - 0.2;
+	}
+	player->y_map = (int)player->pos_y;
 	return (0);
 }
 
 void	look_left(t_ori *ori)
 {
-	double	temp;
-
-	temp = ori->player->dir_angle + CAMERA_SPEED;
-	while (temp > ori->player->dir_angle)
-	{
-		ori->recast = 1;
-		ori->player->dir_angle += PIXEL;
-		ori->player->dir_x = cos(ori->player->dir_angle);
-		ori->player->dir_y = sin(ori->player->dir_angle);
-		// raycasting(ori);
-	}
+	ori->player->dir_angle += (double)(CAMERA_SPEED / 10);
 	if (ori->player->dir_angle > (2 * M_PI))
 		ori->player->dir_angle -= 2 * M_PI;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
-	// raycasting(ori);
 }
 
 void	look_right(t_ori *ori)
 {
-	// double	temp;
-	ori->player->dir_angle = ori->player->dir_angle - CAMERA_SPEED;
-	// while (temp < ori->player->dir_angle)
-	// {
-	// 	ori->player->dir_angle -= PIXEL;
-	// 	ori->player->dir_x = cos(ori->player->dir_angle);
-	// 	ori->player->dir_y = sin(ori->player->dir_angle);
-	// 	raycasting(ori);
-	// }
+	ori->player->dir_angle -= (double)(CAMERA_SPEED / 10);
 	if (ori->player->dir_angle < 0)
 		ori->player->dir_angle += 2 * M_PI;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
-	// raycasting(ori);
 }
 
-int	han_inp(int key, t_ori *ori)
+void	truc_move(t_ori *ori)
+{
+	if (ori->w)
+		move_w(ori, ori->player);
+	if (ori->a)
+		move_a(ori, ori->player);
+	if (ori->s)
+		move_s(ori, ori->player);
+	if (ori->d)
+		move_d(ori, ori->player);
+	if (ori->left)
+		look_left(ori);
+	if (ori->right)
+		look_right(ori);
+}
+
+int	han_inp_press(int key, t_ori *ori)
 {
 	if (key == XK_Escape)
 		brexit(ori);
 	if (key == XK_w)
-		move_w(ori, ori->player);
+		ori->w = true;
 	if (key == XK_s)
-		move_s(ori, ori->player);
+		ori->s = true;
 	if (key == XK_d)
-		move_d(ori, ori->player);
+		ori->d = true;
 	if (key == XK_a)
-		move_a(ori, ori->player);
+		ori->a = true;
 	if (key == XK_Left)
-		look_left(ori);
+		ori->left = true;
 	if (key == XK_Right)
-		look_right(ori);
+		ori->right = true;
+	return (0);
+}
+
+int	han_inp_release(int key, t_ori *ori)
+{
+	if (key == XK_Escape)
+		brexit(ori);
+	if (key == XK_w)
+		ori->w = false;
+	if (key == XK_s)
+		ori->s = false;
+	if (key == XK_d)
+		ori->d = false;
+	if (key == XK_a)
+		ori->a = false;
+	if (key == XK_Left)
+		ori->left = false;
+	if (key == XK_Right)
+		ori->right = false;
 	return (0);
 }

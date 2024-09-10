@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/08 12:19:33 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 17:58:47 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ int	init_player(t_ori *ori)
 	if (init_pl(ori))
 		return (free(ori->player), 1);
 	init_dirangle(ori);
+	ori->a = false;
+	ori->w = false;
+	ori->s = false;
+	ori->d = false;
+	ori->left = false;
+	ori->right = false;
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;

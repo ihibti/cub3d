@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/08 13:48:43 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 18:01:49 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 
 	line_h = (int)((double)SCREEN_H / ray->perp_dist);
 	ratio = 64 / (double)line_h;
+	if (line_h < SCREEN_H)
+		i = 0;
+	else
+	{
+		i = ratio * (line_h - SCREEN_H) / 2;
+	}
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = 0;
@@ -84,7 +90,6 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		drawstart = 0;
 	if (draw_end >= SCREEN_H)
 		draw_end = SCREEN_H - 1;
-	i = 0;
 	if (ray->last_hit == 0)
 		wall = 0;
 	else
@@ -101,19 +106,6 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	}
 	while (y < SCREEN_H)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
-}
-
-int	correction_close(t_player *player, t_ray *ray)
-{
-	double	delta_angle;
-
-	if (ray->perp_dist < 0.3)
-		ray->perp_dist = 0.3;
-	delta_angle = atan2(ray->dir_ray_y, ray->dir_ray_x) - player->dir_angle;
-	ray->perp_dist *= cos(delta_angle);
-	if (ray->perp_dist < 0.1)
-		ray->perp_dist = 0.1;
-	return (0);
 }
 
 void	ray_len(t_ori *ori, t_player *player, int x)
@@ -134,6 +126,7 @@ int	raycasting(t_ori *ori)
 	t_ray		*ray;
 	int			x;
 
+	truc_move(ori);
 	player = ori->player;
 	x = 0;
 	ray = player->ray;

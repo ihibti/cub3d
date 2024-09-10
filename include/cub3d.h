@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/07 19:40:53 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 18:19:39 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE_SPEED 0.115
-# define CAMERA_SPEED (M_PI / 50)
+# define MOVE_SPEED 0.002
+# define CAMERA_SPEED (0.01)
 # define SCREEN_W 1200
 # define SCREEN_H 500
 # define PIXEL (M_PI) / (SCREEN_H)
@@ -129,8 +129,15 @@ typedef struct s_ori
 	int			img_h;
 	t_display	display;
 	t_display	textures[4];
+	bool		w;
+	bool		s;
+	bool		a;
+	bool		d;
+	bool		left;
+	bool		right;
 }				t_ori;
 
+void			truc_move(t_ori *ori);
 char			**allocate_map(void);
 void			free_map(char **map);
 int				init_player(t_ori *ori);
@@ -140,11 +147,12 @@ void			init_dirangle(t_ori *ori);
 int				check_init_p(t_ori *ori);
 int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
-int				han_inp(int key, t_ori *ori);
+int				han_inp_press(int key, t_ori *ori);
+int				han_inp_release(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
 void			dda_alg(t_ori *ori, t_ray *ray, int x);
 void			debugging(t_ori *ori);
-int				move_unsafe(t_ori *ori, t_player *player, double new_x,
-					double new_y);
+int				slide_x(t_ori *ori, t_player *player, double dir_m);
+int				slide_y(t_ori *ori, t_player *player, double dir_m);
 
 #endif
