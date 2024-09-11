@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 18:58:39 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/11 16:21:58 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		wall = 0;
 	else
 		wall = 1;
-	while (y < drawstart)
+	while (y < drawstart && y < SCREEN_H)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
-	while (y <= draw_end)
+	while (y <= draw_end && y < SCREEN_H)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
@@ -120,6 +120,90 @@ void	ray_len(t_ori *ori, t_player *player, int x)
 	draw_line(ray, x, ori);
 }
 
+int	collision(char **map, t_ori *ori, int stepx, int stepy)
+{
+	if (stepx == 0 || stepy == 0)
+		return (1);
+	if (map[ori->player->y_map + stepy][ori->player->x_map] != '0')
+	{
+		if (map[ori->player->y_map][ori->player->x_map + stepx] != '0')
+			return (0);
+	}
+	return (1);
+}
+
+int	is_pov(int x, int y, t_ori *ori)
+{
+	int		stepx;
+	int		stepy;
+	double	angle;
+
+	angle = ori->player->dir_angle;
+	if (cos(angle) > 0.5)
+		stepx = 1;
+	else if (cos(angle) < -0.5)
+		stepx = -1;
+	else
+		stepx = 0;
+	if (sin(angle) > 0.5)
+		stepy = -1;
+	else if (sin(angle) < -0.5)
+		stepy = 1;
+	else
+		stepy = 0;
+	if (x != ori->player->x_map + stepx || y != ori->player->y_map + stepy)
+		return (0);
+	if (ori->map[ori->player->y_map + stepy][ori->player->x_map + stepx] == '0')
+		if (collision(ori->map, ori, stepx, stepy))
+			return (1);
+	return (0);
+}
+
+uint32_t	get_color_mini(int x, int y, char **map, t_ori *ori)
+{
+	int	x_max;
+	int	y_max;
+	int	i;
+	int	j;
+
+	map_dimensions(&x_max, &y_max, map);
+	i = (int)((double)x / (((double)SCREEN_H / 4.0) / (double)x_max));
+	j = (int)((double)y / (((double)SCREEN_H / 4.0) / (double)y_max));
+	if (i == ori->player->x_map && ori->player->y_map == j)
+		return (RED);
+	if (is_pov(i, j, ori))
+		return (GREEN);
+	if (map[j][i] == '0')
+		return (WHITE);
+	if (i == x_max - 1 || j == y_max - 1)
+		return (BLACK);
+	if (i == 0 || j == 0)
+		return (BLACK);
+	return (GRAY);
+}
+
+void	draw_minimap(t_ori *ori)
+{
+	char	**map;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	map = ori->map;
+	while (x < (int)(SCREEN_H / 4))
+	{
+		while (y < (int)(SCREEN_H / 4))
+		{
+			*((int *)ori->display.data + y * SCREEN_W + x) = get_color_mini(x,
+					y, map, ori);
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
 int	raycasting(t_ori *ori)
 {
 	t_player	*player;
@@ -137,6 +221,7 @@ int	raycasting(t_ori *ori)
 		ray_len(ori, player, x);
 		x++;
 	}
+	draw_minimap(ori);
 	mlx_put_image_to_window(ori->mlxptr, ori->mlxwin, ori->display.img, 0, 0);
 	ori->recast = 0;
 	return (0);
