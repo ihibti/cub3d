@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 18:49:43 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/11 16:49:02 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,21 @@ int	slide_x(t_ori *ori, t_player *player, double dir_m)
 {
 	char	**map;
 	double	new_x;
+	double	new_y;
 
 	map = ori->map;
+	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
 	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
 	if (cos(dir_m) > 0)
 	{
-		if (map[player->y_map][(int)(new_x + 0.2)] == '0')
+		if (map[(int)new_y][(int)(new_x + 0.2)] == '0')
 			player->pos_x = new_x;
 		else
 			player->pos_x = (double)((int)new_x + 1) - 0.2;
 	}
 	else
 	{
-		if (map[player->y_map][(int)(new_x - 0.2)] == '0')
+		if (map[(int)new_y][(int)(new_x - 0.2)] == '0')
 			player->pos_x = new_x;
 		else
 			player->pos_x = (double)((int)new_x) + 0.2;
