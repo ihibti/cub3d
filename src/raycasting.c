@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 18:01:49 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 18:58:39 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		wall = 1;
 	while (y < drawstart)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
-	while (y < draw_end)
+	while (y <= draw_end)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe

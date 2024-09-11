@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 18:23:40 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/10 18:49:43 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 void	move_a(t_ori *ori, t_player *player)
 {
-	double	new_x;
-	double	new_y;
 	double	dir_m;
 
 	dir_m = player->dir_angle + (M_PI / 2);
-	new_x = (MOVE_SPEED * cos(dir_m)) + player->pos_x;
-	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
 	slide_x(ori, player, dir_m);
 	slide_y(ori, player, dir_m);
 	// raycasting(ori);
@@ -28,13 +24,9 @@ void	move_a(t_ori *ori, t_player *player)
 
 void	move_d(t_ori *ori, t_player *player)
 {
-	double	new_x;
-	double	new_y;
 	double	dir_m;
 
 	dir_m = (player->dir_angle - (M_PI / 2));
-	new_x = (MOVE_SPEED * cos(dir_m)) + player->pos_x;
-	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
 	slide_x(ori, player, dir_m);
 	slide_y(ori, player, dir_m);
 	// raycasting(ori);
@@ -42,13 +34,9 @@ void	move_d(t_ori *ori, t_player *player)
 
 void	move_s(t_ori *ori, t_player *player)
 {
-	double	new_x;
-	double	new_y;
 	double	dir_m;
 
 	dir_m = player->dir_angle + M_PI;
-	new_x = player->pos_x + (MOVE_SPEED * cos(dir_m));
-	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
 	slide_x(ori, player, dir_m);
 	slide_y(ori, player, dir_m);
 	// raycasting(ori);
@@ -56,15 +44,11 @@ void	move_s(t_ori *ori, t_player *player)
 
 void	move_w(t_ori *ori, t_player *player)
 {
-	double	new_x;
-	double	new_y;
 	double	dir_m;
 
 	dir_m = player->dir_angle;
-	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
-	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	slide_x(ori, player, dir_m);
 	slide_y(ori, player, dir_m);
+	slide_x(ori, player, dir_m);
 }
 
 int	slide_x(t_ori *ori, t_player *player, double dir_m)
@@ -86,9 +70,9 @@ int	slide_x(t_ori *ori, t_player *player, double dir_m)
 		if (map[player->y_map][(int)(new_x - 0.2)] == '0')
 			player->pos_x = new_x;
 		else
-			player->pos_x = (double)((int)new_x - 1) + 0.2;
+			player->pos_x = (double)((int)new_x) + 0.2;
 	}
-	player->pos_x = (int)player->pos_x;
+	player->x_map = (int)player->pos_x;
 	return (0);
 }
 
@@ -99,19 +83,19 @@ int	slide_y(t_ori *ori, t_player *player, double dir_m)
 
 	map = ori->map;
 	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	if (sin(dir_m) < 0)
+	if (sin(dir_m) > 0)
 	{
 		if (map[(int)(new_y - 0.2)][player->x_map] == '0')
 			player->pos_y = new_y;
 		else
-			player->pos_y = (double)((int)new_y - 1) + 0.2;
+			player->pos_y = (double)(player->y_map) + 0.2;
 	}
 	else
 	{
 		if (map[(int)(new_y + 0.2)][player->x_map] == '0')
 			player->pos_y = new_y;
 		else
-			player->pos_y = (double)((int)new_y + 1) - 0.2;
+			player->pos_y = (double)(player->y_map + 1) - 0.2;
 	}
 	player->y_map = (int)player->pos_y;
 	return (0);
