@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/11 16:21:58 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/14 13:49:39 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	if (line_h < SCREEN_H)
 		i = 0;
 	else
-	{
 		i = ratio * (line_h - SCREEN_H) / 2;
-	}
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = 0;

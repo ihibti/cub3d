@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 15:17:04 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/14 19:57:21 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	start_mlx(t_ori *ori)
 			&ori->textures[1].height);
 	// mlx_hook(ori->mlxptr,han_inp,)
 	// mlx_key_hook(ori->mlxwin, han_inp, ori);
-	mlx_hook(ori->mlxwin, 2, 1L, han_inp_press, ori);
 	mlx_hook(ori->mlxwin, 3, 2L, han_inp_release, ori);
+	mlx_hook(ori->mlxwin, 2, 1L, han_inp_press, ori);
 	mlx_hook(ori->mlxwin, 17, 1, brexit, ori);
 	mlx_loop_hook(ori->mlxptr, raycasting, ori);
 	mlx_loop(ori->mlxptr);
