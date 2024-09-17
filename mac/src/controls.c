@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/14 20:53:07 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/17 20:50:47 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,41 +138,38 @@ void	truc_move(t_ori *ori)
 	if (ori->right)
 		look_right(ori);
 }
-
 int	han_inp_press(int key, t_ori *ori)
 {
-	if (key == XK_Escape)
-		brexit(ori);
-	if (key == XK_w)
+	if (key == KEY_W)
 		ori->w = true;
-	if (key == XK_s)
+	if (key == KEY_S)
 		ori->s = true;
-	if (key == XK_d)
+	if (key == KEY_D)
 		ori->d = true;
-	if (key == XK_a)
+	if (key == KEY_A)
 		ori->a = true;
-	if (key == XK_Left)
+	if (key == KEY_LEFT)
 		ori->left = true;
-	if (key == XK_Right)
+	if (key == KEY_RIGHT)
 		ori->right = true;
 	return (0);
 }
 
 int	han_inp_release(int key, t_ori *ori)
 {
-	if (key == XK_Escape)
+	if (key == KEY_ESCAPE)
 		brexit(ori);
-	if (key == XK_w)
+	if (key == KEY_W)
 		ori->w = false;
-	if (key == XK_s)
+	if (key == KEY_S)
 		ori->s = false;
-	if (key == XK_d)
+	if (key == KEY_D)
 		ori->d = false;
-	if (key == XK_a)
+	if (key == KEY_A)
 		ori->a = false;
-	if (key == XK_Left)
+	if (key == KEY_LEFT)
 		ori->left = false;
-	if (key == XK_Right)
+	if (key == KEY_RIGHT)
 		ori->right = false;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/13 12:41:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/17 20:51:28 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # define _USE_MATH_DEFINES
+
+
 # include "mlx.h"
 # include "stdio.h"
 # include <X11/X.h>
