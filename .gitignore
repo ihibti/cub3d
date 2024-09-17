@@ -2,5 +2,4 @@
 *.d
 *.a
 .vscode
-minilibx-linux
 cub3d
