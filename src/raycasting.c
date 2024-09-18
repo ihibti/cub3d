@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/14 13:49:39 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:05:17 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,11 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
-				+ (int)i * 64);
+				+ (int)(i) * 64);
 		i += ratio;
-		++y;
+		if (i > 63)
+			i = 63.0;
+		y++;
 	}
 	while (y < SCREEN_H)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
