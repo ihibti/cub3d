@@ -1,6 +1,6 @@
 NAME = cub3d
-CC = cc
-CFLAG = -MMD -g3 -O3 -ffast-math
+CC = clang
+CFLAG = -MMD -g3 -O3 -ffast-math -fsanitize=address -fno-omit-frame-pointer
 LIBFTDIR = ./libft
 MLXDIR = ./minilibx-linux
 
