@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/17 20:52:13 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 21:23:23 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@
 # include "mlx.h"
 # include "stdio.h"
 
-#ifdef __APPLE__
-    #define KEY_ESCAPE 53 // macOS keycode for Escape
-    #define KEY_W 13      // macOS keycode for 'W'
-    #define KEY_S 1       // macOS keycode for 'S'
-    #define KEY_D 2       // macOS keycode for 'D'
-    #define KEY_A 0       // macOS keycode for 'A'
-    #define KEY_LEFT 123  // macOS keycode for Left Arrow
-    #define KEY_RIGHT 124 // macOS keycode for Right Arrow
-#else
-    #include <X11/keysym.h>
-    #define KEY_ESCAPE XK_Escape
-    #define KEY_W XK_w
-    #define KEY_S XK_s
-    #define KEY_D XK_d
-    #define KEY_A XK_a
-    #define KEY_LEFT XK_Left
-    #define KEY_RIGHT XK_Right
-#endif
+# ifdef __APPLE__
+#  define KEY_ESCAPE 53 // macOS keycode for Escape
+#  define KEY_W 13      // macOS keycode for 'W'
+#  define KEY_S 1       // macOS keycode for 'S'
+#  define KEY_D 2       // macOS keycode for 'D'
+#  define KEY_A 0       // macOS keycode for 'A'
+#  define KEY_LEFT 123  // macOS keycode for Left Arrow
+#  define KEY_RIGHT 124 // macOS keycode for Right Arrow
+# else
+#  include <X11/keysym.h>
+#  define KEY_ESCAPE XK_Escape
+#  define KEY_W XK_w
+#  define KEY_S XK_s
+#  define KEY_D XK_d
+#  define KEY_A XK_a
+#  define KEY_LEFT XK_Left
+#  define KEY_RIGHT XK_Right
+# endif
 # ifdef __APPLE__ // To define XK_d, XK_a, XK_Left, etc.
 #  include <OpenGL/gl.h>
 #  include <OpenGL/glu.h>
@@ -181,5 +181,6 @@ void			debugging(t_ori *ori);
 int				slide_x(t_ori *ori, t_player *player, double dir_m);
 int				slide_y(t_ori *ori, t_player *player, double dir_m);
 void			map_dimensions(int *x_max, int *y_max, char **map);
+void			drawEnemy(t_ori *ori, t_player *player, t_display *screen);
 
 #endif

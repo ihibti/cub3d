@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/18 12:50:57 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 22:00:42 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	init_ray(t_player *player, int x)
 		ray->delta_y = fabs(1 / ray->dir_ray_y);
 }
 
+
 void	draw_line(t_ray *ray, int x, t_ori *ori)
 {
 	int		line_h;
@@ -76,40 +77,45 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	int		wall;
 
 	line_h = (int)((double)SCREEN_H / ray->perp_dist);
-	ratio = 64.0 / (double)line_h;
+	ratio = 64 / (double)line_h;
 	if (line_h < SCREEN_H)
-		i = 0.0;
+		i = 0;
 	else
-		i = ratio * (double)(line_h - SCREEN_H) / 2.0;
+		i = ratio * (line_h - SCREEN_H) / 2;
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = 0;
+    if (ray->coord_stripe > 63)
+        ray->coord_stripe = 63.0;
 	if (drawstart < 0)
 		drawstart = 0;
 	if (draw_end >= SCREEN_H)
 		draw_end = SCREEN_H - 1;
 	if (ray->last_hit == 0)
-		wall = 0;
+	{
+		if (ray->dir_ray_x > 0)
+			wall = 0;
+		else
+			wall = 3;
+	}
 	else
-		wall = 1;
+	{
+		if (ray->dir_ray_y > 0)
+			wall = 1;
+		else
+			wall = 2;
+	}
 	while (y < drawstart && y < SCREEN_H)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
 	while (y <= draw_end && y < SCREEN_H)
 	{
-		if (ray->coord_stripe > 0 && ray->coord_stripe < 64 && i < 1 && i >= 0)
-		{
-			*((int *)ori->display.data + y * SCREEN_W
-					+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
-					+ (int)i * 64);
-		}
-		else
-        {
-			printf("error raycoordstripe:%d ,i:%d ratio:%f\n", ray->coord_stripe, (int)i
-					* 64,ratio);
-            printf("line_h %d, drawstart:%d, drawend:%d\n\n",line_h,drawstart,draw_end);
-        }
+		*((int *)ori->display.data + y * SCREEN_W
+				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
+				+ (int)(i)*64);
 		i += ratio;
-		++y;
+		if (i > 63)
+			i = 63.0;
+		y++;
 	}
 	while (y < SCREEN_H)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
@@ -189,6 +195,39 @@ uint32_t	get_color_mini(int x, int y, char **map, t_ori *ori)
 	return (GRAY);
 }
 
+
+
+void drawEnemy(t_ori *ori, t_player *player, t_display *screen) {
+    // Calculate angle and distance to enemy
+    float dx = 10 - player->pos_x;
+    float dy = 5 - player->pos_y;
+    float distance = sqrt(dx*dx + dy*dy);
+    float angle = atan2(dy, dx) - player->dir_angle;
+    
+    // Adjust angle to be within FOV
+    if (angle < -M_PI) angle += 2*M_PI;
+    if (angle > M_PI) angle -= 2*M_PI;
+    
+    // Check if enemy is in view
+    if (fabs(angle) > FOV / 2) return;
+    
+    // Calculate screen position
+    int screenX = (angle + FOV/2) / FOV * screen->width;
+    int screenY = screen->height / 2;
+    
+    // Calculate enemy height on screen
+    int spriteHeight = (int)(screen->height / distance);
+    
+    // Draw sprite
+    for (int i = screenX;i < spriteHeight && i<SCREEN_W;i++)
+    {
+        for(int j = screenY;j<spriteHeight && j <SCREEN_H;j++)
+        {
+            *((int *)(screen->data + i + j*SCREEN_W)) = YELLOW;
+        }
+    } 
+}
+
 void	draw_minimap(t_ori *ori)
 {
 	char	**map;
@@ -231,7 +270,10 @@ int	raycasting(t_ori *ori)
 		x++;
 	}
 	draw_minimap(ori);
+    drawEnemy(ori,ori->player,&ori->display);
 	mlx_put_image_to_window(ori->mlxptr, ori->mlxwin, ori->display.img, 0, 0);
 	ori->recast = 0;
 	return (0);
 }
+
+
