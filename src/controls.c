@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/18 13:44:03 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:16:43 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		secu(t_ori *ori, t_player *s_player, double dir_m);
 int		slide(t_ori *ori, t_player *player, double dir_m);
+int		land_secu(t_ori *ori, t_player *player);
 
 void	move_a(t_ori *ori, t_player *player)
 {
@@ -31,6 +32,7 @@ void	move_a(t_ori *ori, t_player *player)
 	}
 	else
 		slide(ori, player, dir_m);
+	land_secu(ori, player);
 	player->x_map = (int)player->pos_x;
 	player->y_map = (int)player->pos_y;
 }
@@ -51,6 +53,7 @@ void	move_d(t_ori *ori, t_player *player)
 	}
 	else
 		slide(ori, player, dir_m);
+	land_secu(ori, player);
 	player->x_map = (int)player->pos_x;
 	player->y_map = (int)player->pos_y;
 }
@@ -71,8 +74,32 @@ void	move_s(t_ori *ori, t_player *player)
 	}
 	else
 		slide(ori, player, dir_m);
+	land_secu(ori, player);
 	player->x_map = (int)player->pos_x;
 	player->y_map = (int)player->pos_y;
+}
+
+int	land_secu(t_ori *ori, t_player *player)
+{
+	char	**map;
+	double	new_x;
+	double	new_y;
+
+	map = ori->map;
+	new_x = player->pos_x;
+	new_y = player->pos_y;
+	if (map[(int)new_y][(int)new_x] == '0')
+	{
+		if (map[(int)(new_y + 0.2)][(int)new_x] != '0')
+			player->pos_y = (double)((int)player->pos_y + 1) - 0.2;
+		if (map[(int)(new_y - 0.2)][(int)new_x] != '0')
+			player->pos_y = (double)((int)player->pos_y) + 0.2;
+		if (map[(int)(new_y)][(int)(new_x - 0.2)] != '0')
+			player->pos_x = (double)((int)player->pos_x) + 0.2;
+		if (map[(int)(new_y)][(int)(new_x + 0.2)] != '0')
+			player->pos_x = (double)((int)player->pos_x + 1) - 0.2;
+	}
+	return (0);
 }
 
 int	secu(t_ori *ori, t_player *player, double dir_m)
@@ -113,8 +140,42 @@ void	move_w(t_ori *ori, t_player *player)
 	}
 	else
 		slide(ori, player, dir_m);
+	land_secu(ori, player);
 	player->x_map = (int)player->pos_x;
 	player->y_map = (int)player->pos_y;
+}
+
+int	corner_slide(t_ori *ori, t_player *player, double dir_m)
+{
+	char	**map;
+	double	new_x;
+	double	new_y;
+	double	deltax;
+	double	deltay;
+
+	map = ori->map;
+	new_x = player->pos_x;
+	new_y = player->pos_y;
+	printf("corenerslide\n");
+	deltay = new_y - (double)((int)new_y);
+	deltax = new_x - (double)((int)new_x);
+	if (cos(dir_m) > 0)
+		deltax = 1.0 - deltax;
+	if (sin(dir_m) < 0)
+		deltay = 1.0 - deltay;
+	if (sin(dir_m) > cos(dir_m))
+	{
+		printf("oui\n");
+		slide_x(ori, player, dir_m);
+		player->pos_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
+	}
+	else
+	{
+		printf("oui\n");
+		slide_y(ori, player, dir_m);
+		player->pos_x = player->pos_x + (MOVE_SPEED * cos(dir_m));
+	}
+	return (0);
 }
 
 int	slide(t_ori *ori, t_player *player, double dir_m)
@@ -135,13 +196,14 @@ int	slide(t_ori *ori, t_player *player, double dir_m)
 	new_x = player->pos_x + safetyx + (MOVE_SPEED * cos(dir_m));
 	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m)) + safetyy;
 	if (map[(int)new_y][(int)player->pos_x] == '0'
-		&& map[(int)player->pos_y][(int)new_x] != '0')
+		&& map[(int)player->pos_y][(int)new_x] == '0')
+		corner_slide(ori, player, dir_m);
+	else if (map[(int)new_y][(int)player->pos_x] == '0')
 	{
 		slide_x(ori, player, dir_m);
 		player->pos_y = new_y - safetyy;
 	}
-	else if (map[(int)player->pos_y][(int)new_x] == '0'
-		&& map[(int)new_y][(int)player->pos_x] != '0')
+	else if (map[(int)player->pos_y][(int)new_x] == '0')
 	{
 		slide_y(ori, player, dir_m);
 		player->pos_x = new_x - safetyx;

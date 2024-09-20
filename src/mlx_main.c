@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 09:43:33 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 10:06:57 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	draw_win(t_ori *ori)
 	return (0);
 }
 
+// TODO: cut it in two parts 
 int	open_textures(t_ori *ori)
 {
 	ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr,

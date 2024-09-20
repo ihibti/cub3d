@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/14 20:53:37 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 10:31:59 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	init_pl(t_ori *ori)
 			if (is_player(map[i][j]))
 			{
 				ori->player->x_map = j;
-				ori->player->pos_x = (double)j + 0.5;
+				ori->player->pos_x = (double)j;
 				ori->player->y_map = i;
-				ori->player->pos_y = (double)i + 0.5;
+				ori->player->pos_y = (double)i;
 				return (0);
 			}
 			j++;

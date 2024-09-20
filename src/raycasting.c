@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 09:43:17 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:42:54 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	copy_play_ray(t_player *player)
 // 	ray->dir_ray_y = player->dir_y;
 // }
 
-void	init_ray(t_player *player, int x)
+void	 init_ray(t_player *player, int x)
 {
 	t_ray	*ray;
 	double	ratio;

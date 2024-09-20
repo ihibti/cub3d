@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/18 13:49:53 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:49:47 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	color_ray(t_ray *ray)
     if (ray->coord_stripe > 63)
         ray->coord_stripe = 63;
 }
-void	dda_alg(t_ori *ori, t_ray *ray, int x)
+void	   dda_alg(t_ori *ori, t_ray *ray, int x)
 {
 	char	**map;
 
