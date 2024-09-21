@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 12:50:39 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/21 10:40:47 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,19 +150,11 @@ int	corner_slide(t_ori *ori, t_player *player, double dir_m)
 	char	**map;
 	double	new_x;
 	double	new_y;
-	double	deltax;
-	double	deltay;
 
 	map = ori->map;
 	new_x = player->pos_x;
 	new_y = player->pos_y;
-	deltay = new_y - (double)((int)new_y);
-	deltax = new_x - (double)((int)new_x);
-	if (cos(dir_m) > 0)
-		deltax = 1.0 - deltax;
-	if (sin(dir_m) < 0)
-		deltay = 1.0 - deltay;
-	if (sin(dir_m) > cos(dir_m))
+	if (fabs(sin(dir_m)) > fabs(cos(dir_m)))
 	{
 		slide_x(ori, player, dir_m);
 		player->pos_y = player->pos_y - (MOVE_SPEED * sin(dir_m));
