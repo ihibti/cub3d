@@ -18,7 +18,7 @@ char	**allocate_map(void)
 {
 	char	**map;
 	char	*data[20];
-	int		j;
+	// int		j;
 
 	data[0] = "11111111111111111111";
 	data[1] = "10000000000000000001";
@@ -69,29 +69,19 @@ char	**allocate_map(void)
 		map[i][20] = '\0';
 	}
 	map[20] = 0;
-	j = 0;
+	// j = 0;
 	return (map);
 }
 
-void	free_map(char **map)
-{
-	int	i;
-
-	if (map == NULL)
-		return ;
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
-}
 
 int	init_player(t_ori *ori)
 {
 	ori->player->ray = malloc(sizeof(t_ray));
 	if (!ori->player->ray)
-		return (1);
+		return ((brexit(ori)), 1);
 	if (init_pl(ori))
-		return (free(ori->player), 1);
+		// return (free(ori->player), 1);
+		return ((brexit(ori)), 1);
 	init_dirangle(ori);
 	ori->a = false;
 	ori->w = false;
@@ -109,16 +99,20 @@ int	init_player(t_ori *ori)
 
 int	init(t_ori *ori)
 {
+	ft_memset(ori, 0, sizeof(t_ori));
 	ori->player = malloc(sizeof(t_player));
+	if (ori->player == NULL)
+		return ((brexit(ori)), 1);
 	ori->floor = RED;
 	ori->sky = BLUE;
 	ori->wall = BLACK;
+	// ori->fd = -1;
 	ori->recast = true;
 	if (!ori->player)
-		return (-1);
+		return ((brexit(ori)), -1);
 	ori->map = allocate_map();
 	if (!ori->map)
-		return (free(ori->player), -1);
+		return ((brexit(ori)), -1);
 	init_player(ori);
 	if (check_init_p(ori))
 		return (1);

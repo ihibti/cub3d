@@ -1,42 +1,67 @@
-NAME = cub3d
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
+#    Updated: 2024/09/20 13:13:31 by gchenot          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                   PROGRAM                                    #
+# **************************************************************************** #
+
+NAME = cub3D
+
+# **************************************************************************** #
+#                                   COMPILER                                   #
+# **************************************************************************** #
+
 CC = cc
-CFLAG = -MMD -g3 -Wall -Wextra -Werror -O3 -ffast-math
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -MMD -g3 -O3 -ffast-math -I./include
+
+# **************************************************************************** #
+#                                    PATHS                                     #
+# **************************************************************************** #
+
 LIBFTDIR = ./libft
 MLXDIR = ./minilibx-linux
 MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 
+# **************************************************************************** #
+#                                   SOURCES                                    #
+# **************************************************************************** #
+
 FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c \
-		algorithms.c
+		algorithms.c free.c \
+		#parsing.c parsing_utils.c parsing_colors.c parsing_map.c  create_map.c
 
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle
 
-SRCS := $(addprefix $(SRCS_DIR)/, $(FILES)) 
+SRCS := $(addprefix $(SRCS_DIR)/, $(FILES))
 OBJS := $(addprefix $(OBJS_DIR)/, $(FILES:.c=.o))
 DEPS := $(OBJS:.o=.d)
 
 HEADERS := ./include
 
-# COLOR #
-GREEN   := \033[38;5;76m
-RED     := \033[38;5;160m
-YELLOW  := \033[38;5;226m
-ORANGE  := \033[38;5;202m
-PURPLE  := \033[38;5;213m
-LBLUE   := \033[38;5;51m
-BLUE    := \033[38;5;117m
-INDI    := \033[38;5;99m
-RESET   := \033[00m
-
 # List of subdirectories in which to create object files
 OBJ_SUBDIRS := $(sort $(dir $(OBJS)))
+
+# **************************************************************************** #
+#                                    RULES                                     #
+# **************************************************************************** #
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
 	@make --silent -C ${LIBFTDIR}
 	@make --silent -C ${MLXDIR}
-	@$(CC) -I$(HEADERS) -I$(MLXDIR) -o $@ $(OBJS) -L$(LIBFTDIR) -lft $(MLXFLAG) $(LDFLAG) $(CFLAG)
+	@$(CC) -I$(HEADERS) -I$(MLXDIR) -o $@ $(OBJS) -L$(LIBFTDIR) -lft $(MLXFLAG) $(LDFLAG) $(CFLAGS)
 	@printf "$(RED)"
 	@echo "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠹⢿⡿⠏⢻⢿⠉⣿⣰⡟⠈⠘⠀⠀⠀⠀⠀⠰⠁⠘⠀⠘⠀⣿⠏⠀⢸⠃⢁⡛⣼⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
 	@echo "⣿⣿⣿⣯⣿⣿⣿⠿⣿⣿⣿⡽⠝⢿⣿⡄⠘⠃⠀⠟⠀⠀⠘⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠁⠀⠀⢁⡟⢃⠁⣻⣿⡿⣿⡏⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿"
@@ -98,4 +123,24 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run : ${NAME}
+	@./${NAME}
+
+val : ${NAME}
+	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} map.cub
+
+.PHONY: all clean fclean re val run
+
+# **************************************************************************** #
+#                                   COLORS                                     #
+# **************************************************************************** #
+
+GREEN   := \033[38;5;76m
+RED     := \033[38;5;160m
+YELLOW  := \033[38;5;226m
+ORANGE  := \033[38;5;202m
+PURPLE  := \033[38;5;213m
+LBLUE   := \033[38;5;51m
+BLUE    := \033[38;5;117m
+INDI    := \033[38;5;99m
+RESET   := \033[00m

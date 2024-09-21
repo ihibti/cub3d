@@ -15,57 +15,7 @@
 
 # define _USE_MATH_DEFINES
 
-
-# include "mlx.h"
-# include "stdio.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <float.h>
-# include <limits.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/stat.h>
-# include <sys/types.h>
-# include <unistd.h>
-
-# ifndef M_PI
-#  define M_PI 3.14159265358979323846
-# endif
-
-# define MOVE_SPEED 0.01
-# define CAMERA_SPEED 0.2
-# define SCREEN_W 1200
-# define SCREEN_H 500
-# define PIXEL (M_PI) / (SCREEN_H)
-# define UP 222
-# define LEFT_V 223
-# define RIGHT_V 224
-# define DOWN 225
-# define FORWARD 226
-# define BACKWARDS 227
-# define RIGHT_M 228
-# define LEFT_M 229
-# define delta 0.1
-# define FOV 0.66
-# define RED 0x00FF0000
-# define BLUE 0x000000FF
-# define VIOLET 0x00FF00FF
-# define YELLOW 0x00FFFF00
-# define GREEN 0x0000FF00
-# define BLACK 0x00000000
-# define WHITE 0x00FFFFFF
-# define CYAN 0x0000FFFF
-# define MAGENTA 0x00FF00FF
-# define ORANGE 0x00FFA500
-# define PINK 0x00FFC0CB
-# define BROWN 0x00A52A2A
-# define GRAY 0x00808080
-# define LIGHT_GRAY 0x00D3D3D3
-# define DARK_GRAY 0x00A9A9A9
+# include "define.h"
 
 typedef struct s_ray
 {
@@ -142,7 +92,7 @@ typedef struct s_ori
 
 void			truc_move(t_ori *ori);
 char			**allocate_map(void);
-void			free_map(char **map);
+// void			free_map(char **map);
 int				init_player(t_ori *ori);
 int				init(t_ori *ori);
 int				init_pl(t_ori *ori);
@@ -158,5 +108,32 @@ void			debugging(t_ori *ori);
 int				slide_x(t_ori *ori, t_player *player, double dir_m);
 int				slide_y(t_ori *ori, t_player *player, double dir_m);
 void			map_dimensions(int *x_max, int *y_max, char **map);
+
+// Parsing
+// void			parsing_colors(t_ori *ori, char *line);
+// void			parsing_textures(t_ori *ori, char *line);
+// void			parse_map(t_ori *ori, char *line, int j);
+// void			parsing_map(t_ori *ori);
+// void			parsing(t_ori *ori);
+// void			create_map(t_ori *ori);
+// void			open_file(t_ori *ori);
+// void			check_file(t_ori *ori);
+// // void			valid_extension(char *str);
+// int				check_comma(char *line);
+// int				find_longest_line(char **map);
+// int				check_valid_start(char **map);
+// int	check_map_leaks(t_ori *ori, int x, int y);
+// void	parse_line(t_ori *ori, char *line, int i);
+
+// Utils
+// int				contains_char(char *set, char c);
+
+// Free && Exit
+void			free_tab(char **tab);
+int				free_player(t_player *player);
+int				free_map(char **map);
+int				free_textures(t_ori *ori);
+// void			free_game(t_ori *ori);
+// void			brexit(t_ori *ori, char *error, char *line);
 
 #endif

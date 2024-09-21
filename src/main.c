@@ -19,6 +19,6 @@ int	main(int ac, char **av)
 	(void)av;
 	(void)ac;
 	if (init(&ori))
-		return (printf("error init\n"), 1);
+		brexit(&ori);
 	return (0);
 }

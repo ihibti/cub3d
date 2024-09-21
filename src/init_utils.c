@@ -14,9 +14,7 @@
 
 int	is_player(char c)
 {
-	if (c == 'N' || c == 'E' || c == 'S')
-		return (1);
-	if (c == 'W')
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (1);
 	return (0);
 }
@@ -93,7 +91,7 @@ void	init_dirangle(t_ori *ori)
 	ori->player->x_map = x;
 	ori->player->y_map = y;
 	ori->map[y][x] = '0';
-	printf("tout va bien\n");
+	// printf("tout va bien\n");
 }
 
 // TODO : free ori pour juste return

@@ -147,13 +147,13 @@ void	move_w(t_ori *ori, t_player *player)
 
 int	corner_slide(t_ori *ori, t_player *player, double dir_m)
 {
-	char	**map;
+	// char	**map;
 	double	new_x;
 	double	new_y;
 	double	deltax;
 	double	deltay;
 
-	map = ori->map;
+	// map = ori->map;
 	new_x = player->pos_x;
 	new_y = player->pos_y;
 	printf("corenerslide\n");
