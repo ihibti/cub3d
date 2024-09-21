@@ -11,13 +11,15 @@ int	find_longest_line(char **map)
 {
 	int	i;
 	int	len;
+	int	current_len;
 
 	i = 0;
 	len = 0;
 	while (map[i])
 	{
-		if ((int)ft_strlen(map[i]) > len)
-			len = ft_strlen(map[i]);
+		current_len = ft_strlen(map[i]);
+		if (current_len > len)
+			len = current_len;
 		i++;
 	}
 	return (len);
@@ -37,11 +39,16 @@ void	create_map(t_ori *ori)
 	while (1)
 	{
 		line = get_next_line(ori->fd);
-		j++;
 		if (!line)
 			break ;
+		j++;
 		if (j >= ori->map_start_line)
-			ori->map[i++] = ft_strdup(line);
+		{
+			ori->map[i] = ft_strdup(line);
+			if (!ori->map[i])
+				(ft_putstr_fd("Error ft_strdup\n", 2), brexit(ori));
+			i++;
+		}
 		free(line);
 	}
 	ori->map[i] = NULL;

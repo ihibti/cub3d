@@ -36,9 +36,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	valid_extension(av[1]);
-	start_mlx(&ori, av[1]);
 	if (init(&ori, av[1])) // Pass the file name to init
 		brexit(&ori);
+	// start_mlx(&ori, av[1]);
 	return (0);
 }
 

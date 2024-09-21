@@ -69,6 +69,13 @@ typedef struct s_display
 	int			height;
 }				t_display;
 
+typedef struct s_color
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
+
 typedef struct s_ori
 {
 	t_player	*player;
@@ -95,6 +102,8 @@ typedef struct s_ori
 	int 		map_start_line;
 	int 		map_height;
 	int 		map_width;
+	t_color		floor_rgb;
+	t_color		ceiling_rgb;
 }				t_ori;
 
 void			truc_move(t_ori *ori);

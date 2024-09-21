@@ -114,6 +114,8 @@ int	init(t_ori *ori, char *file)
 		return (1);
 	if (check_init_p(ori))
 		return (1);
+	if (start_mlx(ori, file))
+		return (1);
 	return (0);
 }
 
