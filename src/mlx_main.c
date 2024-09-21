@@ -119,10 +119,12 @@ static void	mlx_hooks(t_ori *ori)
 	mlx_loop(ori->mlxptr);
 }
 
-int	start_mlx(t_ori *ori)
+int	start_mlx(t_ori *ori, char *file)
 {
 	init_mlx(ori);
 	ori->recast = 1;
+	ori->file = file;
+	ori->nb_line = -1;
 	init_mlx_window(ori);
 	if (open_textures(ori))
 		return (1);

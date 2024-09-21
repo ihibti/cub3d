@@ -46,6 +46,7 @@ typedef struct s_ray
 	double		wall_stripe;
 	int			coord_stripe;
 }				t_ray;
+
 typedef struct s_player
 {
 	double		pos_x;
@@ -88,23 +89,29 @@ typedef struct s_ori
 	bool		d;
 	bool		left;
 	bool		right;
+	char 		*file;
+	int 		fd;
+	int 		nb_line;
+	int 		map_start_line;
+	int 		map_height;
+	int 		map_width;
 }				t_ori;
 
 void			truc_move(t_ori *ori);
 char			**allocate_map(void);
 // void			free_map(char **map);
 int				init_player(t_ori *ori);
-int				init(t_ori *ori);
+int				init(t_ori *ori, char *file);
 int				init_pl(t_ori *ori);
 void			init_dirangle(t_ori *ori);
 int				check_init_p(t_ori *ori);
-int				start_mlx(t_ori *ori);
+int				start_mlx(t_ori *ori, char *file);
 int				brexit(t_ori *ori);
 int				han_inp_press(int key, t_ori *ori);
 int				han_inp_release(int key, t_ori *ori);
 int				raycasting(t_ori *ori);
 void			dda_alg(t_ori *ori, t_ray *ray, int x);
-void			debugging(t_ori *ori);
+// void			debugging(t_ori *ori);
 int				slide_x(t_ori *ori, t_player *player, double dir_m);
 int				slide_y(t_ori *ori, t_player *player, double dir_m);
 void			map_dimensions(int *x_max, int *y_max, char **map);
@@ -115,8 +122,8 @@ void			map_dimensions(int *x_max, int *y_max, char **map);
 // void			parse_map(t_ori *ori, char *line, int j);
 // void			parsing_map(t_ori *ori);
 // void			parsing(t_ori *ori);
-// void			create_map(t_ori *ori);
-// void			open_file(t_ori *ori);
+void			create_map(t_ori *ori);
+void			open_fd(t_ori *ori);
 // void			check_file(t_ori *ori);
 // // void			valid_extension(char *str);
 // int				check_comma(char *line);

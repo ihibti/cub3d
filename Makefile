@@ -37,9 +37,8 @@ MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 # **************************************************************************** #
 
 FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c \
-		algorithms.c free.c \
-		#parsing.c parsing_utils.c parsing_colors.c parsing_map.c  create_map.c
-
+		algorithms.c free.c create_map.c \
+		#parsing.c parsing_utils.c parsing_colors.c parsing_map.c
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle
 
@@ -128,6 +127,9 @@ run : ${NAME}
 
 val : ${NAME}
 	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} map.cub
+
+vlog : ${NAME}
+	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --errors-for-leak-kinds=all --log-file=valgrind.log ./${NAME} map.cub
 
 .PHONY: all clean fclean re val run
 
