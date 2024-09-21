@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 22:19:55 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/21 10:44:05 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,45 +184,6 @@ uint32_t	get_color_mini(int x, int y, char **map, t_ori *ori)
 	return (GRAY);
 }
 
-void	drawEnemy(t_ori *ori, t_player *player, t_display *screen)
-{
-	float	dx;
-	float	dy;
-	float	distance;
-	float	angle;
-	int		screenX;
-	int		screenY;
-	int		spriteHeight;
-
-	// Calculate angle and distance to enemy
-	dx = 10 - player->pos_x;
-	dy = 5 + player->pos_y;
-	distance = sqrt(dx * dx + dy * dy);
-	angle = atan2(dy, dx) - player->dir_angle;
-	// Adjust angle to be within FOV
-	if (angle < -M_PI)
-		angle += 2 * M_PI;
-	if (angle > M_PI)
-		angle -= 2 * M_PI;
-    printf("verdict >%f\n",angle);
-	// Check if enemy is in view
-	if (fabs(angle) > FOV / 2)
-		return ;
-	// Calculate screen position
-	screenX = (angle + FOV / 2) / FOV * SCREEN_W;
-	screenY = SCREEN_H / 2;
-	// Calculate enemy height on screen
-	spriteHeight = (int)(SCREEN_H / distance);
-    printf("screenX:%d,screeny:%d,spriteheight:%d\n",screenX,screenY,spriteHeight);
-	for (int i = screenX; i < spriteHeight+screenX && i < SCREEN_W; i++)
-	{
-		for (int j = screenY; j < spriteHeight+screenY && j < SCREEN_H; j++)
-		{
-			*((int *)screen->data + i + j * SCREEN_W) = YELLOW;
-		}
-	}
-    printf("success\n");
-}
 
 void	draw_minimap(t_ori *ori)
 {
