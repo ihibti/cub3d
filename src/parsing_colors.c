@@ -29,19 +29,17 @@ static void	parse_color_ceiling(t_ori *ori, char *line)
 	char	**rgb;
 
 	if (check_comma(line + 2))
-		exit_game(ori, "RGB impossible [0, 255]\n", line);
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	rgb = valid_color(line + 2);
 	if (!rgb)
-		exit_game(ori, "RGB impossible [0, 255]\n", line);
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	ori->ceiling.r = ft_atoi(rgb[0]);
 	ori->ceiling.g = ft_atoi(rgb[1]);
 	ori->ceiling.b = ft_atoi(rgb[2]);
 	free_tab(rgb);
 	if (ori->ceiling.r > 255 || ori->ceiling.g > 255 || ori->ceiling.b > 255
 		|| ori->ceiling.r < 0 || ori->ceiling.g < 0 || ori->ceiling.b < 0)
-	{
-		exit_game(ori, "RGB impossible [0, 255]\n", line);
-	}
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	ori->parsed += 0.5;
 }
 static void	parse_color_floor(t_ori *ori, char *line)
@@ -49,19 +47,17 @@ static void	parse_color_floor(t_ori *ori, char *line)
 	char	**rgb;
 
 	if (check_comma(line + 2))
-		exit_game(ori, "RGB impossible [0, 255]\n", line);
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	rgb = valid_color(line + 2);
 	if (!rgb)
-		exit_game(ori, "RGB impossible [0, 255]\n", NULL);
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	ori->floor.r = ft_atoi(rgb[0]);
 	ori->floor.g = ft_atoi(rgb[1]);
 	ori->floor.b = ft_atoi(rgb[2]);
 	free_tab(rgb);
 	if (ori->floor.r > 255 || ori->floor.g > 255 || ori->floor.b > 255
 		|| ori->floor.r < 0 || ori->floor.g < 0 || ori->floor.b < 0)
-	{
-		exit_game(ori, "RGB impossible [0, 255]\n", line);
-	}
+		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	ori->parsed += 0.5;
 }
 
@@ -100,37 +96,35 @@ void	parsing_textures(t_ori *ori, char *line)
 
 	path = ft_strchr(line, '.');
 	if (!path || *(path + 1) == '\0')
-		exit_game(ori, "Invalid texture path\n", line);
+		(ft_putstr_fd("Error texture path\n", 2), brexit(ori));
 	if (!ft_strncmp(line, "NO ", 3))
 	{
 		ori->n_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
 				&ori->img_h);
 		if (!ori->n_path)
-			exit_game(ori, ERROR_XPM, line);
+			(ft_putstr_fd("Error loading xpm\n", 2), brexit(ori));
 	}
 	else if (!ft_strncmp(line, "EA ", 3))
 	{
 		ori->e_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
 				&ori->img_h);
 		if (!ori->e_path)
-			exit_game(ori, ERROR_XPM, line);
+			(ft_putstr_fd("Error loading xpm\n", 2), brexit(ori));
 	}
 	else if (!ft_strncmp(line, "SO ", 3))
 	{
 		ori->s_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
 				&ori->img_h);
 		if (!ori->s_path)
-			exit_game(ori, ERROR_XPM, line);
+			(ft_putstr_fd("Error loading xpm\n", 2), brexit(ori));
 	}
 	else if (!ft_strncmp(line, "WE ", 3))
 	{
 		ori->o_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
 				&ori->img_h);
 		if (!ori->o_path)
-			exit_game(ori, ERROR_XPM, line);
+			(ft_putstr_fd("Error loading xpm\n", 2), brexit(ori));
 	}
 	else
-	{
-		exit_game(ori, "Unknown texture identifier\n", line);
-	}
+		(ft_putstr_fd("Error unknown texture\n", 2), brexit(ori));
 }

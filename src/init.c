@@ -102,9 +102,9 @@ int	init(t_ori *ori, char *file)
 	ori->player = malloc(sizeof(t_player));
 	if (!ori->player)
 		return ((brexit(ori)), 1);
-	ori->floor = RED;
-	ori->sky = BLUE;
-	ori->wall = BLACK;
+	// ori->floor = RED;
+	// ori->sky = BLUE;
+	// ori->wall = BLACK;
 	ori->recast = true;
 	ori->file = file;
 	ori->nb_line = -1;

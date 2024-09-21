@@ -118,6 +118,68 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
 }
 
+//Pour remplacer textures[wall] par les textures de chaque mur
+// void	draw_line(t_ray *ray, int x, t_ori *ori)
+// {
+// 	int		line_h;
+// 	int		drawstart;
+// 	int		draw_end;
+// 	int		y;
+// 	double	ratio;
+// 	double	i;
+// 	void	*selected_texture;
+// 	char	*texture_data;
+
+// 	line_h = (int)((double)SCREEN_H / ray->perp_dist);
+// 	ratio = 64 / (double)line_h;
+// 	if (line_h < SCREEN_H)
+// 		i = 0;
+// 	else
+// 		i = ratio * (line_h - SCREEN_H) / 2;
+// 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
+// 	draw_end = (line_h / 2) + (SCREEN_H / 2);
+// 	y = 0;
+// 	if (drawstart < 0)
+// 		drawstart = 0;
+// 	if (draw_end >= SCREEN_H)
+// 		draw_end = SCREEN_H - 1;
+
+// 	// Select the correct texture based on wall direction
+// 	if (ray->last_hit == 0)
+// 	{
+// 		if (ray->dir_ray_x > 0)
+// 			selected_texture = ori->n_path;  // North
+// 		else
+// 			selected_texture = ori->o_path;  // West
+// 	}
+// 	else
+// 	{
+// 		if (ray->dir_ray_y > 0)
+// 			selected_texture = ori->s_path;  // South
+// 		else
+// 			selected_texture = ori->e_path;  // East
+// 	}
+
+// 	// Get the data of the selected texture
+// 	texture_data = mlx_get_data_addr(selected_texture, &ori->img_bpp, &ori->img_slen, &ori->img_endian);
+
+// 	// Draw the line with the selected texture
+// 	while (y < drawstart && y < SCREEN_H)
+// 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
+// 	while (y <= draw_end && y < SCREEN_H)
+// 	{
+// 		*((int *)ori->display.data + y * SCREEN_W
+// 				+ x) = *((int *)texture_data + ray->coord_stripe + (int)(i) * 64);
+// 		i += ratio;
+// 		if (i > 63)
+// 			i = 63.0;
+// 		y++;
+// 	}
+// 	while (y < SCREEN_H)
+// 		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
+// }
+
+
 void	ray_len(t_ori *ori, t_player *player, int x)
 {
 	t_ray	*ray;

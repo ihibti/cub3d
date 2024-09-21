@@ -107,7 +107,7 @@ $(OBJS_DIR) $(OBJ_SUBDIRS):
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_SUBDIRS)
 	@printf "$(LBLUE)[Compilation]$(RESET) In progress... $(GREEN)$<" && \
-	$(CC) $(CFLAG) -I$(HEADERS) -I$(MLXDIR) -c $< -o $@ && \
+	$(CC) $(CFLAGS) -I$(HEADERS) -I$(MLXDIR) -c $< -o $@ && \
 	printf "\r$(LBLUE)[Compilation]$(RESET) Completed   ... $(GREEN)$<" && \
 	printf "\n"
 

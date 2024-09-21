@@ -12,20 +12,6 @@
 
 #include "cub3d.h"
 
-static void	valid_extension(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (len >= 5 && ft_strcmp(str + len - 4, ".cub") == 0)
-		return ;
-	else
-	{
-		ft_putstr_fd("Error\nInvalid arg\n", 2);
-		exit(EXIT_FAILURE);
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_ori	ori;
@@ -38,7 +24,8 @@ int	main(int ac, char **av)
 	valid_extension(av[1]);
 	if (init(&ori, av[1])) // Pass the file name to init
 		brexit(&ori);
-	// start_mlx(&ori, av[1]);
+	check_file(&ori);
+	parsing(&ori);
 	return (0);
 }
 

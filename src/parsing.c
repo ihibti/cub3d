@@ -6,8 +6,8 @@ void	parsing(t_ori *ori)
 	parsing_map(ori);
 	open_file(ori);
 	create_map(ori);
+	if (check_valid_start(ori->map))
+		(ft_putstr_fd("Error with start position\n", 2), brexit(ori));
 	if (check_map_leaks(ori, 0, 0))
-		exit_game(ori, "Error map\n", NULL);
-	// optimizing_map(ori);
-	// get_start_position(ori);
+		(ft_putstr_fd("Error map has a holee\n", 2), brexit(ori));
 }

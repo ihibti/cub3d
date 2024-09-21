@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	parse_map(t_ori *ori, char *line, int j)
+static void	parse_map(t_ori *ori, char *line, int j)
 {
 	int	i;
 
@@ -91,6 +91,21 @@ int	check_valid_start(char **map)
 		return (1);
 	return (0);
 }
+
+static int	contains_char(char *set, char c)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 
 int	check_map_leaks(t_ori *ori, int x, int y)
 {
