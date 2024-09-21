@@ -57,11 +57,3 @@ void	create_map(t_ori *ori)
 	if (close(ori->fd) < 0)
 		(ft_putstr_fd("Error close fd\n", 2), brexit(ori));
 }
-
-void	parsing(t_ori *ori)
-{
-	// open_fd(ori);
-	// parsing_map(ori);
-	open_fd(ori);
-	create_map(ori);
-}

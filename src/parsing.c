@@ -2,9 +2,9 @@
 
 void	parsing(t_ori *ori)
 {
-	open_file(ori);
+	open_fd(ori);
 	parsing_map(ori);
-	open_file(ori);
+	open_fd(ori);
 	create_map(ori);
 	if (check_valid_start(ori->map))
 		(ft_putstr_fd("Error with start position\n", 2), brexit(ori));

@@ -18,7 +18,8 @@ static void	parse_map(t_ori *ori, char *line, int j)
 		else if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
 			&& line[i] != ' ')
-			exit_game(ori, "Impossible value\n", line);
+			// exit_game(ori, "Impossible value\n", line);
+			(ft_putstr_fd("BRUHH INVALID VALUES\n", 2), brexit(ori));
 		i++;
 	}
 }
@@ -28,7 +29,7 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
 			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->o_path))
-		exit_game(ori, "Path already registered\n", line);
+		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
 	else if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3))
 		parsing_textures(ori, line);
@@ -43,9 +44,9 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	else if (line[0] == '\0' && !ori->inside_map)
 		return ;
 	else
-		exit_game(ori, "Error parsing\n", line);
+		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
 	if (ori->nb_start > 1)
-		exit_game(ori, "Too much starting position\n", line);
+		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
 }
 
 void	parsing_map(t_ori *ori)
@@ -64,7 +65,7 @@ void	parsing_map(t_ori *ori)
 		free(line);
 	}
 	if (close(ori->fd) < 0)
-		exit_game(ori, "Impossible to close FD\n", line);
+		(ft_putstr_fd("Error cannot close fd\n", 2), brexit(ori));
 }
 
 int	check_valid_start(char **map)

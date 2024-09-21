@@ -264,7 +264,7 @@ char	**ft_malloc_string(char **tab, const char *str, int words, char c)
 	return (ft_malloc(tab, str, words, c));
 }
 
-void	init(int *i, int *n, int *words)
+static void	init(int *i, int *n, int *words)
 {
 	*i = 0;
 	*n = 0;

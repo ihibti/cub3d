@@ -16,7 +16,8 @@ void	check_file(t_ori *ori)
 	if (ori->fd != -1)
 	{
 		close(ori->fd);
-		exit_game(ori, "Error: trying to open directory, not a file\n", NULL);
+		// exit_game(ori, "Error: trying to open directory, not a file\n", NULL);
+		(ft_putstr_fd("Error trying to open directory\n", 2), brexit(ori));
 	}
 }
 
