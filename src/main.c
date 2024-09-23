@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:30:53 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/17 20:49:56 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/23 16:36:25 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Usage: ./cub3D <map_file>\n", 2);
 		return (1);
 	}
-	valid_extension(av[1]);
-	if (init(&ori, av[1]))
-		brexit(&ori);
-	check_file(&ori);
+	valid_extension(&ori, av[1]);
+	// check_file(&ori);
 	parsing(&ori);
+	if (init(&ori))
+		brexit(&ori);
 	return (0);
 }
 

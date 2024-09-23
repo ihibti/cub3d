@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 10:54:15 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/23 16:36:13 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_ori
 	int			img_h;
 	t_display	display;
 	t_display textures[4];
-		// gotta replace in one raycasting line 110 ctrl+f textures[wall]
 	bool		w;
 	bool		s;
 	bool		a;
@@ -122,11 +121,11 @@ typedef struct s_ori
 void			truc_move(t_ori *ori);
 // char			**allocate_map(void);
 int				init_player(t_ori *ori);
-int				init(t_ori *ori, char *file);
+int				init(t_ori *ori);
 int				init_pl(t_ori *ori);
 void			init_dirangle(t_ori *ori);
 int				check_init_p(t_ori *ori);
-int				start_mlx(t_ori *ori, char *file);
+int				start_mlx(t_ori *ori);
 int				brexit(t_ori *ori);
 int				han_inp_press(int key, t_ori *ori);
 int				han_inp_release(int key, t_ori *ori);
@@ -149,8 +148,8 @@ void			parsing_map(t_ori *ori);
 void			parsing(t_ori *ori);
 void			create_map(t_ori *ori);
 void			open_fd(t_ori *ori);
-void			check_file(t_ori *ori);
-void			valid_extension(char *str);
+// void			check_file(t_ori *ori);
+void			valid_extension(t_ori *ori, char *str);
 int				check_comma(char *line);
 int				find_longest_line(char **map);
 int				check_valid_start(char **map);

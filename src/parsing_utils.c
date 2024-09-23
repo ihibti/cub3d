@@ -10,18 +10,18 @@ void	open_fd(t_ori *ori)
 	}
 }
 
-void	check_file(t_ori *ori)
-{
-	ori->fd = open(ori->file, __O_DIRECTORY);
-	if (ori->fd != -1)
-	{
-		close(ori->fd);
-		// exit_game(ori, "Error: trying to open directory, not a file\n", NULL);
-		(ft_putstr_fd("Error trying to open directory\n", 2), brexit(ori));
-	}
-}
+// void	check_file(t_ori *ori)
+// {
+// 	ori->fd = open(ori->file, __O_DIRECTORY);
+// 	if (ori->fd != -1)
+// 	{
+// 		close(ori->fd);
+// 		// exit_game(ori, "Error: trying to open directory, not a file\n", NULL);
+// 		(ft_putstr_fd("Error trying to open directory\n", 2), brexit(ori));
+// 	}
+// }
 
-void	valid_extension(char *str)
+void	valid_extension(t_ori *ori, char *str)
 {
 	int	len;
 
@@ -33,6 +33,9 @@ void	valid_extension(char *str)
 		ft_putstr_fd("Error\nInvalid arg\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	ori->file = ft_strdup(str);
+	if (!ori->file)
+		(brexit(ori));
 }
 
 int	check_comma(char *line)

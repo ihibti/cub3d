@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 10:06:57 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/23 15:50:35 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ static void	mlx_hooks(t_ori *ori)
 	mlx_loop(ori->mlxptr);
 }
 
-int	start_mlx(t_ori *ori, char *file)
+int	start_mlx(t_ori *ori)
 {
 	init_mlx(ori);
 	ori->recast = 1;
-	ori->file = file;
-	ori->nb_line = -1;
 	init_mlx_window(ori);
 	// if (open_textures(ori))
 	// 	return (1);

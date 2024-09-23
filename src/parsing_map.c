@@ -69,7 +69,7 @@ static void	parse_line(t_ori *ori, char *line, int i)
 // 	// Set ori->nb_line to the total number of lines parsed
 //     ori->nb_line = i;
 // }
-void parsing_map(t_ori *ori)
+void	parsing_map(t_ori *ori)
 {
     char *line;
     int i;

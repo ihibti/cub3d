@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/10 17:58:47 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/23 16:35:28 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@
 
 int	init_player(t_ori *ori)
 {
+	// ft_memset(ori->player->ray, 0, sizeof(t_ray));
 	ori->player->ray = malloc(sizeof(t_ray));
 	if (!ori->player->ray)
 		return ((brexit(ori)), 1);
-	ft_memset(ori->player->ray, 0, sizeof(t_ray));
 	if (init_pl(ori))
 		// return (free(ori->player), 1);
 		return ((brexit(ori)), 1);
@@ -95,9 +95,17 @@ int	init_player(t_ori *ori)
 	return (0);
 }
 
-int	init(t_ori *ori, char *file)
+static int	init_color(t_color *color)
 {
-	ft_memset(ori, 0, sizeof(t_ori));
+	color->r = -1;
+	color->g = -1;
+	color->b = -1;
+	return (0);
+}
+
+int	init(t_ori *ori)
+{
+	// ft_memset(ori, 0, sizeof(t_ori));
 	ori->player = malloc(sizeof(t_player));
 	if (!ori->player)
 		return ((brexit(ori)), 1);
@@ -105,15 +113,21 @@ int	init(t_ori *ori, char *file)
 	// ori->sky = BLUE;
 	// ori->wall = BLACK;
 	ori->recast = true;
-	ori->file = file;
-	// ori->nb_line = 0;
-	open_fd(ori);
-	create_map(ori);
+	// ori->file = ft_strdup(file);
+	// if (!ori->file)
+	// 	return ((brexit(ori)), 1);
+	ori->nb_line = -1;
+	// open_fd(ori);
+	// parsing_map(ori);
+	// // open_fd(ori);
+	// create_map(ori);
+	init_color(&ori->ceiling);
+	init_color(&ori->floor);
 	if (init_player(ori))
 		return (1);
 	if (check_init_p(ori))
 		return (1);
-	if (start_mlx(ori, file))
+	if (start_mlx(ori))
 		return (1);
 	return (0);
 }
