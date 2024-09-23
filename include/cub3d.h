@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/23 16:36:13 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:51:20 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ typedef struct s_ori
 	int			img_bpp;
 	int			img_slen;
 	int			img_endian;
-	void		*n_path;
-	void		*e_path;
-	void		*s_path;
-	void		*w_path;
+	char		*n_path;
+	char		*e_path;
+	char		*s_path;
+	char		*w_path;
 	t_color		floor;
 	t_color		ceiling;
 }				t_ori;

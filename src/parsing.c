@@ -3,6 +3,10 @@
 void	parsing(t_ori *ori)
 {
 	open_fd(ori);
+    ori->n_path = NULL;
+    ori->w_path = NULL;
+    ori->e_path = NULL;
+    ori->s_path = NULL;    
 	parsing_map(ori);
 	// open_fd(ori);
 	create_map(ori);

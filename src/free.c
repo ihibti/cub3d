@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/20 15:32:14 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:10:29 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,25 @@ int	free_textures(t_ori *ori)
 
 int	brexit(t_ori *ori)
 {
-	if (ori->map)
-		(free_map(ori->map), ori->map = NULL);
-	if (ori->player)
-		(free_player(ori->player), ori->player = NULL);
-	free_textures(ori);
-	if (ori->display.img)
-	{
-		mlx_destroy_image(ori->mlxptr, ori->display.img);
-		ori->display.img = NULL;
-	}
-	if (ori->mlxwin)
-		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
-	if (ori->mlxptr)
-	{
-		mlx_destroy_display(ori->mlxptr);
-		free(ori->mlxptr);
-		ori->mlxptr = NULL;
-	}
+	// if (ori->map)
+	// 	(free_map(ori->map), ori->map = NULL);
+	// if (ori->player)
+	// 	(free_player(ori->player), ori->player = NULL);
+	// free_textures(ori);
+	// if (ori->display.img)
+	// {
+	// 	mlx_destroy_image(ori->mlxptr, ori->display.img);
+	// 	ori->display.img = NULL;
+	// }
+	// if (ori->mlxwin)
+	// 	(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
+	// if (ori->mlxptr)
+	// {
+	// 	mlx_destroy_display(ori->mlxptr);
+	// 	free(ori->mlxptr);
+	// 	ori->mlxptr = NULL;
+	// }
+	(void)ori;
 	exit(0);
 	return (0);
 }
@@ -122,9 +123,9 @@ int	brexit(t_ori *ori)
 // 	exit(0);
 // }
 
-int exit_err(int error, char *msg)
+int	exit_err(int error, char *msg)
 {
 	if (error)
 		ft_putstr_fd(msg, 2);
-	return(exit(error), error);
+	return (exit(error), error);
 }

@@ -2,9 +2,9 @@
 
 int	open_textures_no(t_ori *ori)
 {
-	if (ori->s_path)
+	if (ori->n_path)
 	{
-		ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr, ori->s_path,
+		ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr, ori->n_path,
 				&ori->textures[0].width, &ori->textures[0].height);
 		if (!ori->textures[0].img)
 			brexit(ori);
@@ -19,10 +19,12 @@ int	open_textures_no(t_ori *ori)
 		ft_putstr_fd("Error: North texture path is missing\n", 2);
 		brexit(ori);
 	}
+	free(ori->n_path);
+	ori->n_path = NULL;
 	return (0);
 }
 
-int open_textures_so(t_ori *ori)
+int	open_textures_so(t_ori *ori)
 {
 	if (ori->s_path)
 	{
@@ -41,10 +43,12 @@ int open_textures_so(t_ori *ori)
 		ft_putstr_fd("Error: South texture path is missing\n", 2);
 		brexit(ori);
 	}
+	free(ori->s_path);
+	ori->s_path = NULL;
 	return (0);
 }
 
-int open_textures_ea(t_ori *ori)
+int	open_textures_ea(t_ori *ori)
 {
 	if (ori->e_path)
 	{
@@ -63,10 +67,12 @@ int open_textures_ea(t_ori *ori)
 		ft_putstr_fd("Error: East texture path is missing\n", 2);
 		brexit(ori);
 	}
+    free(ori->e_path);
+	ori->e_path = NULL;
 	return (0);
 }
 
-int open_textures_we(t_ori *ori)
+int	open_textures_we(t_ori *ori)
 {
 	if (ori->w_path)
 	{
@@ -85,6 +91,7 @@ int open_textures_we(t_ori *ori)
 		ft_putstr_fd("Error: West texture path is missing\n", 2);
 		brexit(ori);
 	}
+    free(ori->w_path);
+	ori->w_path = NULL;
 	return (0);
 }
-
