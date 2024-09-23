@@ -69,35 +69,34 @@ static void	parse_line(t_ori *ori, char *line, int i)
 // 	// Set ori->nb_line to the total number of lines parsed
 //     ori->nb_line = i;
 // }
+
 void	parsing_map(t_ori *ori)
 {
-    char *line;
-    int i;
-    int map_line_count;
+	char	*line;
+	int		i;
+	int		map_line_count;
 
-    i = 0;
-    map_line_count = 0;
-    while (1)
-    {
-        line = get_next_line(ori->fd);
-        if (!line)
-            break;
-        i++;
-        parse_line(ori, line, i);
-
-        // Check if we're in the map section
-        if (i >= ori->map_start_line)
-            map_line_count++;
-
-        free(line);
-    }
-    if (close(ori->fd) < 0)
-        (ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
-
-    // Set ori->nb_line to the number of map lines
-    ori->nb_line = map_line_count;
+	i = 0;
+	map_line_count = 0;
+	while (1)
+	{
+		line = get_next_line(ori->fd);
+		printf("line: %s\n", line);
+		printf("map_start_line: %d\n", ori->map_start_line);
+		if (!line)
+			break ;
+		i++;
+		parse_line(ori, line, i);
+		// Check if we're in the map section
+		if (i >= ori->map_start_line)
+			map_line_count++;
+		free(line);
+	}
+	if (close(ori->fd) < 0)
+		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
+	// Set ori->nb_line to the number of map lines
+	ori->nb_line = map_line_count;
 }
-
 
 int	check_valid_start(char **map)
 {
@@ -138,19 +137,18 @@ static int	contains_char(char *set, char c)
 	return (0);
 }
 
-
 int	check_map_leaks(t_ori *ori, int x, int y)
 {
 	if (ori->map[y][x] == '0' || contains_char("NSWE", ori->map[y][x]))
 	{
-		if (x == 0 || x == ori->map_width - 1 || y == 0
-			|| y == ori->map_height - 1)
+		if (x == 0 || x == ori->map_width - 1 || y == 0 || y == ori->map_height
+			- 1)
 			return (1);
 		if (ori->map[y][x + 1] == '\0' || ori->map[y][x - 1] == '\0'
 			|| ori->map[y + 1][x] == '\0' || ori->map[y - 1][x] == '\0')
 			return (1);
-		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' '
-			|| ori->map[y + 1][x] == ' ' || ori->map[y - 1][x] == ' ')
+		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' ' || ori->map[y
+			+ 1][x] == ' ' || ori->map[y - 1][x] == ' ')
 			return (1);
 	}
 	if (x < ori->map_width - 1 && ori->map[y][x + 1] != '\0')

@@ -1,13 +1,20 @@
 #include "cub3d.h"
 
+void	init_textures_paths(t_ori *ori)
+{
+	ori->n_path = NULL;
+	ori->w_path = NULL;
+	ori->e_path = NULL;
+	ori->s_path = NULL;
+}
+
 void	parsing(t_ori *ori)
 {
 	open_fd(ori);
-    ori->n_path = NULL;
-    ori->w_path = NULL;
-    ori->e_path = NULL;
-    ori->s_path = NULL;    
+	init_textures_paths(ori);
+	printf("Probleme dans parsing map\n");
 	parsing_map(ori);
+	printf("Map parsed\n");
 	// open_fd(ori);
 	create_map(ori);
 	if (check_valid_start(ori->map))

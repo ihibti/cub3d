@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/23 15:50:35 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/23 18:12:52 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,24 @@ static void	init_mlx_window(t_ori *ori)
 	ori->mlxwin = mlx_new_window(ori->mlxptr, SCREEN_W, SCREEN_H, "cub3D");
 	if (!ori->mlxwin)
 		brexit(ori);
-	ori->mlx_img = mlx_new_image(ori->mlxptr, SCREEN_W, SCREEN_H);
-	if (!ori->mlx_img)
-		brexit(ori);
-	ori->img_addr = mlx_get_data_addr(ori->mlx_img, &ori->display.bpp,
-			&ori->img_slen, &ori->img_endian);
-	if (!ori->mlx_img)
-		brexit(ori);
+	// ori->mlx_img = mlx_new_image(ori->mlxptr, SCREEN_W, SCREEN_H);
+	// if (!ori->mlx_img)
+	// 	brexit(ori);
+	// ori->img_addr = mlx_get_data_addr(ori->mlx_img, &ori->display.bpp,
+	// 		&ori->img_slen, &ori->img_endian);
+	// if (!ori->mlx_img)
+	// 	brexit(ori);
 
 	//NOT USING ENDIAN OR SIZELEN (WHICH ONE IS CORRECT?)
-	// ori->display.img = mlx_new_image(ori->mlxptr, SCREEN_W, SCREEN_H);
-	// if (!ori->display.img)
-	// 	// exit_game(ori, ERROR_MLXIMG, NULL);
-	// 	brexit(ori);
-	// ori->display.data = mlx_get_data_addr(ori->display.img, &ori->display.bpp,
-	// 		&ori->display.width, &ori->display.height);
-	// if (!ori->display.data)
-	// 	// exit_game(ori, ERROR_MLXDATA, NULL);
-	// 	brexit(ori);
+	ori->display.img = mlx_new_image(ori->mlxptr, SCREEN_W, SCREEN_H);
+	if (!ori->display.img)
+		// exit_game(ori, ERROR_MLXIMG, NULL);
+		brexit(ori);
+	ori->display.data = mlx_get_data_addr(ori->display.img, &ori->display.bpp,
+			&ori->display.width, &ori->display.height);
+	if (!ori->display.data)
+		// exit_game(ori, ERROR_MLXDATA, NULL);
+		brexit(ori);
 }
 
 static void	mlx_hooks(t_ori *ori)

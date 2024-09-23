@@ -113,10 +113,10 @@ void	parsing_textures(t_ori *ori, char *line)
 		open_textures_ea(ori);
 	}
 	else if (!ft_strncmp(line, "WE ", 3))
-    {
-        ori->w_path = ft_strdup(line);
+	{
+		ori->w_path = ft_strdup(line);
 		open_textures_we(ori);
-    }
+	}
 	else
 		(ft_putstr_fd("Error unknown texture\n", 2), brexit(ori));
 }
