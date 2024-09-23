@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	valid_extension(av[1]);
-	if (init(&ori, av[1])) // Pass the file name to init
+	if (init(&ori, av[1]))
 		brexit(&ori);
 	check_file(&ori);
 	parsing(&ori);

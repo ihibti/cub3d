@@ -38,8 +38,8 @@ MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 
 FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c \
 		algorithms.c free.c create_map.c \
-		parsing.c parsing_utils.c parsing_colors.c parsing_map.c
-		
+		parsing.c parsing_utils.c parsing_colors.c parsing_map.c open_textures.c
+
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle
 

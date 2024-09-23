@@ -89,7 +89,8 @@ typedef struct s_ori
 	int			img_w;
 	int			img_h;
 	t_display	display;
-	// t_display	textures[4];	//gotta replace in one raycasting line 110 ctrl+f textures[wall]
+	t_display textures[4];
+		// gotta replace in one raycasting line 110 ctrl+f textures[wall]
 	bool		w;
 	bool		s;
 	bool		a;
@@ -113,7 +114,7 @@ typedef struct s_ori
 	void		*n_path;
 	void		*e_path;
 	void		*s_path;
-	void		*o_path;
+	void		*w_path;
 	t_color		floor;
 	t_color		ceiling;
 }				t_ori;
@@ -137,9 +138,13 @@ int				slide_y(t_ori *ori, t_player *player, double dir_m);
 void			map_dimensions(int *x_max, int *y_max, char **map);
 
 // Parsing
+int				open_textures_no(t_ori *ori);
+int				open_textures_so(t_ori *ori);
+int				open_textures_ea(t_ori *ori);
+int				open_textures_we(t_ori *ori);
 void			parsing_colors(t_ori *ori, char *line);
 void			parsing_textures(t_ori *ori, char *line);
-// void			parse_map(t_ori *ori, char *line, int j);
+// void			parse_map(t_ori *ori, char *line, int j); //static
 void			parsing_map(t_ori *ori);
 void			parsing(t_ori *ori);
 void			create_map(t_ori *ori);
@@ -152,7 +157,7 @@ int				check_valid_start(char **map);
 int				check_map_leaks(t_ori *ori, int x, int y);
 
 // Utils
-// int				contains_char(char *set, char c);
+// int				contains_char(char *set, char c);	//static
 
 // Free && Exit
 void			free_tab(char **tab);

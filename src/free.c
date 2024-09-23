@@ -60,10 +60,10 @@ int	free_textures(t_ori *ori)
 		mlx_destroy_image(ori->mlxptr, ori->n_path);
 	if (ori->s_path)
 		mlx_destroy_image(ori->mlxptr, ori->s_path);
-	if (ori->o_path)
-		mlx_destroy_image(ori->mlxptr, ori->o_path);
 	if (ori->e_path)
 		mlx_destroy_image(ori->mlxptr, ori->e_path);
+	if (ori->w_path)
+		mlx_destroy_image(ori->mlxptr, ori->w_path);
 	return (0);
 }
 

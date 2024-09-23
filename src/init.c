@@ -71,7 +71,6 @@
 // 	return (map);
 // }
 
-
 int	init_player(t_ori *ori)
 {
 	ori->player->ray = malloc(sizeof(t_ray));
@@ -107,7 +106,7 @@ int	init(t_ori *ori, char *file)
 	// ori->wall = BLACK;
 	ori->recast = true;
 	ori->file = file;
-	ori->nb_line = -1;
+	// ori->nb_line = 0;
 	open_fd(ori);
 	create_map(ori);
 	if (init_player(ori))
@@ -118,7 +117,6 @@ int	init(t_ori *ori, char *file)
 		return (1);
 	return (0);
 }
-
 
 // int	init(t_ori *ori)
 // {

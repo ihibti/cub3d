@@ -28,14 +28,14 @@ static void	parse_line(t_ori *ori, char *line, int i)
 {
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
-			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->o_path))
+			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->w_path))
 		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
 	else if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3))
 		parsing_textures(ori, line);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		parsing_colors(ori, line);
-	else if (ori->e_path && ori->n_path && ori->o_path && ori->s_path
+	else if (ori->e_path && ori->n_path && ori->w_path && ori->s_path
 		&& ori->parsed == 1 && line[0] != '\0')
 	{
 		ori->inside_map = 1;
@@ -49,24 +49,55 @@ static void	parse_line(t_ori *ori, char *line, int i)
 		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
 }
 
-void	parsing_map(t_ori *ori)
-{
-	char	*line;
-	int		i;
+// void	parsing_map(t_ori *ori)
+// {
+// 	char	*line;
+// 	int		i;
 
-	i = 0;
-	while (1)
-	{
-		line = get_next_line(ori->fd);
-		i++;
-		if (!line)
-			break ;
-		parse_line(ori, line, i);
-		free(line);
-	}
-	if (close(ori->fd) < 0)
-		(ft_putstr_fd("Error cannot close fd\n", 2), brexit(ori));
+// 	i = 0;
+// 	while (1)
+// 	{
+// 		line = get_next_line(ori->fd);
+// 		i++;
+// 		if (!line)
+// 			break ;
+// 		parse_line(ori, line, i);
+// 		free(line);
+// 	}
+// 	if (close(ori->fd) < 0)
+// 		(ft_putstr_fd("Error cannot close fd\n", 2), brexit(ori));
+// 	// Set ori->nb_line to the total number of lines parsed
+//     ori->nb_line = i;
+// }
+void parsing_map(t_ori *ori)
+{
+    char *line;
+    int i;
+    int map_line_count;
+
+    i = 0;
+    map_line_count = 0;
+    while (1)
+    {
+        line = get_next_line(ori->fd);
+        if (!line)
+            break;
+        i++;
+        parse_line(ori, line, i);
+
+        // Check if we're in the map section
+        if (i >= ori->map_start_line)
+            map_line_count++;
+
+        free(line);
+    }
+    if (close(ori->fd) < 0)
+        (ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
+
+    // Set ori->nb_line to the number of map lines
+    ori->nb_line = map_line_count;
 }
+
 
 int	check_valid_start(char **map)
 {

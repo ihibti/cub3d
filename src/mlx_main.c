@@ -36,53 +36,14 @@
 // 	return (0);
 // }
 
-// static void	open_textures2(t_ori *ori)
-// {
-// 	ori->textures[2].img = mlx_xpm_file_to_image(ori->mlxptr,
-// 			"textures/bluestone.xpm", &ori->textures[2].width,
-// 			&ori->textures[2].height);
-// 	if (!ori->textures[2].img)
-// 		brexit(ori);
-// 	ori->textures[2].data = mlx_get_data_addr(ori->textures[2].img,
-// 			&ori->textures[2].bpp, &ori->textures[2].width,
-// 			&ori->textures[2].height);
-// 	if (!ori->textures[2].data)
-// 		brexit(ori);
-// 	ori->textures[3].img = mlx_xpm_file_to_image(ori->mlxptr,
-// 			"textures/greystone.xpm", &ori->textures[3].width,
-// 			&ori->textures[3].height);
-// 	if (!ori->textures[3].img)
-// 		brexit(ori);
-// 	ori->textures[3].data = mlx_get_data_addr(ori->textures[3].img,
-// 			&ori->textures[3].bpp, &ori->textures[3].width,
-// 			&ori->textures[3].height);
-// 	if (!ori->textures[3].data)
-// 		brexit(ori);
-// }
 
+//NEEDED?
 // int	open_textures(t_ori *ori)
 // {
-// 	ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr,
-// 			"textures/eagle.xpm", &ori->textures[0].width,
-// 			&ori->textures[0].height);
-// 	if (!ori->textures[0].img)
-// 		brexit(ori);
-// 	ori->textures[0].data = mlx_get_data_addr(ori->textures[0].img,
-// 			&ori->textures[0].bpp, &ori->textures[0].width,
-// 			&ori->textures[0].height);
-// 	if (!ori->textures[0].data)
-// 		brexit(ori);
-// 	ori->textures[1].img = mlx_xpm_file_to_image(ori->mlxptr,
-// 			"textures/colorstone.xpm", &ori->textures[1].width,
-// 			&ori->textures[1].height);
-// 	if (!ori->textures[1].img)
-// 		brexit(ori);
-// 	ori->textures[1].data = mlx_get_data_addr(ori->textures[1].img,
-// 			&ori->textures[1].bpp, &ori->textures[1].width,
-// 			&ori->textures[1].height);
-// 	if (!ori->textures[1].data)
-// 		brexit(ori);
-// 	open_textures2(ori);
+// 	open_textures_no(ori);
+// 	open_textures_so(ori);
+// 	open_textures_ea(ori);
+// 	open_textures_we(ori);
 // 	return (0);
 // }
 

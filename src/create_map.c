@@ -1,12 +1,5 @@
 #include "cub3d.h"
 
-void	open_fd(t_ori *ori)
-{
-	ori->fd = open(ori->file, O_RDONLY);
-	if (ori->fd == -1)
-		(ft_putstr_fd("Error cant open fd\n", 2), brexit(ori));
-}
-
 int	find_longest_line(char **map)
 {
 	int	i;
@@ -33,7 +26,7 @@ void	create_map(t_ori *ori)
 
 	j = 0;
 	i = 0;
-	ori->map = malloc(sizeof(char *) * (ori->nb_line + 2));
+	ori->map = malloc(sizeof(char *) * (ori->nb_line + 1));
 	if (!ori->map)
 		(ft_putstr_fd("Error malloc\n", 2), brexit(ori));
 	while (1)
@@ -44,6 +37,8 @@ void	create_map(t_ori *ori)
 		j++;
 		if (j >= ori->map_start_line)
 		{
+			// if (i >= ori->nb_line) // Safety check
+            // 	(ft_putstr_fd("Error: Exceeded map size\n", 2), brexit(ori));
 			ori->map[i] = ft_strdup(line);
 			if (!ori->map[i])
 				(ft_putstr_fd("Error ft_strdup\n", 2), brexit(ori));

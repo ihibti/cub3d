@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	open_file(t_ori *ori)
+void	open_fd(t_ori *ori)
 {
 	ori->fd = open(ori->file, O_RDONLY);
 	if (ori->fd < 0)
