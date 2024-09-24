@@ -27,7 +27,6 @@ void	create_map(t_ori *ori)
 	j = 0;
 	i = 0;
 	ori->map = malloc(sizeof(char *) * (ori->nb_line + 1));
-	printf("ori->nb_line: %d\n", ori->nb_line);
 	if (!ori->map)
 		(ft_putstr_fd("Error malloc\n", 2), brexit(ori));
 	while (1)

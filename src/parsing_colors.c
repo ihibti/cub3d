@@ -77,27 +77,6 @@ void	parsing_colors(t_ori *ori, char *line)
 		parse_color_ceiling(ori, line);
 }
 
-// void	parsing_textures(t_ori *ori, char *line)
-// {
-// 	char	*path;
-
-// 	path = ft_strchr(line, '.');
-// 	if (!path)
-// 		return ;
-// 	else if (!ft_strncmp(line, "NO ", 3))
-// 		ori->n_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
-// 				&ori->img_h);
-// 	else if (!ft_strncmp(line, "EA ", 3))
-// 		ori->e_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
-// 				&ori->img_h);
-// 	else if (!ft_strncmp(line, "SO ", 3))
-// 		ori->s_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
-// 				&ori->img_h);
-// 	else if (!ft_strncmp(line, "WE ", 3))
-// 		ori->w_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
-// 				&ori->img_h);
-// }
-
 void	parsing_textures(t_ori *ori, char *line)
 {
 	char	*path;
@@ -129,3 +108,25 @@ void	parsing_textures(t_ori *ori, char *line)
 	else
 		(ft_putstr_fd("Error unknown texture\n", 2), brexit(ori));
 }
+
+// void	parsing_textures(t_ori *ori, char *line)
+// {
+// 	char	*path;
+
+// 	path = ft_strchr(line, '.');
+// 	if (!path)
+// 		return ;
+// 	else if (!ft_strncmp(line, "NO ", 3))
+// 		ori->n_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
+// 				&ori->img_h);
+// 	else if (!ft_strncmp(line, "EA ", 3))
+// 		ori->e_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
+// 				&ori->img_h);
+// 	else if (!ft_strncmp(line, "SO ", 3))
+// 		ori->s_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
+// 				&ori->img_h);
+// 	else if (!ft_strncmp(line, "WE ", 3))
+// 		ori->w_path = mlx_xpm_file_to_image(ori->mlxptr, path, &ori->img_w,
+// 				&ori->img_h);
+// }
+
