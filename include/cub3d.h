@@ -28,8 +28,14 @@ int				check_init_p(t_ori *ori);
 
 // CONTROL MOVEMENT
 void			truc_move(t_ori *ori);
+int				slide(t_ori *ori, t_player *player, double dir_m);
 int				slide_x(t_ori *ori, t_player *player, double dir_m);
 int				slide_y(t_ori *ori, t_player *player, double dir_m);
+int				corner_slide(t_ori *ori, t_player *player, double dir_m);
+void			look_left(t_ori *ori);
+void			look_right(t_ori *ori);
+int				land_secu(t_ori *ori, t_player *player);
+int				secu(t_ori *ori, t_player *player, double dir_m);
 
 // HOOKS
 int				han_inp_press(int key, t_ori *ori);

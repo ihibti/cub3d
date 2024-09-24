@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
+/*   Updated: 2024/09/24 17:26:06 by gchenot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	look_left(t_ori *ori)
+{
+	ori->player->dir_angle += (double)(CAMERA_SPEED / 10);
+	if (ori->player->dir_angle > (2 * M_PI))
+		ori->player->dir_angle -= 2 * M_PI;
+	ori->player->dir_x = cos(ori->player->dir_angle);
+	ori->player->dir_y = sin(ori->player->dir_angle);
+	ori->recast = 1;
+}
+
+void	look_right(t_ori *ori)
+{
+	ori->player->dir_angle -= (double)(CAMERA_SPEED / 10);
+	if (ori->player->dir_angle < 0)
+		ori->player->dir_angle += 2 * M_PI;
+	ori->player->dir_x = cos(ori->player->dir_angle);
+	ori->player->dir_y = sin(ori->player->dir_angle);
+	ori->recast = 1;
+}

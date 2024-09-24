@@ -127,7 +127,6 @@ unsigned int	create_rgb(int t, int r, int g, int b)
 	return ((t & 0xFF) << 24 | (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF));
 }
 
-
 void	draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x, int *y)
 {
 	(void)img_data;
@@ -146,7 +145,6 @@ void	draw_floor(t_ori *ori, char *img_data, int x, int y)
 		*((int *)ori->display.data + y++ * SCREEN_W + x) = create_rgb(0, ori->floor.r, ori->floor.g,
 			ori->floor.b);
 }
-
 
 void	ray_len(t_ori *ori, t_player *player, int x)
 {
@@ -273,6 +271,7 @@ void	draw_minimap(t_ori *ori)
 	int		i;
 	int		j;
 
+	(void)map;	//jsp pq jpeux pas compile avec chez wam
 	init_mnmap(&i, &j, ori);
 	x = 0;
 	y = 0;

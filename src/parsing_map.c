@@ -14,9 +14,9 @@
 
 static void	parse_map(t_ori *ori, char *line, int j)
 {
-	int	i;
+	// int	i;	//jsp pq jpeux pas compile avec chez wam
 
-	i = 0;
+	// i = 0;
 	ori->nb_line++;
 	if (!*line)
 		return ;
