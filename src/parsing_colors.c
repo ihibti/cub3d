@@ -10,12 +10,16 @@ static char	**valid_color(char *line)
 	rgb = ft_split(line, ',');
 	if (!rgb)
 		return (NULL);
-	while (rgb[i])
+	for (int k = 0; rgb[k]; k++)
+	{
+		rgb[k] = ft_strtrim(rgb[k], " \n\t");
+	}
+	while (rgb[i] && *rgb[i])
 	{
 		j = 0;
 		while (rgb[i][j])
 		{
-			if (!ft_isdigit(rgb[i][j]))
+			if (rgb[i][j] && !ft_isdigit(rgb[i][j]))
 				return (free_tab(rgb), (NULL));
 			j++;
 		}
@@ -28,6 +32,8 @@ static void	parse_color_ceiling(t_ori *ori, char *line)
 {
 	char	**rgb;
 
+	if (ori->parsed_c)
+		(ft_putstr_fd("2 definitions of ceiling", 2), brexit(ori));
 	if (check_comma(line + 2))
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	rgb = valid_color(line + 2);
@@ -40,12 +46,14 @@ static void	parse_color_ceiling(t_ori *ori, char *line)
 	if (ori->ceiling.r > 255 || ori->ceiling.g > 255 || ori->ceiling.b > 255
 		|| ori->ceiling.r < 0 || ori->ceiling.g < 0 || ori->ceiling.b < 0)
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
-	ori->parsed += 0.5;
+	ori->parsed_c = 1;
 }
 static void	parse_color_floor(t_ori *ori, char *line)
 {
 	char	**rgb;
 
+	if (ori->parsed_f)
+		(ft_putstr_fd("2 definitions of floor", 2), brexit(ori));
 	if (check_comma(line + 2))
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
 	rgb = valid_color(line + 2);
@@ -58,7 +66,7 @@ static void	parse_color_floor(t_ori *ori, char *line)
 	if (ori->floor.r > 255 || ori->floor.g > 255 || ori->floor.b > 255
 		|| ori->floor.r < 0 || ori->floor.g < 0 || ori->floor.b < 0)
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
-	ori->parsed += 0.5;
+	ori->parsed_f = 1;
 }
 
 void	parsing_colors(t_ori *ori, char *line)
@@ -90,7 +98,6 @@ void	parsing_colors(t_ori *ori, char *line)
 // 				&ori->img_h);
 // }
 
-
 void	parsing_textures(t_ori *ori, char *line)
 {
 	char	*path;
@@ -98,8 +105,7 @@ void	parsing_textures(t_ori *ori, char *line)
 	path = ft_strchr(line, '.');
 	if (!path || *(path + 1) == '\0')
 		(ft_putstr_fd("Error texture path\n", 2), brexit(ori));
-    cut_xpm(path);
-    printf("%s :\n",path);
+	cut_xpm(path);
 	if (!ft_strncmp(line, "NO ", 3))
 	{
 		ori->n_path = ft_strdup(path);

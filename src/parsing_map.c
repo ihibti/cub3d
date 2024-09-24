@@ -10,22 +10,21 @@ static void	parse_map(t_ori *ori, char *line, int j)
 		return ;
 	if (!ori->map_start_line)
 		ori->map_start_line = j;
-	while (line[i])
-	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-			|| line[i] == 'W')
-			ori->nb_start++;
-		else if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != ' ')
-			// exit_game(ori, "Impossible value\n", line);
-			(ft_putstr_fd("BRUHH INVALID VALUES\n", 2), brexit(ori));
+}
+
+int	jump_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isspace(str[i]))
 		i++;
-	}
+	return (i);
 }
 
 static void	parse_line(t_ori *ori, char *line, int i)
 {
+    line += jump_space(line);
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
 			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->w_path))
@@ -36,15 +35,15 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		parsing_colors(ori, line);
 	else if (ori->e_path && ori->n_path && ori->w_path && ori->s_path
-		&& ori->parsed == 1 && line[0] != '\0')
+		&& ori->parsed_c && ori->parsed_f && line[0] != '\0')
 	{
 		ori->inside_map = 1;
 		parse_map(ori, line, i);
 	}
 	else if (line[0] == '\0' && !ori->inside_map)
 		return ;
-    else if (line[0] == '\n' && !ori->inside_map)
-        return;
+	else if (line[0] == '\n' && !ori->inside_map)
+		return ;
 	else
 		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
 	if (ori->nb_start > 1)
@@ -80,12 +79,15 @@ void	parsing_map(t_ori *ori)
 
 	i = 0;
 	map_line_count = 0;
+    ori->map_start_line = 0;
+    ori->parsed_c = 0;
+    ori->parsed_f = 0;
 	while (1)
 	{
 		line = get_next_line(ori->fd);
-        printf("%s\n",line);
 		if (!line)
 			break ;
+		printf("%s\n", line);
 		i++;
 		parse_line(ori, line, i);
 		// Check if we're in the map section
@@ -93,11 +95,10 @@ void	parsing_map(t_ori *ori)
 			map_line_count++;
 		free(line);
 	}
-	if (close(ori->fd) < 0)
+	if (close(ori->fd))
 		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
 	// Set ori->nb_line to the number of map lines
 	ori->nb_line = map_line_count;
-    
 }
 
 int	check_valid_start(char **map)

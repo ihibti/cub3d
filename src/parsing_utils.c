@@ -44,20 +44,17 @@ void	valid_extension(t_ori *ori, char *str)
 
 int	check_comma(char *line)
 {
-	int i;
-	int comma;
+	int i = 0;
+	int comma = 0;
 
-	i = 0;
-	comma = 0;
-	if (!ft_isdigit(line[i]))
+	i = jump_space(line);
+	if (!line[i])
 		return (1);
 	while (line[i])
 	{
-		if (line[i] == ',' && line[i + 1] && ft_isdigit(line[i + 1]))
+		if (line[i] == ',')
 			comma++;
-		if (!ft_isdigit(line[i]) && line[i] != ',')
-			return (1);
-		i++;
+        i++;
 	}
 	if (comma == 2)
 		return (0);

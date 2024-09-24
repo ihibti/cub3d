@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 10:17:44 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:04:14 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ typedef struct s_ori
 	char		*w_path;
 	t_color		floor;
 	t_color		ceiling;
+    int parsed_f;
+    int parsed_c;
 }				t_ori;
 
 void			truc_move(t_ori *ori);
@@ -166,5 +168,7 @@ int				free_textures(t_ori *ori);
 // void			free_game(t_ori *ori);
 // void			brexit(t_ori *ori, char *error, char *line);
 void			cut_xpm(char *str);
+int				ft_isspace(char c);
+int				jump_space(char *str);
 
 #endif
