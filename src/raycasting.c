@@ -6,11 +6,13 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 11:42:54 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:32:13 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int			unsafe(int x, int y, char **map);
 
 void	copy_play_ray(t_player *player)
 {
@@ -40,7 +42,7 @@ void	copy_play_ray(t_player *player)
 // 	ray->dir_ray_y = player->dir_y;
 // }
 
-void	 init_ray(t_player *player, int x)
+void	init_ray(t_player *player, int x)
 {
 	t_ray	*ray;
 	double	ratio;
@@ -134,6 +136,8 @@ int	collision(char **map, t_ori *ori, int stepx, int stepy)
 {
 	if (stepx == 0 || stepy == 0)
 		return (1);
+	if (unsafe(ori->player->x_map + stepx, ori->player->y_map + stepy, map))
+		return (0);
 	if (map[ori->player->y_map + stepy][ori->player->x_map] != '0')
 	{
 		if (map[ori->player->y_map][ori->player->x_map + stepx] != '0')
@@ -169,27 +173,65 @@ int	is_pov(int x, int y, t_ori *ori)
 	return (0);
 }
 
+int	unsafe(int x, int y, char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	if (y >= i)
+		return (1);
+	if (x >= ft_strlen(map[y]))
+		return (1);
+	return (0);
+}
+
 uint32_t	get_color_mini(int x, int y, char **map, t_ori *ori)
 {
-	int	x_max;
-	int	y_max;
-	int	i;
-	int	j;
-
-	map_dimensions(&x_max, &y_max, map);
-	i = (int)((double)x / (((double)SCREEN_H / 4.0) / (double)x_max));
-	j = (int)((double)y / (((double)SCREEN_H / 4.0) / (double)y_max));
-	if (i == ori->player->x_map && ori->player->y_map == j)
+	if (unsafe(x, y, map))
+		return (BLACK);
+	if (x == ori->player->x_map && ori->player->y_map == y)
 		return (RED);
-	if (is_pov(i, j, ori))
+	if (is_pov(x, y, ori))
 		return (GREEN);
-	if (map[j][i] == '0')
+	if (map[y][x] == '0')
 		return (WHITE);
-	if (i == x_max - 1 || j == y_max - 1)
-		return (BLACK);
-	if (i == 0 || j == 0)
-		return (BLACK);
 	return (GRAY);
+}
+
+void	init_mnmap(int *i, int *j, t_ori *ori)
+{
+	*i = ori->player->x_map - 3;
+	*j = ori->player->y_map - 3;
+	if (*i < 0)
+		*i = 0;
+	if (*j < 0)
+		i = 0;
+}
+
+void	draw_square(int x, int y, u_int32_t color, t_ori *ori)
+{
+	int	startx;
+	int	starty;
+	int	endx;
+	int	endy;
+
+	startx = (SCREEN_W / 28) * x;
+	starty = (SCREEN_H / 28) * y;
+	endx = startx + (SCREEN_W / 28);
+	endy = starty + (SCREEN_H / 28);
+    y = starty;
+	while (startx < endx)
+	{
+		while (y <= endy)
+		{
+			*((int *)ori->display.data + startx + y * SCREEN_W) = color;
+			y++;
+		}
+		y = starty;
+        startx++;
+	}
 }
 
 void	draw_minimap(t_ori *ori)
@@ -197,20 +239,24 @@ void	draw_minimap(t_ori *ori)
 	char	**map;
 	int		x;
 	int		y;
+	int		i;
+	int		j;
 
+	init_mnmap(&i, &j, ori);
 	x = 0;
 	y = 0;
 	map = ori->map;
-	while (x < (int)(SCREEN_H / 4))
+	while (x < 8)
 	{
-		while (y < (int)(SCREEN_H / 4))
+		while (y < 8)
 		{
-			*((int *)ori->display.data + y * SCREEN_W + x) = get_color_mini(x,
-					y, map, ori);
+			draw_square(x, y, get_color_mini(i, j++, ori->map, ori), ori);
 			y++;
 		}
-		y = 0;
+		i++;
+		j -= 8;
 		x++;
+		y = 0;
 	}
 }
 
