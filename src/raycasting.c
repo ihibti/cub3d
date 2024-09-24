@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 15:32:13 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:36:55 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,9 @@ int	unsafe(int x, int y, char **map)
 	int	i;
 
 	i = 0;
+	if (x < 0 || y < 0)
+		return (1);
+        
 	while (map[i])
 		i++;
 	if (y >= i)
@@ -221,7 +224,7 @@ void	draw_square(int x, int y, u_int32_t color, t_ori *ori)
 	starty = (SCREEN_H / 28) * y;
 	endx = startx + (SCREEN_W / 28);
 	endy = starty + (SCREEN_H / 28);
-    y = starty;
+	y = starty;
 	while (startx < endx)
 	{
 		while (y <= endy)
@@ -230,7 +233,7 @@ void	draw_square(int x, int y, u_int32_t color, t_ori *ori)
 			y++;
 		}
 		y = starty;
-        startx++;
+		startx++;
 	}
 }
 
