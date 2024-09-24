@@ -12,7 +12,8 @@ void	parsing(t_ori *ori)
 {
 	open_fd(ori);
 	init_textures_paths(ori);
-	printf("Probleme dans parsing map\n");
+    ori->map_start_line = INT_MAX;
+    ori->nb_start = 0;
 	parsing_map(ori);
 	printf("Map parsed\n");
 	// open_fd(ori);

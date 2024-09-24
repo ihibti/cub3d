@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/23 16:51:20 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 10:17:44 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_ori
 	int			img_w;
 	int			img_h;
 	t_display	display;
-	t_display textures[4];
+	t_display	textures[4];
 	bool		w;
 	bool		s;
 	bool		a;
@@ -165,5 +165,6 @@ int				free_map(char **map);
 int				free_textures(t_ori *ori);
 // void			free_game(t_ori *ori);
 // void			brexit(t_ori *ori, char *error, char *line);
+void			cut_xpm(char *str);
 
 #endif

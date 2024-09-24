@@ -17,7 +17,7 @@ void	open_fd(t_ori *ori)
 // 	{
 // 		close(ori->fd);
 // 		// exit_game(ori, "Error: trying to open directory, not a file\n",
-			// NULL);
+// NULL);
 // 		(ft_putstr_fd("Error trying to open directory\n", 2), brexit(ori));
 // 	}
 // }
@@ -37,6 +37,7 @@ void	valid_extension(t_ori *ori, char *str)
 	else
 	{
 		ft_putstr_fd("Error\nInvalid arg\n", 2);
+		ft_putstr_fd(".cub file expected\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }

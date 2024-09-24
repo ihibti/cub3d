@@ -7,7 +7,7 @@ int	open_textures_no(t_ori *ori)
 		ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr, ori->n_path,
 				&ori->textures[0].width, &ori->textures[0].height);
 		if (!ori->textures[0].img)
-			brexit(ori);
+			(brexit(ori));
 		ori->textures[0].data = mlx_get_data_addr(ori->textures[0].img,
 				&ori->textures[0].bpp, &ori->textures[0].width,
 				&ori->textures[0].height);

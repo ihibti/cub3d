@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/08 12:21:26 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 10:20:51 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,53 +31,18 @@ void	map_dimensions(int *x_max, int *y_max, char **map)
 		*y_max = i;
 }
 
-// int	brexit(t_ori *ori)
-// {
-// 	if (ori->map)
-// 		free_map(ori->map);
-// 	if (ori->player->ray)
-// 		free(ori->player->ray);
-// 	if (ori->player)
-// 		free(ori->player);
-// 	mlx_destroy_image(ori->mlxptr, ori->textures[0].img);
-// 	mlx_destroy_image(ori->mlxptr, ori->textures[1].img);
-// 	mlx_destroy_image(ori->mlxptr, ori->display.img);
-// 	if (ori->mlxwin)
-// 		mlx_destroy_window(ori->mlxptr, ori->mlxwin);
-// 	if (ori->mlxptr)
-// 	{
-// 		mlx_destroy_display(ori->mlxptr);
-// 		free(ori->mlxptr);
-// 	}
-// 	exit(0);
-// 	return (0);
-// }
+void	cut_xpm(char *str)
+{
+	int	i;
 
-// void	debugging(t_ori *ori)
-// {
-// 	t_player	*player;
-// 	t_ray		*ray;
-
-// 	player = ori->player;
-// 	ray = player->ray;
-// 	int x, y;
-// 	x = 0;
-// 	y = 0;
-// 	printf("map:\n");
-// 	while (ori->map[y])
-// 	{
-// 		while (ori->map[y][x])
-// 		{
-// 			if (y == player->y_map && x == player->x_map)
-// 				printf("P");
-// 			else
-// 				printf("%c", ori->map[y][x]);
-// 			x++;
-// 		}
-// 		printf("\n");
-// 		x = 0;
-// 		y++;
-// 	}
-// 	printf("playerx %.10f playery %.10f\n", player->pos_x, player->pos_y);
-// 	printf("playerdirx %.10f playerdiry %.10f\n", player->dir_x, player->dir_y);
-// }
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+		{
+			str[i] = 0;
+			return ;
+		}
+		i++;
+	}
+}

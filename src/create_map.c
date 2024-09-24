@@ -52,4 +52,6 @@ void	create_map(t_ori *ori)
 	ori->map_width = find_longest_line(ori->map);
 	if (close(ori->fd) < 0)
 		(ft_putstr_fd("Error close fd\n", 2), brexit(ori));
+    // for (int j = 0; ori->map[j];j++)
+    //     printf("%s\n",ori->map[j]);
 }

@@ -43,6 +43,8 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	}
 	else if (line[0] == '\0' && !ori->inside_map)
 		return ;
+    else if (line[0] == '\n' && !ori->inside_map)
+        return;
 	else
 		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
 	if (ori->nb_start > 1)
@@ -81,8 +83,7 @@ void	parsing_map(t_ori *ori)
 	while (1)
 	{
 		line = get_next_line(ori->fd);
-		printf("line: %s\n", line);
-		printf("map_start_line: %d\n", ori->map_start_line);
+        printf("%s\n",line);
 		if (!line)
 			break ;
 		i++;
@@ -96,6 +97,7 @@ void	parsing_map(t_ori *ori)
 		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
 	// Set ori->nb_line to the number of map lines
 	ori->nb_line = map_line_count;
+    
 }
 
 int	check_valid_start(char **map)
