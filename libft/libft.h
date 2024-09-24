@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanypar <chanypar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:35:10 by ihibti            #+#    #+#             */
-/*   Updated: 2024/07/16 18:12:37 by chanypar         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:19:08 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int					init_gnl(char **ret, char **acquired, int *fd, char *reste);
 int					pos_nl(char *str);
 int					acquisition(char *acquired, int fd);
 char				*get_next_line(int fd);
+char				*ft_strjoin_gnl(char *s1, char *s2);
 char				*rest_manager(char *reste, char *ret);
 char				*return_manag(char **acquired, char **ret);
 

@@ -95,7 +95,6 @@ void	parsing_map(t_ori *ori)
 	}
 	if (close(ori->fd))
 		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
-	// Set ori->nb_line to the number of map lines
 	ori->nb_line = map_line_count;
 }
 
@@ -142,14 +141,14 @@ int	check_map_leaks(t_ori *ori, int x, int y)
 {
 	if (ori->map[y][x] == '0' || contains_char("NSWE", ori->map[y][x]))
 	{
-		if (x == 0 || x == ori->map_width - 1 || y == 0 || y == ori->map_height
-			- 1)
+		if (x == 0 || x == ori->map_width - 1 || y == 0
+			|| y == ori->map_height - 1)
 			return (1);
 		if (ori->map[y][x + 1] == '\0' || ori->map[y][x - 1] == '\0'
 			|| ori->map[y + 1][x] == '\0' || ori->map[y - 1][x] == '\0')
 			return (1);
-		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' ' || ori->map[y
-			+ 1][x] == ' ' || ori->map[y - 1][x] == ' ')
+		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' '
+			|| ori->map[y + 1][x] == ' ' || ori->map[y - 1][x] == ' ')
 			return (1);
 	}
 	if (x < ori->map_width - 1 && ori->map[y][x + 1] != '\0')
@@ -158,3 +157,25 @@ int	check_map_leaks(t_ori *ori, int x, int y)
 		return (check_map_leaks(ori, 0, y + 1));
 	return (0);
 }
+
+//TEST FUNCTION
+// void printf_map(char **map)
+// {
+// 	int i = 0;
+// 	while (map[i])
+// 	{
+// 		int k = 0;
+// 		while (map[i][k])
+// 		{
+// 			if (map[i][k])
+// 				printf("[%c] ", map[i][k]);
+// 			else if (map[i][k] == '\n')
+// 				printf("[retour ligne] ");
+// 			else
+// 			printf("[] ");
+// 			k++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }

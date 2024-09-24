@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/21 10:40:47 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 17:26:06 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ void	truc_move(t_ori *ori)
 
 int	han_inp_press(int key, t_ori *ori)
 {
-	if (key == XK_Escape)
+	if (key == XK_Escape || key == XK_q)
 		brexit(ori);
 	if (key == XK_w)
 		ori->w = true;
@@ -282,7 +282,7 @@ int	han_inp_press(int key, t_ori *ori)
 
 int	han_inp_release(int key, t_ori *ori)
 {
-	if (key == XK_Escape)
+	if (key == XK_Escape || key == XK_q)
 		brexit(ori);
 	if (key == XK_w)
 		ori->w = false;

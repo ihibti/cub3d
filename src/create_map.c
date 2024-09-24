@@ -37,7 +37,7 @@ void	create_map(t_ori *ori)
 		j++;
 		if (j >= ori->map_start_line)
 		{
-			if (i >= ori->nb_line) // Safety check
+			if (i >= ori->nb_line)
 				(ft_putstr_fd("Error: Exceeded map size\n", 2), brexit(ori));
 			ori->map[i] = ft_strdup(line);
 			if (!ori->map[i])
