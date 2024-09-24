@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/23 16:35:28 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/24 15:26:35 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ int	init_player(t_ori *ori)
 	return (0);
 }
 
-static int	init_color(t_color *color)
+/* static int	init_color(t_color *color, int r, int g, int b)
 {
-	color->r = -1;
-	color->g = -1;
-	color->b = -1;
+	color->r = r;
+	color->g = g;
+	color->b = b;
 	return (0);
-}
+} */
 
 int	init(t_ori *ori)
 {
@@ -119,10 +119,10 @@ int	init(t_ori *ori)
 	ori->nb_line = -1;
 	// open_fd(ori);
 	// parsing_map(ori);
-	// // open_fd(ori);
+	// // opeinit_color(&ori->ceiling,);
+	// init_color(&ori->floor);n_fd(ori);
 	// create_map(ori);
-	init_color(&ori->ceiling);
-	init_color(&ori->floor);
+	//
 	if (init_player(ori))
 		return (1);
 	if (check_init_p(ori))

@@ -6,7 +6,7 @@
 #    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
-#    Updated: 2024/09/20 13:13:31 by gchenot          ###   ########.fr        #
+#    Updated: 2024/09/24 15:12:48 by gchenot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ fclean: clean
 re: fclean all
 
 run : ${NAME}
-	@./${NAME}
+	@./${NAME} map.cub
 
 val : ${NAME}
 	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} map.cub

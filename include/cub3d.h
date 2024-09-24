@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 12:04:14 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:13:56 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,11 @@ void			dda_alg(t_ori *ori, t_ray *ray, int x);
 int				slide_x(t_ori *ori, t_player *player, double dir_m);
 int				slide_y(t_ori *ori, t_player *player, double dir_m);
 void			map_dimensions(int *x_max, int *y_max, char **map);
+
+
+unsigned int create_rgb(int t, int r, int g, int b);
+void	draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x, int *y);
+void	draw_floor(t_ori *ori, char *img_data, int x, int y);
 
 // Parsing
 int				open_textures_no(t_ori *ori);

@@ -87,10 +87,8 @@ void	parsing_map(t_ori *ori)
 		line = get_next_line(ori->fd);
 		if (!line)
 			break ;
-		printf("%s\n", line);
 		i++;
 		parse_line(ori, line, i);
-		// Check if we're in the map section
 		if (i >= ori->map_start_line)
 			map_line_count++;
 		free(line);

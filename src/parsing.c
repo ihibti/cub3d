@@ -16,7 +16,8 @@ void	parsing(t_ori *ori)
     ori->map_start_line = INT_MAX;
     ori->nb_start = 0;
 	parsing_map(ori);
-	printf("Map parsed\n");
+	if (ori->nb_line == 0)
+		ft_putstr_fd("Error: No map\n", 2), brexit(ori);
 	open_fd(ori);
 	create_map(ori);
 	// if (check_valid_start(ori->map))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 15:36:55 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:45:04 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		else
 			wall = 2;
 	}
-	while (y < drawstart && y < SCREEN_H)
-		*((int *)ori->display.data + y++ * SCREEN_W + x) = BLUE;
+	// while (y < drawstart && y < SCREEN_H)
+	// 	*((int *)ori->display.data + y++ * SCREEN_W + x) = VIOLET;
+	draw_ceiling(ori, ori->display.data, drawstart, x, &y);
 	while (y <= draw_end && y < SCREEN_H)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
@@ -116,9 +117,36 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 			i = 63.0;
 		y++;
 	}
-	while (y < SCREEN_H)
-		*((int *)ori->display.data + y++ * SCREEN_W + x) = BROWN;
+	draw_floor(ori, ori->display.data, x, y);
+	// while (y < SCREEN_H)
+	// 	*((int *)ori->display.data + y++ * SCREEN_W + x) = VIOLET;
 }
+
+unsigned int	create_rgb(int t, int r, int g, int b)
+{
+	return ((t & 0xFF) << 24 | (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF));
+}
+
+
+void	draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x, int *y)
+{
+	(void)img_data;
+	while (*y < drawstart && *y < SCREEN_H)
+	{
+		*((int *)ori->display.data + (*y) * SCREEN_W + x) = create_rgb(0, ori->ceiling.r, ori->ceiling.g,
+			ori->ceiling.b);
+		(*y)++;
+	}
+}
+
+void	draw_floor(t_ori *ori, char *img_data, int x, int y)
+{
+	(void)img_data;
+	while (y < SCREEN_H)
+		*((int *)ori->display.data + y++ * SCREEN_W + x) = create_rgb(0, ori->floor.r, ori->floor.g,
+			ori->floor.b);
+}
+
 
 void	ray_len(t_ori *ori, t_player *player, int x)
 {
@@ -180,7 +208,7 @@ int	unsafe(int x, int y, char **map)
 	i = 0;
 	if (x < 0 || y < 0)
 		return (1);
-        
+
 	while (map[i])
 		i++;
 	if (y >= i)
