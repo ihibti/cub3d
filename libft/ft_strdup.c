@@ -18,7 +18,7 @@ char	*ft_strdup(const char *str)
 	char	*ptr;
 
 	i = 0;
-	if (!str || !str[i])
+	if (!str)
 		return (NULL);
 	while (str[i])
 		i++;

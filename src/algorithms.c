@@ -62,10 +62,11 @@ void	color_ray(t_ray *ray)
 		if (ray->dir_ray_x < 0)
 			ray->coord_stripe = 64 - ray->coord_stripe;
 	}
-    if (ray->coord_stripe > 63)
-        ray->coord_stripe = 63;
+	if (ray->coord_stripe > 63)
+		ray->coord_stripe = 63;
 }
-void	   dda_alg(t_ori *ori, t_ray *ray, int x)
+
+void	dda_alg(t_ori *ori, t_ray *ray, int x)
 {
 	char	**map;
 
@@ -86,8 +87,22 @@ void	   dda_alg(t_ori *ori, t_ray *ray, int x)
 			ray->mapY += ray->stepy;
 			ray->last_hit = 1;
 		}
-		if (map[ray->mapY][ray->mapX] != '0')
-			ray->hit = 1;
+		//TEST
+	   // Add boundary checks
+        if (ray->mapY >= 0 && ray->mapY < ori->map_height &&
+            ray->mapX >= 0 && ray->mapX < ori->map_width)
+        {
+            if (map[ray->mapY][ray->mapX] != '0')
+                ray->hit = 1;
+        }
+        else
+        {
+            // Outside map boundaries
+            ray->hit = 1;
+        }
+		//END TEST; previous code:
+		// if (map[ray->mapY][ray->mapX] != '0')
+		// 	ray->hit = 1;
 	}
 	color_ray(ray);
 }
