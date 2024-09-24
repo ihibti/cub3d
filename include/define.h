@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
+/*   Updated: 2024/09/24 18:13:38 by gchenot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINE_H
 # define DEFINE_H
 
@@ -29,7 +41,7 @@
 # define CAMERA_SPEED 0.2
 # define SCREEN_W 1200
 # define SCREEN_H 500
-# define PIXEL (M_PI) / (SCREEN_H)
+// # define PIXEL (M_PI) / (SCREEN_H)
 # define UP 222
 # define LEFT_V 223
 # define RIGHT_V 224
@@ -38,7 +50,7 @@
 # define BACKWARDS 227
 # define RIGHT_M 228
 # define LEFT_M 229
-# define delta 0.1
+# define DELTA 0.1
 # define FOV 0.66
 # define RED 0x00FF0000
 # define BLUE 0x000000FF

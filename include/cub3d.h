@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:03:03 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/24 18:13:56 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			valid_extension(t_ori *ori, char *str);
 int				check_comma(char *line);
 int				find_longest_line(char **map);
 int				check_valid_start(char **map);
-void	printf_map(char **map); // a delete later
+void			printf_map(char **map); // a delete later
 
 // RAYCASTING
 int				raycasting(t_ori *ori);
