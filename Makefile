@@ -6,7 +6,7 @@
 #    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
-#    Updated: 2024/09/24 15:12:48 by gchenot          ###   ########.fr        #
+#    Updated: 2024/09/24 18:07:48 by gchenot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,18 @@ MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-FILES = main.c init.c init_utils.c mlx_main.c raycasting.c controls.c utils.c \
-		algorithms.c free.c create_map.c \
-		parsing.c parsing_utils.c parsing_colors.c parsing_map.c open_textures.c
+FILES = main.c \
+		init.c init_utils.c \
+		mlx_main.c \
+		controls.c \
+		algorithms.c \
+		raycasting.c \
+		free.c \
+		create_map.c \
+		open_textures.c \
+		parsing.c parsing_utils.c parsing_colors.c parsing_map.c \
+		parsing_map_supersaiyan3.c parsing_utils2.c \
+		utils.c
 
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle

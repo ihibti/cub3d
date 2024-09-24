@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:30:53 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 15:31:02 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/24 17:51:10 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	valid_extension(&ori, av[1]);
-	// check_file(&ori);
 	ori.mlxptr = mlx_init();
 	parsing(&ori);
 	if (init(&ori))

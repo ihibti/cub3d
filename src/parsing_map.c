@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
+/*   Updated: 2024/09/24 18:03:00 by gchenot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	parse_map(t_ori *ori, char *line, int j)
@@ -24,7 +36,7 @@ int	jump_space(char *str)
 
 static void	parse_line(t_ori *ori, char *line, int i)
 {
-    line += jump_space(line);
+	line += jump_space(line);
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
 			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->w_path))
@@ -50,27 +62,6 @@ static void	parse_line(t_ori *ori, char *line, int i)
 		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
 }
 
-// void	parsing_map(t_ori *ori)
-// {
-// 	char	*line;
-// 	int		i;
-
-// 	i = 0;
-// 	while (1)
-// 	{
-// 		line = get_next_line(ori->fd);
-// 		i++;
-// 		if (!line)
-// 			break ;
-// 		parse_line(ori, line, i);
-// 		free(line);
-// 	}
-// 	if (close(ori->fd) < 0)
-// 		(ft_putstr_fd("Error cannot close fd\n", 2), brexit(ori));
-// 	// Set ori->nb_line to the total number of lines parsed
-//     ori->nb_line = i;
-// }
-
 void	parsing_map(t_ori *ori)
 {
 	char	*line;
@@ -79,9 +70,9 @@ void	parsing_map(t_ori *ori)
 
 	i = 0;
 	map_line_count = 0;
-    ori->map_start_line = 0;
-    ori->parsed_c = 0;
-    ori->parsed_f = 0;
+	ori->map_start_line = 0;
+	ori->parsed_c = 0;
+	ori->parsed_f = 0;
 	while (1)
 	{
 		line = get_next_line(ori->fd);
@@ -98,57 +89,18 @@ void	parsing_map(t_ori *ori)
 	ori->nb_line = map_line_count;
 }
 
-int	check_valid_start(char **map)
-{
-	int	i;
-	int	j;
-	int	start;
-
-	start = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W'
-				|| map[i][j] == 'E')
-				start++;
-			j++;
-		}
-		i++;
-	}
-	if (start > 1 || start == 0)
-		return (1);
-	return (0);
-}
-
-static int	contains_char(char *set, char c)
-{
-	int	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (c == set[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	check_map_leaks(t_ori *ori, int x, int y)
 {
 	if (ori->map[y][x] == '0' || contains_char("NSWE", ori->map[y][x]))
 	{
-		if (x == 0 || x == ori->map_width - 1 || y == 0
-			|| y == ori->map_height - 1)
+		if (x == 0 || x == ori->map_width - 1 || y == 0 || y == ori->map_height
+			- 1)
 			return (1);
 		if (ori->map[y][x + 1] == '\0' || ori->map[y][x - 1] == '\0'
 			|| ori->map[y + 1][x] == '\0' || ori->map[y - 1][x] == '\0')
 			return (1);
-		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' '
-			|| ori->map[y + 1][x] == ' ' || ori->map[y - 1][x] == ' ')
+		if (ori->map[y][x + 1] == ' ' || ori->map[y][x - 1] == ' ' || ori->map[y
+			+ 1][x] == ' ' || ori->map[y - 1][x] == ' ')
 			return (1);
 	}
 	if (x < ori->map_width - 1 && ori->map[y][x + 1] != '\0')
@@ -157,25 +109,3 @@ int	check_map_leaks(t_ori *ori, int x, int y)
 		return (check_map_leaks(ori, 0, y + 1));
 	return (0);
 }
-
-//TEST FUNCTION
-// void printf_map(char **map)
-// {
-// 	int i = 0;
-// 	while (map[i])
-// 	{
-// 		int k = 0;
-// 		while (map[i][k])
-// 		{
-// 			if (map[i][k])
-// 				printf("[%c] ", map[i][k]);
-// 			else if (map[i][k] == '\n')
-// 				printf("[retour ligne] ");
-// 			else
-// 			printf("[] ");
-// 			k++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// }

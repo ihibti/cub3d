@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:03:15 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 17:20:22 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/24 18:08:14 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,8 @@ static char	*ft_get_line(char *buffer)
 	line[i] = '\0';
 	return (line);
 }
-	/* 	if (buffer[i] && buffer[i] == '\n')
-			line[i++] = '\n'; */
-
+/* 	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n'; */
 
 static char	*ft_get_next_line(char *buffer)
 {
@@ -214,4 +213,3 @@ char	*get_next_line(int fd)
 	buffer = ft_get_next_line(buffer);
 	return (line);
 }
-

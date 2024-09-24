@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/23 17:10:29 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 18:09:41 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,37 +91,6 @@ int	brexit(t_ori *ori)
 	exit(0);
 	return (0);
 }
-
-// static void	empty_gnl(t_ori *ori, char *line)
-// {
-// 	char	*empty;
-
-// 	empty = "";
-// 	free(line);
-// 	while (1)
-// 	{
-// 		empty = get_next_line(ori->fd);
-// 		if (!empty)
-// 			break ;
-// 		free(empty);
-// 	}
-// }
-
-// void	brexit(t_ori *ori, char *error, char *line)
-// {
-// 	if (error)
-// 	{
-// 		ft_putstr_fd("Error\n", 2);
-// 		ft_putstr_fd(error, 2);
-// 	}
-// 	// if (line)
-// 	// 	empty_gnl(ori, line);
-// 	if (ori)
-// 		free_game(ori);
-// 	if (error)
-// 		exit(1);
-// 	exit(0);
-// }
 
 int	exit_err(int error, char *msg)
 {

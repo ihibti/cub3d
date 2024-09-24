@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/20 10:31:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/24 18:09:47 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	init_dirangle(t_ori *ori)
 	ori->player->x_map = x;
 	ori->player->y_map = y;
 	ori->map[y][x] = '0';
-	// printf("tout va bien\n");
 }
 
 // TODO : free ori pour juste return
