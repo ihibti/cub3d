@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 14:51:05 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 15:49:13 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,71 @@ int	free_player(t_player *player)
 	return (0);
 }
 
+// int	free_textures(t_ori *ori)
+// {
+// 	if (ori->n_path)
+// 	{
+// 		mlx_destroy_image(ori->mlxptr, ori->n_path);
+// 		(free(ori->n_path), ori->n_path = NULL);
+// 	}
+// 	if (ori->s_path)
+// 	{
+// 		mlx_destroy_image(ori->mlxptr, ori->s_path);
+// 		(free(ori->s_path), ori->s_path = NULL);
+// 	}
+// 	if (ori->e_path)
+// 	{
+// 		mlx_destroy_image(ori->mlxptr, ori->e_path);
+// 		(free(ori->e_path), ori->e_path = NULL);
+// 	}
+// 	if (ori->w_path)
+// 	{
+// 		mlx_destroy_image(ori->mlxptr, ori->w_path);
+// 		(free(ori->w_path), ori->w_path = NULL);
+// 	}
+// 	printf("textures free\n");
+// 	return (0);
+// }
+
 int	free_textures(t_ori *ori)
 {
+	int i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		if (ori->textures[i].img)
+		{
+			mlx_destroy_image(ori->mlxptr, ori->textures[i].img);
+			ori->textures[i].img = NULL;
+		}
+	}
 	if (ori->n_path)
 	{
-		mlx_destroy_image(ori->mlxptr, ori->n_path);
-		(free(ori->n_path), ori->n_path = NULL);
+		free(ori->n_path);
+		ori->n_path = NULL;
 	}
 	if (ori->s_path)
 	{
-		mlx_destroy_image(ori->mlxptr, ori->s_path);
-		(free(ori->s_path), ori->s_path = NULL);
+		free(ori->s_path);
+		ori->s_path = NULL;
 	}
 	if (ori->e_path)
 	{
-		mlx_destroy_image(ori->mlxptr, ori->e_path);
-		(free(ori->e_path), ori->e_path = NULL);
+		free(ori->e_path);
+		ori->e_path = NULL;
 	}
 	if (ori->w_path)
 	{
-		mlx_destroy_image(ori->mlxptr, ori->w_path);
-		(free(ori->w_path), ori->w_path = NULL);
+		free(ori->w_path);
+		ori->w_path = NULL;
 	}
-	printf("textures free\n");
+	printf("textures freed\n");
 	return (0);
 }
 
 int	mini_brexit(t_ori *ori)
 {
-	if (!ori)
-		return (1);
 	if (ori->map)
 		(free_map(ori->map), ori->map = NULL, printf("map free\n"));
 	if (ori->player)
@@ -102,7 +137,8 @@ int	mini_brexit(t_ori *ori)
 		printf("img free\n");
 	}
 	if (ori->mlxwin)
-		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL, printf("win free\n"));
+		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL,
+			printf("win free\n"));
 	if (ori->mlxptr)
 	{
 		mlx_destroy_display(ori->mlxptr);
@@ -110,6 +146,10 @@ int	mini_brexit(t_ori *ori)
 		ori->mlxptr = NULL;
 		printf("mlx free\n");
 	}
+	// mlx_destroy_image(ori->mlxptr, ori->display.img);
+	// mlx_destroy_window(ori->mlxptr, ori->mlxwin);
+	mlx_destroy_display(ori->mlxptr);
+	free(ori->mlxptr);
 	printf("ca free\n");
 	// (void)ori;
 	// exit(0);
@@ -118,20 +158,31 @@ int	mini_brexit(t_ori *ori)
 
 int	endgame(t_ori *ori)
 {
-	if (ori->n_path)
-		mlx_destroy_image(ori->mlxptr, ori->n_path);
-	if (ori->s_path)
-		mlx_destroy_image(ori->mlxptr, ori->s_path);
-	if (ori->e_path)
-		mlx_destroy_image(ori->mlxptr, ori->e_path);
-	if (ori->w_path)
-		mlx_destroy_image(ori->mlxptr, ori->w_path);
+	free_textures(ori);
 	if (ori->map)
 		free_tab(ori->map);
-	mlx_destroy_image(ori->mlxptr, ori->display.img);
-	mlx_destroy_window(ori->mlxptr, ori->mlxwin);
-	mlx_destroy_display(ori->mlxptr);
-	free(ori->mlxptr);
+	// mlx_destroy_image(ori->mlxptr, ori->display.img);
+	// mlx_destroy_window(ori->mlxptr, ori->mlxwin);
+	// mlx_destroy_display(ori->mlxptr);
+	// free(ori->mlxptr);
+	if (ori->display.img)
+	{
+		mlx_destroy_image(ori->mlxptr, ori->display.img);
+		ori->display.img = NULL;
+		printf("img free\n");
+	}
+	if (ori->mlxwin)
+		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL,
+			printf("win free\n"));
+	if (ori->mlxptr)
+	{
+		mlx_destroy_display(ori->mlxptr);
+		free(ori->mlxptr);
+		ori->mlxptr = NULL;
+		printf("mlx free\n");
+	}
+	// mlx_destroy_display(ori->mlxptr);
+	// free(ori->mlxptr);
 	exit(0);
 }
 

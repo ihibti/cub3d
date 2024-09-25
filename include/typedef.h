@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 14:49:56 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 15:25:18 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ typedef struct s_ori
 	int			img_bpp;
 	int			img_slen;
 	int			img_endian;
-	void		*n_path;
-	void		*e_path;
-	void		*s_path;
-	void		*w_path;
+	char		*n_path;
+	char		*e_path;
+	char		*s_path;
+	char		*w_path;
 	int			parsed_f;
 	int			parsed_c;
 	t_color		floor;
