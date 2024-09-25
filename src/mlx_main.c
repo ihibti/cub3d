@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 17:50:59 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:32:34 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	mlx_hooks(t_ori *ori)
 
 int	start_mlx(t_ori *ori)
 {
-	init_mlx(ori);
 	ori->recast = 1;
 	init_mlx_window(ori);
 	mlx_hooks(ori);

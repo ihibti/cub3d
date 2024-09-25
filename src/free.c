@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:09:41 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:33:24 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,37 +56,36 @@ int	free_player(t_player *player)
 
 int	free_textures(t_ori *ori)
 {
-	if (ori->n_path)
-		mlx_destroy_image(ori->mlxptr, ori->n_path);
-	if (ori->s_path)
-		mlx_destroy_image(ori->mlxptr, ori->s_path);
-	if (ori->e_path)
-		mlx_destroy_image(ori->mlxptr, ori->e_path);
-	if (ori->w_path)
-		mlx_destroy_image(ori->mlxptr, ori->w_path);
+	mlx_destroy_image(ori->mlxptr, ori->textures[0].img);
+	mlx_destroy_image(ori->mlxptr, ori->textures[1].img);
+	mlx_destroy_image(ori->mlxptr, ori->textures[2].img);
+	mlx_destroy_image(ori->mlxptr, ori->textures[3].img);
+	free(ori->e_path);
+	free(ori->n_path);
+	free(ori->s_path);
+	free(ori->w_path);
 	return (0);
 }
 
 int	brexit(t_ori *ori)
 {
-	// if (ori->map)
-	// 	(free_map(ori->map), ori->map = NULL);
-	// if (ori->player)
-	// 	(free_player(ori->player), ori->player = NULL);
-	// free_textures(ori);
-	// if (ori->display.img)
-	// {
-	// 	mlx_destroy_image(ori->mlxptr, ori->display.img);
-	// 	ori->display.img = NULL;
-	// }
-	// if (ori->mlxwin)
-	// 	(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
-	// if (ori->mlxptr)
-	// {
-	// 	mlx_destroy_display(ori->mlxptr);
-	// 	free(ori->mlxptr);
-	// 	ori->mlxptr = NULL;
-	// }
+	if (ori->map)
+		(free_map(ori->map), ori->map = NULL);
+	if (ori->player)
+		(free_player(ori->player), ori->player = NULL);
+	free_textures(ori);
+	if (ori->display.img)
+	{
+		mlx_destroy_image(ori->mlxptr, ori->display.img);
+		ori->display.img = NULL;
+	}
+	if (ori->mlxwin)
+		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
+	mlx_destroy_display(ori->mlxptr);
+    if (ori->file)
+        free(ori->file);
+	free(ori->mlxptr);
+	ori->mlxptr = NULL;
 	(void)ori;
 	exit(0);
 	return (0);

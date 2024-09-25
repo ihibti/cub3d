@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:34:47 by ihibti            #+#    #+#             */
-/*   Updated: 2023/11/17 16:18:49 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/25 16:10:56 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,32 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j++;
 	}
 	ret[j] = '\0';
+	return (ret);
+}
+
+char	*ft_strtrimbis(char *s1, char const *set)
+{
+	int		i;
+	int		len;
+	char	*ret;
+	int		j;
+
+	if (!s1)
+		return (NULL);
+	j = 0;
+	i = 0;
+	len = ft_strlen(s1);
+	while (is_in_str(set, s1[len - 1]) == 1 && len > 0)
+		len--;
+	ret = malloc((non_sep_in_str(s1, set) + 1));
+	if (!ret)
+		return (NULL);
+	while (is_in_str(set, s1[i]) == 1 && s1[i])
+		i++;
+	while (s1[i] && (i < len))
+		ret[j++] = s1[i++];
+	ret[j] = '\0';
+	free(s1);
 	return (ret);
 }
 

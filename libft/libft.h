@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:35:10 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 17:19:08 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:11:13 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void				put_unsigned(unsigned int number, int *count);
 void				put_uint(uint64_t number, int *count);
 int					print_ptr(void *ptr);
 void				init_printf(int *i, int *len);
+char				*ft_strtrimbis(char *s1, char const *set);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 45

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:51:42 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 17:51:51 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:11:38 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	**valid_color(char *line)
 		return (NULL);
 	for (int k = 0; rgb[k]; k++)
 	{
-		rgb[k] = ft_strtrim(rgb[k], " \n\t");
+		rgb[k] = ft_strtrimbis(rgb[k], " \n\t");
 	}
 	while (rgb[i] && *rgb[i])
 	{

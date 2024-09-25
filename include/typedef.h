@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 10:11:19 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/25 16:16:22 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_ori
 	int			inside_map;
 	double		parsed;
 	int			nb_start;
-	void		*mlx_img;
+	// void		*mlx_img;
 	void		*img_addr;
 	int			img_bpp;
 	int			img_slen;
