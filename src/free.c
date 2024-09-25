@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 12:14:36 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:51:05 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	free_textures(t_ori *ori)
 	return (0);
 }
 
-int	brexit(t_ori *ori)
+int	mini_brexit(t_ori *ori)
 {
 	if (!ori)
 		return (1);
@@ -94,6 +94,7 @@ int	brexit(t_ori *ori)
 	if (ori->player)
 		(free_player(ori->player), ori->player = NULL, printf("player free\n"));
 	free_textures(ori);
+	printf("textures freedddaloca\n");
 	if (ori->display.img)
 	{
 		mlx_destroy_image(ori->mlxptr, ori->display.img);
@@ -131,6 +132,37 @@ int	endgame(t_ori *ori)
 	mlx_destroy_window(ori->mlxptr, ori->mlxwin);
 	mlx_destroy_display(ori->mlxptr);
 	free(ori->mlxptr);
+	exit(0);
+}
+
+void	free_gnl(t_ori *ori, char *line)
+{
+	char	*lines_to_free;
+
+	lines_to_free = "";
+	free(line);
+	while (1)
+	{
+		lines_to_free = get_next_line(ori->fd);
+		if (!lines_to_free)
+			break ;
+		free(lines_to_free);
+	}
+}
+
+void	brexit(t_ori *ori, char *error, char *line)
+{
+	if (error)
+	{
+		ft_putstr_fd("Error: ", 2);
+		ft_putstr_fd(error, 2);
+	}
+	if (line)
+		free_gnl(ori, line);
+	if (ori)
+		mini_brexit(ori);
+	if (error)
+		exit(1);
 	exit(0);
 }
 

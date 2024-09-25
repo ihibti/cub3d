@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:38:24 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:09:11 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:42:39 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void	valid_extension(t_ori *ori, char *str)
 	{
 		ori->file = ft_strdup(str);
 		if (!ori->file)
-			(brexit(ori));
+			// (brexit(ori));
+			brexit(ori, ERROR_DUP, NULL);
 		return ;
 	}
 	else
 	{
-		ft_putstr_fd("Error\nInvalid arg\n", 2);
-		ft_putstr_fd(".cub file expected\n", 2);
+		ft_putstr_fd("Error: your args are trash\n", 2);
+		ft_putstr_fd("-> .cub file expected\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }

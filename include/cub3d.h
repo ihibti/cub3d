@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/25 12:07:37 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 12:35:30 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			valid_extension(t_ori *ori, char *str);
 int				check_comma(char *line);
 int				find_longest_line(char **map);
 int				check_valid_start(char **map);
-void			printf_map(char **map); // a delete later
+void	printf_map(char **map); // a delete later
 
 // RAYCASTING
 int				raycasting(t_ori *ori);
@@ -85,9 +85,10 @@ void			free_tab(char **tab);
 int				free_player(t_player *player);
 int				free_map(char **map);
 int				free_textures(t_ori *ori);
+void			free_gnl(t_ori *ori, char *line);
 // void			free_game(t_ori *ori);
-// void			brexit(t_ori *ori, char *error, char *line);
-int				brexit(t_ori *ori);
-int	endgame(t_ori *ori);
+void			brexit(t_ori *ori, char *error, char *line);
+// int				brexit(t_ori *ori);
+int				endgame(t_ori *ori);
 
 #endif

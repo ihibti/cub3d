@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:09:47 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 12:49:40 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	init_dirangle(t_ori *ori)
 	else if (ori->map[y][x] == 'W')
 		ori->player->dir_angle = M_PI;
 	else
-		printf("probleme\n");
+		printf("probleme\n");	//delete ?
 	ori->player->x_map = x;
 	ori->player->y_map = y;
 	ori->map[y][x] = '0';

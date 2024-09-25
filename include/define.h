@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:13:38 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:41:08 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define CAMERA_SPEED 0.2
 # define SCREEN_W 1200
 # define SCREEN_H 500
+# define SCREEN_NAME "cub3D du seigneur"
 // # define PIXEL (M_PI) / (SCREEN_H)
 # define UP 222
 # define LEFT_V 223
@@ -75,18 +76,31 @@
 # define ERROR_OPEN "Error: cannot open file..\n"
 # define ERROR_MAP_ARG "Error: whatchu doin' ? where is your map ?\n"
 # define ERROR_MAP_ARGS "Error: chill mann, too many arguments here..\n"
+# define ERROR_MAP_LEAKS "Error: map has a hole\n"
 # define ERROR_CLOSEFD "Error: cannot close fd\n"
 # define ERROR_EXT "Error: wagwan '.cub' file ??\n"
 # define ERROR_MAP "Error: map invalid\n"
+# define ERROR_MAP_SIZE "Error: Exceeded map size\n"
 # define ERROR_PATH "Error: Path already set before\n"
-# define ERROR_PARSING "Error: Parsing is no nooo\n"
-# define ERROR_START "Error: You can't just spawn everywhere you want\n"
+# define ERROR_PARSING "Error: Parsing is wrong somewheree\n"
+# define ERROR_START "Error: Bro are you a ninja ? KAGEBUNSHIN NO JUTSUUUUUU!\n"
 # define ERROR_RGB "Error: RGB values shoudl be btw [0, 255]\n"
 # define ERROR_FILE "Error: File FD is buggin\n"
 # define ERROR_MLX "Error: mlx failed to launch! \n"
 # define ERROR_MLXWIN "Error: mlx window failed to launch! \n"
 # define ERROR_MLXIMG "Error: mlx image failed to launch ! \n"
+# define ERROR_MLXDATA "Error: mlx data failed to launch ! \n"
 # define ERROR_XPM "Error: mlx failed to load xpm image\n"
 # define ERROR_INITP "Error: init player failed\n"
+# define ERROR_INITR "Error: init ray failed\n"
+# define ERROR_DUP "Error: ft_strdup failed\n"
+# define ERROR_UTEXTURE "Error: unknown texture\n"
+# define ERROR_TEXTUREPATH "Error: texture path inccorrect\n"
+# define ERROR_NTEXTURE "Error: North texture path is missing\n"
+# define ERROR_STEXTURE "Error: South texture path is missing\n"
+# define ERROR_ETEXTURE "Error: East texture path is missing\n"
+# define ERROR_WTEXTURE "Error: West texture path is missing\n"
+# define ERROR_CEILINGDUP "Error: Ceiling textures already set\n"
+# define ERROR_FLOORDUP "Error: Floor textures already set\n"
 
 #endif

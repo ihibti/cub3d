@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:03:00 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:43:06 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
 			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->w_path))
-		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
+		// (ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
+		brexit(ori, ERROR_PATH, NULL);
 	else if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3))
 		parsing_textures(ori, line);
@@ -57,9 +58,11 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	else if (line[0] == '\n' && !ori->inside_map)
 		return ;
 	else
-		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
+		// (ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
+		brexit(ori, ERROR_PARSING, NULL);
 	if (ori->nb_start > 1)
-		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
+		// (ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
+		brexit(ori, ERROR_START, NULL);
 }
 
 void	parsing_map(t_ori *ori)
@@ -85,7 +88,8 @@ void	parsing_map(t_ori *ori)
 		free(line);
 	}
 	if (close(ori->fd))
-		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
+		// (ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
+		brexit(ori, ERROR_CLOSEFD, NULL);
 	ori->nb_line = map_line_count;
 }
 

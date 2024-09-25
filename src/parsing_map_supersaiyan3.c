@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:30:25 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:08:39 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:41:31 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ void	final_map(t_ori *ori)
 	ori->map_width = find_longest_line(ori->map);
 	map_final = malloc(sizeof(char *) * (ori->map_height + 1));
 	if (!map_final)
-		brexit(ori);
+		// brexit(ori);
+		brexit(ori, ERROR_MALLOC, NULL);
 	while (i < ori->map_height)
 	{
 		map_final[i] = malloc(sizeof(char) * (ori->map_width + 1));
 		if (!map_final[i])
-			brexit(ori);
+			// brexit(ori);
+			brexit(ori, ERROR_MALLOC, NULL);
 		i++;
 	}
 	copy_map_final(ori, map_final);
