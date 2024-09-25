@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:01:41 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 11:59:51 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	init_var(t_ori *ori)
 {
+	if (!ori || !ori->player)
+		return (1);
 	ori->a = false;
 	ori->w = false;
 	ori->s = false;
@@ -31,6 +33,8 @@ static int	init_var(t_ori *ori)
 
 static int	init_player(t_ori *ori)
 {
+	if (!ori)
+		return (1);
 	ori->player->ray = malloc(sizeof(t_ray));
 	if (!ori->player->ray)
 		return ((brexit(ori)), 1);
@@ -43,6 +47,8 @@ static int	init_player(t_ori *ori)
 
 void	init_textures_paths(t_ori *ori)
 {
+	if (!ori)
+		return ;
 	ori->n_path = NULL;
 	ori->w_path = NULL;
 	ori->e_path = NULL;
@@ -52,15 +58,17 @@ void	init_textures_paths(t_ori *ori)
 
 int	init(t_ori *ori)
 {
+	if (!ori)
+		return (1);
 	ori->player = malloc(sizeof(t_player));
 	if (!ori->player)
 		return ((brexit(ori)), 1);
 	ori->recast = true;
 	if (init_player(ori))
-		return (1);
+		return ((brexit(ori)), 1);
 	if (check_init_p(ori))
-		return (1);
+		return ((brexit(ori)), 1);
 	if (start_mlx(ori))
-		return (1);
+		return ((brexit(ori)), 1);
 	return (0);
 }

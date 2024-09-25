@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:13:56 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 12:07:37 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int				free_textures(t_ori *ori);
 // void			free_game(t_ori *ori);
 // void			brexit(t_ori *ori, char *error, char *line);
 int				brexit(t_ori *ori);
+int	endgame(t_ori *ori);
 
 #endif

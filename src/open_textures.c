@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:50:50 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 10:17:55 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:15:55 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	open_textures_no(t_ori *ori)
 
 int	open_textures_so(t_ori *ori)
 {
-
 	if (ori->s_path)
 	{
 		ori->textures[1].img = mlx_xpm_file_to_image(ori->mlxptr, ori->s_path,

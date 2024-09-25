@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 17:26:06 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 12:08:51 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	han_inp_press(int key, t_ori *ori)
 int	han_inp_release(int key, t_ori *ori)
 {
 	if (key == XK_Escape || key == XK_q)
-		brexit(ori);
+		// brexit(ori);
+		endgame(ori);
 	if (key == XK_w)
 		ori->w = false;
 	if (key == XK_s)

@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 17:50:59 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 12:07:20 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_mlx(t_ori *ori)
 {
+	if (!ori)
+		return ;
 	ori->mlxptr = mlx_init();
 	if (!ori->mlxptr)
 		brexit(ori);
@@ -21,6 +23,8 @@ void	init_mlx(t_ori *ori)
 
 static void	init_mlx_window(t_ori *ori)
 {
+	if (!ori || !ori->mlxptr)
+		return ;
 	ori->mlxwin = mlx_new_window(ori->mlxptr, SCREEN_W, SCREEN_H, "cub3D");
 	if (!ori->mlxwin)
 		brexit(ori);
@@ -35,15 +39,20 @@ static void	init_mlx_window(t_ori *ori)
 
 static void	mlx_hooks(t_ori *ori)
 {
+	if (!ori || !ori->mlxwin || !ori->mlxptr)
+		return ;
 	mlx_hook(ori->mlxwin, 3, 2L, han_inp_release, ori);
 	mlx_hook(ori->mlxwin, 2, 1L, han_inp_press, ori);
-	mlx_hook(ori->mlxwin, 17, 1, brexit, ori);
+	// mlx_hook(ori->mlxwin, 17, 1, brexit, ori);
+	mlx_hook(ori->mlxwin, 17, 1, endgame, ori);
 	mlx_loop_hook(ori->mlxptr, raycasting, ori);
 	mlx_loop(ori->mlxptr);
 }
 
 int	start_mlx(t_ori *ori)
 {
+	if (!ori)
+		return (1);
 	init_mlx(ori);
 	ori->recast = 1;
 	init_mlx_window(ori);
