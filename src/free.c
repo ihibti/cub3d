@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 16:33:24 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/25 17:18:57 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ int	brexit(t_ori *ori)
         free(ori->file);
 	free(ori->mlxptr);
 	ori->mlxptr = NULL;
-	(void)ori;
-	exit(0);
+    exit(0);
 	return (0);
 }
 
