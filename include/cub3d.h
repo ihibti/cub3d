@@ -56,11 +56,18 @@ void			valid_extension(t_ori *ori, char *str);
 int				check_comma(char *line);
 int				find_longest_line(char **map);
 int				check_valid_start(char **map);
-void			printf_map(char **map); // a delete later
+void	printf_map(char **map); // a delete later
 
 // RAYCASTING
 int				raycasting(t_ori *ori);
 void			dda_alg(t_ori *ori, t_ray *ray, int x);
+
+// MINIMAP
+void			draw_minimap(t_ori *ori);
+void			init_mnmap(int *i, int *j, t_ori *ori);
+int				is_pov(int x, int y, t_ori *ori);
+int				unsafe(int x, int y, char **map);
+uint32_t		get_color_mini(int x, int y, char **map, t_ori *ori);
 
 // TEXTURES
 unsigned int	create_rgb(int t, int r, int g, int b);

@@ -21,7 +21,7 @@ NAME = cub3D
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = 
+CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -MMD -g3 -O3 -ffast-math -I./include
 
 # **************************************************************************** #
@@ -44,7 +44,9 @@ FILES = main.c \
 		raycasting.c \
 		free.c \
 		hooks_moves.c \
+		minimap.c minimap_utils.c \
 		create_map.c \
+		draw_textures.c \
 		open_textures.c \
 		parsing.c parsing_utils.c parsing_colors.c parsing_map.c \
 		parsing_map_supersaiyan3.c parsing_utils2.c \

@@ -81,12 +81,12 @@ int	brexit(t_ori *ori)
 	}
 	if (ori->mlxwin)
 		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
+	if (ori->file)
+		free(ori->file);
 	mlx_destroy_display(ori->mlxptr);
-    if (ori->file)
-        free(ori->file);
 	free(ori->mlxptr);
 	ori->mlxptr = NULL;
-    exit(0);
+	exit(0);
 	return (0);
 }
 
