@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/25 10:54:59 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/25 11:04:28 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,31 @@ void	color_ray(t_ray *ray, t_ori *ori)
 	if (ray->last_hit == 1)
 	{
 		if (ray->dir_ray_y > 0)
-			ray->wall = &ori->textures[2];
+			ray->wall = &ori->textures[1];
 		else
-			ray->wall = &ori->textures[3];
+			ray->wall = &ori->textures[0];
 		ray->perp_dist = ray->sideDistY - ray->delta_y;
 		ray->color = 1;
 		ray->wall_stripe = fabs(ray->pos_rayX + (ray->perp_dist
 					* ray->dir_ray_x));
 		ray->wall_stripe -= floor(ray->wall_stripe);
 		ray->coord_stripe = (int)(ray->wall_stripe * ray->wall->width);
-		if (ray->dir_ray_y < 0)
+		if (ray->dir_ray_y > 0)
 			ray->coord_stripe = ray->wall->width - ray->coord_stripe;
 	}
 	else
 	{
-		if (ray->dir_ray_x > 0)
-			ray->wall = &ori->textures[0];
+		if (ray->dir_ray_x < 0)
+			ray->wall = &ori->textures[2];
 		else
-			ray->wall = &ori->textures[1];
+			ray->wall = &ori->textures[3];
 		ray->color = 0;
 		ray->perp_dist = ray->sideDistX - ray->delta_x;
 		ray->wall_stripe = fabs(ray->pos_rayY - (ray->perp_dist
 					* ray->dir_ray_y));
 		ray->wall_stripe -= floor(ray->wall_stripe);
 		ray->coord_stripe = (int)(ray->wall_stripe * ray->wall->width);
-		if (ray->dir_ray_x > 0)
+		if (ray->dir_ray_x < 0)
 			ray->coord_stripe = ray->wall->width - ray->coord_stripe;
 	}
 	if (ray->coord_stripe >= ray->wall->width)
