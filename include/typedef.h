@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 17:55:40 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 10:11:19 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
 
+typedef struct s_display
+{
+	void		*img;
+	char		*data;
+	int			bpp;
+	int			width;
+	int			height;
+	int			sizeline;
+	int			endian;
+}				t_display;
 typedef struct s_ray
 {
 	double		dirangle;
@@ -41,6 +51,7 @@ typedef struct s_ray
 	double		cameraX;
 	double		wall_stripe;
 	int			coord_stripe;
+	t_display	*wall;
 }				t_ray;
 
 typedef struct s_player
@@ -55,15 +66,6 @@ typedef struct s_player
 	t_ray		*ray;
 
 }				t_player;
-
-typedef struct s_display
-{
-	void		*img;
-	char		*data;
-	int			bpp;
-	int			width;
-	int			height;
-}				t_display;
 
 typedef struct s_color
 {

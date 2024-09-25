@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 15:45:04 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/25 10:53:29 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			unsafe(int x, int y, char **map);
+int				unsafe(int x, int y, char **map);
 
 void	copy_play_ray(t_player *player)
 {
@@ -75,14 +75,13 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 	int		y;
 	double	ratio;
 	double	i;
-	int		wall;
 
 	line_h = (int)((double)SCREEN_H / ray->perp_dist);
-	ratio = 64 / (double)line_h;
+	ratio = ray->wall->height / (double)line_h;
 	if (line_h < SCREEN_H)
-		i = 0;
+		i = 0.0;
 	else
-		i = ratio * (line_h - SCREEN_H) / 2;
+		i = ratio * ((double)(line_h - SCREEN_H) / 2.0);
 	drawstart = (-line_h / 2) + (SCREEN_H / 2);
 	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = 0;
@@ -90,31 +89,17 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		drawstart = 0;
 	if (draw_end >= SCREEN_H)
 		draw_end = SCREEN_H - 1;
-	if (ray->last_hit == 0)
-	{
-		if (ray->dir_ray_x > 0)
-			wall = 0;
-		else
-			wall = 3;
-	}
-	else
-	{
-		if (ray->dir_ray_y > 0)
-			wall = 1;
-		else
-			wall = 2;
-	}
 	// while (y < drawstart && y < SCREEN_H)
 	// 	*((int *)ori->display.data + y++ * SCREEN_W + x) = VIOLET;
 	draw_ceiling(ori, ori->display.data, drawstart, x, &y);
 	while (y <= draw_end && y < SCREEN_H)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
-				+ x) = *((int *)ori->textures[wall].data + ray->coord_stripe
-				+ (int)(i)*64);
+				+ x) = *((int *)ray->wall->data + ray->coord_stripe
+				+ (int)(((int)i)*ray->wall->sizeline/4));
 		i += ratio;
-		if (i > 63)
-			i = 63.0;
+		if (i > ray->wall->height)
+			i = ray->wall->height-1;
 		y++;
 	}
 	draw_floor(ori, ori->display.data, x, y);
@@ -132,8 +117,8 @@ void	draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x, int *y)
 	(void)img_data;
 	while (*y < drawstart && *y < SCREEN_H)
 	{
-		*((int *)ori->display.data + (*y) * SCREEN_W + x) = create_rgb(0, ori->ceiling.r, ori->ceiling.g,
-			ori->ceiling.b);
+		*((int *)ori->display.data + (*y) * SCREEN_W + x) = create_rgb(0,
+				ori->ceiling.r, ori->ceiling.g, ori->ceiling.b);
 		(*y)++;
 	}
 }
@@ -142,8 +127,8 @@ void	draw_floor(t_ori *ori, char *img_data, int x, int y)
 {
 	(void)img_data;
 	while (y < SCREEN_H)
-		*((int *)ori->display.data + y++ * SCREEN_W + x) = create_rgb(0, ori->floor.r, ori->floor.g,
-			ori->floor.b);
+		*((int *)ori->display.data + y++ * SCREEN_W + x) = create_rgb(0,
+				ori->floor.r, ori->floor.g, ori->floor.b);
 }
 
 void	ray_len(t_ori *ori, t_player *player, int x)
@@ -206,7 +191,6 @@ int	unsafe(int x, int y, char **map)
 	i = 0;
 	if (x < 0 || y < 0)
 		return (1);
-
 	while (map[i])
 		i++;
 	if (y >= i)
@@ -271,7 +255,7 @@ void	draw_minimap(t_ori *ori)
 	int		i;
 	int		j;
 
-	(void)map;	//jsp pq jpeux pas compile avec chez wam
+	(void)map; // jsp pq jpeux pas compile avec chez wam
 	init_mnmap(&i, &j, ori);
 	x = 0;
 	y = 0;
