@@ -1,11 +1,11 @@
-WE ./textures/W.xpm
+WE ./textures/WE.xpm
 
 dwqdwq
-NO ./textures/N.xpm
+NO ./textures/NO.xpm
 
 dwdqww
-SO ./textures/S.xpm
-EA ./textures/E.xpm
+SO ./textures/SO.xpm
+EA ./textures/EA.xpm
 
 C 255,100,100
 

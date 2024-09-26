@@ -14,11 +14,25 @@
 
 static void	parse_map(t_ori *ori, char *line, int j)
 {
+	int i;
+
+	i = 0;
 	ori->nb_line++;
 	if (!*line)
 		return ;
 	if (!ori->map_start_line)
 		ori->map_start_line = j;
+	while (line[i])
+	{
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
+			|| line[i] == 'W')
+			ori->nb_start++;
+		else if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
+			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+			&& line[i] != ' ')
+			(ft_putstr_fd(ERROR_VALUE, 2), brexit(ori, line));
+		i++;
+	}
 }
 
 int	jump_space(char *str)

@@ -104,5 +104,6 @@
 # define ERROR_FLOORDUP "Error: floor is lava\n"
 # define ERROR_SPAWN "Error: why you even tryna spawn more than once ?\n"
 # define ERROR_NOMAP "Error: how can you even play with no map ?\n"
+# define ERROR_VALUE "Error: don't even try, we check the values\n"
 
 #endif
