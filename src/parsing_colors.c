@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:51:42 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 17:18:13 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:59:28 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoirgb(const char *str)
 	i = 0;
 	if (!str)
 		return (-1);
-	while ((((str[i] <= 13) && (str[i] >= 9)) || str[i] == ' ') && str[i])
+	while (str[i] && ((str[i] <= 13 && str[i] >= 9) || str[i] == ' '))
 		i++;
 	if (str[i] == '-')
 		return (-1);
@@ -40,16 +40,16 @@ static char	**valid_color(char *line)
 {
 	int		i;
 	int		j;
+	int		k;
 	char	**rgb;
 
 	i = 0;
 	rgb = ft_split(line, ',');
 	if (!rgb)
 		return (NULL);
-	/* 	for (int k = 0; rgb[k]; k++)
-		{
-			rgb[k] = ft_strtrimbis(rgb[k], " \n\t");
-		} */
+	k = -1;
+	while (rgb[++k])
+		rgb[k] = ft_strtrimbis(rgb[k], " \n\t");
 	while (rgb[i] && *rgb[i])
 	{
 		j = 0;

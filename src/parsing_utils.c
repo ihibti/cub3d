@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:40:02 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:49:53 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:59:33 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	check_comma(char *line)
 
 	i = 0;
 	comma = 0;
-	// i = jump_space(line);
 	if (!line[i])
 		return (1);
 	while (line[i])

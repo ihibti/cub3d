@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:59:27 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:59:06 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ static void	parse_map(t_ori *ori, char *line, int j)
 		ori->map_start_line = j;
 }
 
-// int	jump_space(char *str)
-// {
-// 	int	i;
+int	jump_space(char *str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (ft_isspace(str[i]))
-// 		i++;
-// 	return (i);
-// }
-	// line += jump_space(line);
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	return (i);
+}
 
 static void	parse_line(t_ori *ori, char *line, int i)
 {

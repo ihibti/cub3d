@@ -1,6 +1,6 @@
 NO ./textures/colorstone.xpm
 
-F 65,255,0
+F  65,          255,          0
 
 SO ./textures/eagle.xpm
 
@@ -9,7 +9,7 @@ EA ./textures/bluestone.xpm
 
 
 
-C 56,56,0
+C         0,			62,   255
 
 1111111111111111111111111111
 1011000000001100S00000000101
