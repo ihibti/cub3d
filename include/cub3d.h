@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 11:32:11 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:53:06 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ uint32_t		get_color_mini(int x, int y, char **map, t_ori *ori);
 
 // TEXTURES
 unsigned int	create_rgb(int t, int r, int g, int b);
-void			draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x,
-					int *y);
+void			draw_ceiling(t_ori *ori, char *img_data, int x, int *y);
 void			draw_floor(t_ori *ori, char *img_data, int x, int y);
 int				open_textures_no(t_ori *ori);
 int				open_textures_so(t_ori *ori);

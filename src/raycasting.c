@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/25 10:53:29 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:57:46 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ void	copy_play_ray(t_player *player)
 	ray->dir_ray_x = player->dir_x;
 	ray->dir_ray_y = player->dir_y;
 }
-// void	reset_ray(t_ray *ray, t_player *player)
-// {
-// 	ray->hit = 0;
-// 	ray->perp_dist = 0;
-// 	ray->last_hit = 0;
-// 	ray->color = 0;
-// 	ray->mapX = player->x_map;
-// 	ray->mapY = player->y_map;
-// 	ray->dir_ray_x = player->dir_x;
-// 	ray->dir_ray_y = player->dir_y;
-// }
 
 void	init_ray(t_player *player, int x)
 {
@@ -65,11 +54,20 @@ void	init_ray(t_player *player, int x)
 		ray->delta_y = fabs(1 / ray->dir_ray_y);
 }
 
+void	ray_limits(t_ray *ray, int line_h)
+{
+	ray->drawstart = (-line_h / 2) + (SCREEN_H / 2);
+	ray->drawend = (line_h / 2) + (SCREEN_H / 2);
+	if (ray->drawstart < 0)
+	{
+		ray->drawstart = 0;
+		ray->drawend = SCREEN_H - 1;
+	}
+}
+
 void	draw_line(t_ray *ray, int x, t_ori *ori)
 {
 	int		line_h;
-	int		drawstart;
-	int		draw_end;
 	int		y;
 	double	ratio;
 	double	i;
@@ -80,29 +78,20 @@ void	draw_line(t_ray *ray, int x, t_ori *ori)
 		i = 0.0;
 	else
 		i = ratio * ((double)(line_h - SCREEN_H) / 2.0);
-	drawstart = (-line_h / 2) + (SCREEN_H / 2);
-	draw_end = (line_h / 2) + (SCREEN_H / 2);
 	y = 0;
-	if (drawstart < 0)
-		drawstart = 0;
-	if (draw_end >= SCREEN_H)
-		draw_end = SCREEN_H - 1;
-	// while (y < drawstart && y < SCREEN_H)
-	// 	*((int *)ori->display.data + y++ * SCREEN_W + x) = VIOLET;
-	draw_ceiling(ori, ori->display.data, drawstart, x, &y);
-	while (y <= draw_end && y < SCREEN_H)
+    ray_limits(ray,line_h);
+	draw_ceiling(ori, ori->display.data, x, &y);
+	while (y <= ray->drawend && y < SCREEN_H)
 	{
 		*((int *)ori->display.data + y * SCREEN_W
 				+ x) = *((int *)ray->wall->data + ray->coord_stripe
-				+ (int)(((int)i)*ray->wall->sizeline/4));
+				+ (int)(((int)i) * ray->wall->sizeline / 4));
 		i += ratio;
 		if (i > ray->wall->height)
-			i = ray->wall->height-1;
+			i = ray->wall->height - 1;
 		y++;
 	}
 	draw_floor(ori, ori->display.data, x, y);
-	// while (y < SCREEN_H)
-	// 	*((int *)ori->display.data + y++ * SCREEN_W + x) = VIOLET;
 }
 
 void	ray_len(t_ori *ori, t_player *player, int x)
@@ -112,8 +101,6 @@ void	ray_len(t_ori *ori, t_player *player, int x)
 	ray = player->ray;
 	init_ray(player, x);
 	dda_alg(ori, ray, x);
-	// if (ray->perp_dist < 0.4)
-	// 	correction_close(player, ray);
 	draw_line(ray, x, ori);
 }
 
