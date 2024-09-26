@@ -35,9 +35,9 @@ int	init_pl(t_ori *ori)
 			if (is_player(map[i][j]))
 			{
 				ori->player->x_map = j;
-				ori->player->pos_x = (double)j;
+				ori->player->pos_x = (double)j + 0.5;
 				ori->player->y_map = i;
-				ori->player->pos_y = (double)i;
+				ori->player->pos_y = (double)i + 0.5;
 				return (0);
 			}
 			j++;
