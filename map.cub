@@ -3,8 +3,7 @@ NO ./textures/colorstone.xpm
 F  65,          255,          0
 
 SO ./textures/eagle.xpm
-
-WE ./textures/greystone.xpm
+SO ./textures/greystone.xpm
 EA ./textures/bluestone.xpm
 
 

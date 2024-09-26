@@ -76,6 +76,8 @@ int	corner_slide(t_ori *ori, t_player *player, double dir_m)
 	double	new_x;
 	double	new_y;
 
+	(void)new_x;
+	(void)new_y;
 	new_x = player->pos_x;
 	new_y = player->pos_y;
 	if (fabs(sin(dir_m)) > fabs(cos(dir_m)))
