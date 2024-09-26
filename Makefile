@@ -6,7 +6,7 @@
 #    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
-#    Updated: 2024/09/26 17:58:12 by gchenot          ###   ########.fr        #
+#    Updated: 2024/09/26 18:20:02 by gchenot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,24 +36,56 @@ MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-FILES = main.c \
-		init.c init_utils.c \
-		mlx_main.c \
-		controls.c controls_secu.c controls_slide.c controls_utils.c \
-		algorithms.c \
-		raycasting.c raycasting_utils.c \
-		free.c free_utils.c \
-		hooks_moves.c \
-		minimap.c minimap_utils.c \
-		create_map.c \
-		draw_textures.c \
-		open_textures.c \
-		parsing.c parsing_utils.c \
-		parsing_colors.c \
-		parsing_textures.c \
-		parsing_map.c parsing_map_supersaiyan3.c \
-		parsing_utils2.c \
-		utils.c
+FILES = $(addsuffix .c, \
+		main)
+
+FILES += $(addprefix algo/, $(addsuffix .c, \
+		algorithms))
+
+FILES += $(addprefix controls/, $(addsuffix .c, \
+		controls \
+		controls_secu \
+		controls_slide \
+		controls_utils))
+
+FILES += $(addprefix free/, $(addsuffix .c, \
+		free \
+		free_utils))
+
+FILES += $(addprefix hooks/, $(addsuffix .c, \
+		hooks_moves))
+
+FILES += $(addprefix init/, $(addsuffix .c, \
+		init \
+		init_utils))
+
+FILES += $(addprefix map/, $(addsuffix .c, \
+		create_map))
+
+FILES += $(addprefix minimap/, $(addsuffix .c, \
+		minimap \
+		minimap_utils))
+
+FILES += $(addprefix mlx/, $(addsuffix .c, \
+		init_mlx))
+
+FILES += $(addprefix parsing/, $(addsuffix .c, \
+		parsing \
+		parsing_colors \
+		parsing_textures \
+		parsing_textures_utils \
+		parsing_map \
+		parsing_map_supersaiyan3 \
+		parsing_utils \
+		parsing_utils2))
+
+FILES += $(addprefix raycasting/, $(addsuffix .c, \
+		raycasting \
+		raycasting_textures \
+		raycasting_utils))
+
+FILES += $(addprefix utils/, $(addsuffix .c, \
+		utils))
 
 SRCS_DIR := ./src
 OBJS_DIR := ./poubelle
@@ -142,7 +174,7 @@ run : ${NAME}
 	@./${NAME} map.cub
 
 val : ${NAME}
-	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} map.cub
+	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 2map.cub
 
 vlog : ${NAME}
 	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --errors-for-leak-kinds=all --log-file=valgrind.log ./${NAME} map.cub

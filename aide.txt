@@ -1,3 +1,0 @@
-- etendre zone de collision a un cercle de diametre plan
-- plan sur segment perpendiculaire au rayon directeur
-- 
