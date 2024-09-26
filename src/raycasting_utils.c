@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:52:38 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 14:53:01 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:25:57 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	copy_play_ray(t_player *player)
 	t_ray	*ray;
 
 	ray = player->ray;
-	ray->pos_rayX = player->pos_x;
-	ray->pos_rayY = player->pos_y;
-	ray->mapX = player->x_map;
-	ray->mapY = player->y_map;
+	ray->pos_ray_x = player->pos_x;
+	ray->pos_ray_y = player->pos_y;
+	ray->map_x = player->x_map;
+	ray->map_y = player->y_map;
 	ray->hit = 0;
 	ray->perp_dist = 0;
 	ray->last_hit = 0;
@@ -41,9 +41,9 @@ void	init_ray(t_player *player, int x)
 	copy_play_ray(player);
 	ray = player->ray;
 	ray->odd = true;
-	ray->cameraX = (2.0 * (ratio)) - 1;
-	ray->dir_ray_y = ray->dir_ray_y + (ray->plane_diry * ray->cameraX);
-	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->cameraX);
+	ray->camera_x = (2.0 * (ratio)) - 1;
+	ray->dir_ray_y = ray->dir_ray_y + (ray->plane_diry * ray->camera_x);
+	ray->dir_ray_x = ray->dir_ray_x + (ray->plane_dirx * ray->camera_x);
 	if (ray->dir_ray_x == 0)
 		ray->delta_x = DBL_MAX;
 	else

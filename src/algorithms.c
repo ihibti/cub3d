@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:43:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 14:48:25 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:26:53 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ void	get_firsttep(t_ray *ray)
 	if (ray->dir_ray_x < 0)
 	{
 		ray->stepx = -1;
-		ray->sideDistX = (ray->pos_rayX - (double)ray->mapX) * ray->delta_x;
+		ray->side_distx = (ray->pos_ray_x - (double)ray->map_x) * ray->delta_x;
 	}
 	else
 	{
 		ray->stepx = 1;
-		ray->sideDistX = ((double)ray->mapX + 1.0 - ray->pos_rayX)
+		ray->side_distx = ((double)ray->map_x + 1.0 - ray->pos_ray_x)
 			* ray->delta_x;
 	}
 	if (ray->dir_ray_y > 0)
 	{
 		ray->stepy = -1;
-		ray->sideDistY = (ray->pos_rayY - (double)ray->mapY) * ray->delta_y;
+		ray->side_disty = (ray->pos_ray_y - (double)ray->map_y) * ray->delta_y;
 	}
 	else
 	{
 		ray->stepy = 1;
-		ray->sideDistY = ((double)ray->mapY + 1.0 - ray->pos_rayY)
+		ray->side_disty = ((double)ray->map_y + 1.0 - ray->pos_ray_y)
 			* ray->delta_y;
 	}
 }
@@ -44,9 +44,9 @@ void	color_ray_1(t_ray *ray, t_ori *ori)
 		ray->wall = &ori->textures[1];
 	else
 		ray->wall = &ori->textures[0];
-	ray->perp_dist = ray->sideDistY - ray->delta_y;
+	ray->perp_dist = ray->side_disty - ray->delta_y;
 	ray->color = 1;
-	ray->wall_stripe = fabs(ray->pos_rayX + (ray->perp_dist * ray->dir_ray_x));
+	ray->wall_stripe = fabs(ray->pos_ray_x + (ray->perp_dist * ray->dir_ray_x));
 	ray->wall_stripe -= floor(ray->wall_stripe);
 	ray->coord_stripe = (int)(ray->wall_stripe * ray->wall->width);
 	if (ray->dir_ray_y > 0)
@@ -60,8 +60,8 @@ void	color_ray_0(t_ray *ray, t_ori *ori)
 	else
 		ray->wall = &ori->textures[3];
 	ray->color = 0;
-	ray->perp_dist = ray->sideDistX - ray->delta_x;
-	ray->wall_stripe = fabs(ray->pos_rayY - (ray->perp_dist * ray->dir_ray_y));
+	ray->perp_dist = ray->side_distx - ray->delta_x;
+	ray->wall_stripe = fabs(ray->pos_ray_y - (ray->perp_dist * ray->dir_ray_y));
 	ray->wall_stripe -= floor(ray->wall_stripe);
 	ray->coord_stripe = (int)(ray->wall_stripe * ray->wall->width);
 	if (ray->dir_ray_x < 0)
@@ -89,19 +89,19 @@ void	dda_alg(t_ori *ori, t_ray *ray, int x)
 	(void)x;
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->side_distx < ray->side_disty)
 		{
-			ray->sideDistX += ray->delta_x;
-			ray->mapX += ray->stepx;
+			ray->side_distx += ray->delta_x;
+			ray->map_x += ray->stepx;
 			ray->last_hit = 0;
 		}
 		else
 		{
-			ray->sideDistY += ray->delta_y;
-			ray->mapY += ray->stepy;
+			ray->side_disty += ray->delta_y;
+			ray->map_y += ray->stepy;
 			ray->last_hit = 1;
 		}
-		if (map[ray->mapY][ray->mapX] != '0')
+		if (map[ray->map_y][ray->map_x] != '0')
 			ray->hit = 1;
 	}
 	color_ray(ray, ori);

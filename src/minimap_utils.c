@@ -10,7 +10,6 @@ void	init_mnmap(int *i, int *j, t_ori *ori)
 		i = 0;
 }
 
-
 uint32_t	get_color_mini(int x, int y, char **map, t_ori *ori)
 {
 	if (unsafe(x, y, map))

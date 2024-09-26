@@ -29,6 +29,7 @@ static int	collision(char **map, t_ori *ori, int stepx, int stepy)
 	}
 	return (1);
 }
+
 int	is_pov(int x, int y, t_ori *ori)
 {
 	int		stepx;
@@ -88,7 +89,7 @@ void	draw_minimap(t_ori *ori)
 	int		i;
 	int		j;
 
-	(void)map; // jsp pq jpeux pas compile avec chez wam
+	(void)map;
 	init_mnmap(&i, &j, ori);
 	x = 0;
 	y = 0;

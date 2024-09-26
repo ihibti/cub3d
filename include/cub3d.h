@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 14:53:27 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:46:32 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int				check_init_p(t_ori *ori);
 // CONTROL MOVEMENT
 void			truc_move(t_ori *ori);
 int				slide(t_ori *ori, t_player *player, double dir_m);
-int				slide_x(t_ori *ori, t_player *player, double dir_m,double new_y);
-int				slide_y(t_ori *ori, t_player *player, double dir_m,double new_x);
+int				slide_x(t_ori *ori, t_player *player, double dir_m,
+					double new_y);
+int				slide_y(t_ori *ori, t_player *player, double dir_m,
+					double new_x);
 int				corner_slide(t_ori *ori, t_player *player, double dir_m);
 void			look_left(t_ori *ori);
 void			look_right(t_ori *ori);
@@ -56,7 +58,6 @@ void			valid_extension(t_ori *ori, char *str);
 int				check_comma(char *line);
 int				find_longest_line(char **map);
 int				check_valid_start(char **map);
-void	printf_map(char **map); // a delete later
 
 // RAYCASTING
 int				raycasting(t_ori *ori);
@@ -86,6 +87,7 @@ int				ft_isspace(char c);
 int				jump_space(char *str);
 void			map_dimensions(int *x_max, int *y_max, char **map);
 // void			debugging(t_ori *ori);
+void			printf_map(char **map);
 
 // Free && Exit
 void			free_tab(char **tab);
@@ -93,9 +95,6 @@ int				free_map(char **map);
 int				free_player(t_player *player);
 int				free_textures(t_ori *ori);
 void			free_gnl(t_ori *ori, char *line);
-// void			free_game(t_ori *ori);
-// void			brexit(t_ori *ori, char *error, char *line);
 int				brexit(t_ori *ori, char *line);
-int	endgame(t_ori *ori);
 
 #endif

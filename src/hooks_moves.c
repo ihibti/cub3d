@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 13:41:24 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:20:36 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ int	han_mouse_move(int x, int y, void *param)
 	(void)y;
 	ori = (t_ori *)param;
 	if (x > (SCREEN_W / 2) + (SCREEN_W / 4))
-    {
+	{
 		ori->right = true;
-        ori->left = false;
-    }
+		ori->left = false;
+	}
 	else if (x < (SCREEN_W / 2) - (SCREEN_W / 4))
-    {
-        ori->right = false;
+	{
+		ori->right = false;
 		ori->left = true;
-    }
-    else
-    {
-        ori->left = false;
-        ori->right = false;
-    }
+	}
+	else
+	{
+		ori->left = false;
+		ori->right = false;
+	}
 	ori->mouse = 1;
 	return (0);
 }

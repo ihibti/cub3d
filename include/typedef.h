@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 12:50:09 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 16:27:19 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ typedef struct s_display
 	int			sizeline;
 	int			endian;
 }				t_display;
+
 typedef struct s_ray
 {
 	double		dirangle;
-	double		pos_rayX;
-	double		pos_rayY;
+	double		pos_ray_x;
+	double		pos_ray_y;
 	double		dir_ray_x;
 	double		dir_ray_y;
 	double		perp_dist;
@@ -40,15 +41,15 @@ typedef struct s_ray
 	int			stepy;
 	double		delta_x;
 	double		delta_y;
-	double		sideDistX;
-	double		sideDistY;
+	double		side_distx;
+	double		side_disty;
 	double		plane_angle;
-	int			mapY;
-	int			mapX;
+	int			map_y;
+	int			map_x;
 	int			last_hit;
 	bool		odd;
 	int			color;
-	double		cameraX;
+	double		camera_x;
 	double		wall_stripe;
 	int			coord_stripe;
 	int			drawstart;
@@ -100,11 +101,6 @@ typedef struct s_ori
 	int			inside_map;
 	double		parsed;
 	int			nb_start;
-	// void		*mlx_img;
-	void		*img_addr;
-	int			img_bpp;
-	int			img_slen;
-	int			img_endian;
 	char		*n_path;
 	char		*e_path;
 	char		*s_path;

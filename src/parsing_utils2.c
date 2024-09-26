@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:38:24 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 13:32:24 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:00:42 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	open_fd(t_ori *ori)
 	ori->fd = open(ori->file, O_RDONLY);
 	if (ori->fd < 0)
 	{
-		ft_putstr_fd("Error: cannot open file\n", 2);
+		ft_putstr_fd(ERROR_OPEN, 2);
 		exit(0);
 	}
 }
@@ -36,29 +36,28 @@ void	valid_extension(t_ori *ori, char *str)
 	}
 	else
 	{
-		ft_putstr_fd("Error\nInvalid arg\n", 2);
-		ft_putstr_fd(".cub file expected\n", 2);
+		ft_putstr_fd(ERROR_EXTENSION, 2);
 		exit(EXIT_FAILURE);
 	}
 }
 
 // TEST FUNCTION
-void	printf_map(char **map)
-{
-	int	i;
-	int	k;
+// void	printf_map(char **map)
+// {
+// 	int	i;
+// 	int	k;
 
-	i = 0;
-	while (map[i])
-	{
-		k = 0;
-		while (map[i][k])
-		{
-			if (map[i][k])
-				printf("[%c] ", map[i][k]);
-			k++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		k = 0;
+// 		while (map[i][k])
+// 		{
+// 			if (map[i][k])
+// 				printf("[%c] ", map[i][k]);
+// 			k++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }

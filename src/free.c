@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 14:50:51 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:20:30 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	brexit(t_ori *ori, char *line)
 	mlx_destroy_display(ori->mlxptr);
 	free(ori->mlxptr);
 	ori->mlxptr = NULL;
-	// (void)ori;
 	free_gnl(ori, line);
 	exit(0);
 	return (0);

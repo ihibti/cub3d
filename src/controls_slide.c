@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 14:48:38 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:52:47 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ int	corner_slide(t_ori *ori, t_player *player, double dir_m)
 	double	new_x;
 	double	new_y;
 
-	// char	**map;
-	(void)new_x; // jsp pq jpeux pas compile avec chez wam
-	(void)new_y; // jsp pq jpeux pas compile avec chez wam
-	// map = ori->map;
 	new_x = player->pos_x;
 	new_y = player->pos_y;
 	if (fabs(sin(dir_m)) > fabs(cos(dir_m)))

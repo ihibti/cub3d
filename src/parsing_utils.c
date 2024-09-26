@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:40:02 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 14:41:59 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:49:53 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_comma(char *line)
 
 int	contains_char(char *set, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
