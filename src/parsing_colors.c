@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:51:42 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 16:11:38 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:37:24 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,21 +99,27 @@ void	parsing_textures(t_ori *ori, char *line)
 	cut_xpm(path);
 	if (!ft_strncmp(line, "NO ", 3))
 	{
+		printf("DEBUG test1\n");
 		ori->n_path = ft_strdup(path);
+		printf("DEBUG test12\n");
 		open_textures_no(ori);
+		printf("DEBUG test13\n");
 	}
 	else if (!ft_strncmp(line, "SO ", 3))
 	{
+		printf("DEBUG test2\n");
 		ori->s_path = ft_strdup(path);
 		open_textures_so(ori);
 	}
 	else if (!ft_strncmp(line, "EA ", 3))
 	{
+		printf("DEBUG test3\n");
 		ori->e_path = ft_strdup(path);
 		open_textures_ea(ori);
 	}
 	else if (!ft_strncmp(line, "WE ", 3))
 	{
+		printf("DEBUG test4\n");
 		ori->w_path = ft_strdup(path);
 		open_textures_we(ori);
 	}

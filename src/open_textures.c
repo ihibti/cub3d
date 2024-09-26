@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:50:50 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 16:05:07 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:38:57 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@ int	open_textures_no(t_ori *ori)
 
 	if (ori->n_path)
 	{
+		printf("DEBUG testeee\n");
 		ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr, ori->n_path,
 				&ori->textures[0].width, &ori->textures[0].height);
+		printf("DEBUG testeee12\n");
 		if (!ori->textures[0].img)
-			(brexit(ori));
+			(printf("PASSED\n"), brexit(ori));
+		printf("DEBUG testeee13\n");
 		ori->textures[0].data = mlx_get_data_addr(ori->textures[0].img,
 				&ori->textures[0].bpp, &ori->textures[0].sizeline,
 				&ori->textures->endian);
+		printf("DEBUG testeee14\n");
 		if (!ori->textures[0].data)
 			brexit(ori);
+		printf("DEBUG testeee15\n");
 	}
 	else
 	{

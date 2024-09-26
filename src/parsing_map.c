@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:03:00 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 12:06:20 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	parse_line(t_ori *ori, char *line, int i)
 		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
 	else if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3))
-		parsing_textures(ori, line);
+		(printf("debug testt\n"), parsing_textures(ori, line));
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		parsing_colors(ori, line);
 	else if (ori->e_path && ori->n_path && ori->w_path && ori->s_path

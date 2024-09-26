@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 17:18:57 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:41:58 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,22 @@ int	free_player(t_player *player)
 
 int	free_textures(t_ori *ori)
 {
-	mlx_destroy_image(ori->mlxptr, ori->textures[0].img);
-	mlx_destroy_image(ori->mlxptr, ori->textures[1].img);
-	mlx_destroy_image(ori->mlxptr, ori->textures[2].img);
-	mlx_destroy_image(ori->mlxptr, ori->textures[3].img);
-	free(ori->e_path);
-	free(ori->n_path);
-	free(ori->s_path);
-	free(ori->w_path);
+	if (ori->textures[0].img)
+		mlx_destroy_image(ori->mlxptr, ori->textures[0].img);
+	if (ori->textures[1].img)
+		mlx_destroy_image(ori->mlxptr, ori->textures[1].img);
+	if (ori->textures[2].img)
+		mlx_destroy_image(ori->mlxptr, ori->textures[2].img);
+	if (ori->textures[3].img)
+		mlx_destroy_image(ori->mlxptr, ori->textures[3].img);
+	if (ori->e_path)
+		free(ori->e_path);
+	if (ori->n_path)
+		free(ori->n_path);
+	if (ori->s_path)
+		free(ori->s_path);
+	if (ori->w_path)
+		free(ori->w_path);
 	return (0);
 }
 
@@ -86,6 +94,7 @@ int	brexit(t_ori *ori)
 	mlx_destroy_display(ori->mlxptr);
 	free(ori->mlxptr);
 	ori->mlxptr = NULL;
+	// (void)ori;
 	exit(0);
 	return (0);
 }
