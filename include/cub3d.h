@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:13:56 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 11:32:11 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				secu(t_ori *ori, t_player *player, double dir_m);
 // HOOKS
 int				han_inp_press(int key, t_ori *ori);
 int				han_inp_release(int key, t_ori *ori);
-
+int				han_mouse_move(int x, int y, void *param);
 // PARSING
 void			parsing_colors(t_ori *ori, char *line);
 void			parsing_textures(t_ori *ori, char *line);

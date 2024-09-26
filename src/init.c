@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:01:41 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 11:39:30 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ static int	init_var(t_ori *ori)
 	ori->player->dir_x = cos(ori->player->dir_angle);
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
-	ori->img_h = 64;
-	ori->img_w = 64;
 	ori->nb_line = -1;
+    ori->mouse = 0;
 	return (0);
 }
 
