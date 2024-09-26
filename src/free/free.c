@@ -23,8 +23,13 @@ int	free_player(t_player *player)
 {
 	if (!player)
 		return (1);
-	free_ray(player->ray);
+	if (player->ray)
+	{
+		free_ray(player->ray);
+		player->ray = NULL;
+	}
 	free(player);
+	player = NULL;
 	return (0);
 }
 
@@ -80,9 +85,12 @@ int	brexit(t_ori *ori, char *line)
 		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL);
 	if (ori->file)
 		free(ori->file);
-	mlx_destroy_display(ori->mlxptr);
-	free(ori->mlxptr);
-	ori->mlxptr = NULL;
+	if (ori->mlxptr)
+	{
+		mlx_destroy_display(ori->mlxptr);
+		free(ori->mlxptr);
+		ori->mlxptr = NULL;
+	}
 	free_gnl(ori, line);
 	exit(0);
 	return (0);
