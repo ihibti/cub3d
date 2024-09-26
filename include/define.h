@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 11:49:48 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:15:52 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE_SPEED 0.01
+# define MOVE_SPEED 0.001
 # define CAMERA_SPEED 0.05
 # define SCREEN_W 1200
 # define SCREEN_H 500

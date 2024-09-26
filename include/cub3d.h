@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 12:53:06 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:14:56 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int				check_init_p(t_ori *ori);
 // CONTROL MOVEMENT
 void			truc_move(t_ori *ori);
 int				slide(t_ori *ori, t_player *player, double dir_m);
-int				slide_x(t_ori *ori, t_player *player, double dir_m);
-int				slide_y(t_ori *ori, t_player *player, double dir_m);
+int				slide_x(t_ori *ori, t_player *player, double dir_m,double new_y);
+int				slide_y(t_ori *ori, t_player *player, double dir_m,double new_x);
 int				corner_slide(t_ori *ori, t_player *player, double dir_m);
 void			look_left(t_ori *ori);
 void			look_right(t_ori *ori);
