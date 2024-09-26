@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 14:48:50 by gchenot           #+#    #+#             */
+/*   Updated: 2024/09/26 14:48:51 by gchenot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 unsigned int	create_rgb(int t, int r, int g, int b)
@@ -5,10 +17,10 @@ unsigned int	create_rgb(int t, int r, int g, int b)
 	return ((t & 0xFF) << 24 | (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF));
 }
 
-void	draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x, int *y)
+void	draw_ceiling(t_ori *ori, char *img_data, int x, int *y)
 {
 	(void)img_data;
-	while (*y < drawstart && *y < SCREEN_H)
+	while (*y < ori->player->ray->drawstart && *y < SCREEN_H)
 	{
 		*((int *)ori->display.data + (*y) * SCREEN_W + x) = create_rgb(0,
 				ori->ceiling.r, ori->ceiling.g, ori->ceiling.b);

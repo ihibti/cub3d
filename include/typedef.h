@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 11:37:31 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:50:09 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_ray
 	double		cameraX;
 	double		wall_stripe;
 	int			coord_stripe;
+	int			drawstart;
+	int			drawend;
 	t_display	*wall;
 }				t_ray;
 

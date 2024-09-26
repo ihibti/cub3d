@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 15:22:17 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 14:52:55 by gchenot          ###   ########.fr       */
+/*   Created: 2024/09/26 14:50:23 by gchenot           #+#    #+#             */
+/*   Updated: 2024/09/26 14:50:55 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	raycasting(t_ori *ori)
+void	free_tab(char **tab)
 {
-	t_player	*player;
-	t_ray		*ray;
-	int			x;
+	int	i;
 
-	truc_move(ori);
-	player = ori->player;
-	x = 0;
-	ray = player->ray;
-	ray->plane_dirx = sin(player->dir_angle) * FOV;
-	ray->plane_diry = -cos(player->dir_angle) * FOV;
-	while (x < SCREEN_W)
+	i = 0;
+	while (tab[i])
 	{
-		ray_len(ori, player, x);
-		x++;
+		free(tab[i]);
+		i++;
 	}
-	draw_minimap(ori);
-	mlx_put_image_to_window(ori->mlxptr, ori->mlxwin, ori->display.img, 0, 0);
-	ori->recast = 0;
+	free(tab);
+}
+
+int	free_map(char **map)
+{
+	int	i;
+
+	if (map == NULL)
+		return (1);
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
 	return (0);
 }

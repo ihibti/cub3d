@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+         #
+#    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
-#    Updated: 2024/09/25 15:55:23 by ihibti           ###   ########.fr        #
+#    Updated: 2024/09/26 14:53:44 by gchenot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ FILES = main.c \
 		mlx_main.c \
 		controls.c controls_secu.c controls_slide.c controls_utils.c\
 		algorithms.c \
-		raycasting.c \
-		free.c \
+		raycasting.c raycasting_utils.c \
+		free.c free_utils.c \
 		hooks_moves.c \
 		minimap.c minimap_utils.c \
 		create_map.c \

@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 13:35:08 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:53:27 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int				check_init_p(t_ori *ori);
 // CONTROL MOVEMENT
 void			truc_move(t_ori *ori);
 int				slide(t_ori *ori, t_player *player, double dir_m);
-int				slide_x(t_ori *ori, t_player *player, double dir_m);
-int				slide_y(t_ori *ori, t_player *player, double dir_m);
+int				slide_x(t_ori *ori, t_player *player, double dir_m,double new_y);
+int				slide_y(t_ori *ori, t_player *player, double dir_m,double new_x);
 int				corner_slide(t_ori *ori, t_player *player, double dir_m);
 void			look_left(t_ori *ori);
 void			look_right(t_ori *ori);
@@ -61,6 +61,7 @@ void	printf_map(char **map); // a delete later
 // RAYCASTING
 int				raycasting(t_ori *ori);
 void			dda_alg(t_ori *ori, t_ray *ray, int x);
+void			ray_len(t_ori *ori, t_player *player, int x);
 
 // MINIMAP
 void			draw_minimap(t_ori *ori);
@@ -71,15 +72,14 @@ uint32_t		get_color_mini(int x, int y, char **map, t_ori *ori);
 
 // TEXTURES
 unsigned int	create_rgb(int t, int r, int g, int b);
-void			draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x,
-					int *y);
+void			draw_ceiling(t_ori *ori, char *img_data, int x, int *y);
 void			draw_floor(t_ori *ori, char *img_data, int x, int y);
 int				open_textures_no(t_ori *ori, char *line);
 int				open_textures_so(t_ori *ori, char *line);
 int				open_textures_ea(t_ori *ori, char *line);
 int				open_textures_we(t_ori *ori, char *line);
 
-// Utils
+// UTILS
 int				contains_char(char *set, char c);
 void			cut_xpm(char *str);
 int				ft_isspace(char c);
@@ -89,8 +89,8 @@ void			map_dimensions(int *x_max, int *y_max, char **map);
 
 // Free && Exit
 void			free_tab(char **tab);
-int				free_player(t_player *player);
 int				free_map(char **map);
+int				free_player(t_player *player);
 int				free_textures(t_ori *ori);
 void			free_gnl(t_ori *ori, char *line);
 // void			free_game(t_ori *ori);

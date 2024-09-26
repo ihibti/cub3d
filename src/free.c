@@ -6,37 +6,11 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 13:51:26 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:50:51 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-int	free_map(char **map)
-{
-	int	i;
-
-	if (map == NULL)
-		return (1);
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
-	return (0);
-}
 
 static int	free_ray(t_ray *ray)
 {
@@ -113,34 +87,4 @@ int	brexit(t_ori *ori, char *line)
 	free_gnl(ori, line);
 	exit(0);
 	return (0);
-}
-
-int	endgame(t_ori *ori)
-{
-	free_textures(ori);
-	if (ori->map)
-		free_tab(ori->map);
-	// mlx_destroy_image(ori->mlxptr, ori->display.img);
-	// mlx_destroy_window(ori->mlxptr, ori->mlxwin);
-	// mlx_destroy_display(ori->mlxptr);
-	// free(ori->mlxptr);
-	if (ori->display.img)
-	{
-		mlx_destroy_image(ori->mlxptr, ori->display.img);
-		ori->display.img = NULL;
-		printf("img free\n");
-	}
-	if (ori->mlxwin)
-		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL,
-			printf("win free\n"));
-	if (ori->mlxptr)
-	{
-		mlx_destroy_display(ori->mlxptr);
-		free(ori->mlxptr);
-		ori->mlxptr = NULL;
-		printf("mlx free\n");
-	}
-	// mlx_destroy_display(ori->mlxptr);
-	// free(ori->mlxptr);
-	exit(0);
 }
