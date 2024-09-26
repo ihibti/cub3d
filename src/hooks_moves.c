@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 11:48:31 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:41:24 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	han_inp_press(int key, t_ori *ori)
 {
 	if (key == XK_Escape || key == XK_q)
-		brexit(ori);
+		brexit(ori, NULL);
 	if (key == XK_w)
 		ori->w = true;
 	if (key == XK_s)
@@ -34,7 +34,7 @@ int	han_inp_press(int key, t_ori *ori)
 int	han_inp_release(int key, t_ori *ori)
 {
 	if (key == XK_Escape || key == XK_q)
-		brexit(ori);
+		brexit(ori, NULL);
 	if (key == XK_w)
 		ori->w = false;
 	if (key == XK_s)

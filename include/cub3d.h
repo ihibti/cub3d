@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 11:32:11 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:35:08 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ unsigned int	create_rgb(int t, int r, int g, int b);
 void			draw_ceiling(t_ori *ori, char *img_data, int drawstart, int x,
 					int *y);
 void			draw_floor(t_ori *ori, char *img_data, int x, int y);
-int				open_textures_no(t_ori *ori);
-int				open_textures_so(t_ori *ori);
-int				open_textures_ea(t_ori *ori);
-int				open_textures_we(t_ori *ori);
+int				open_textures_no(t_ori *ori, char *line);
+int				open_textures_so(t_ori *ori, char *line);
+int				open_textures_ea(t_ori *ori, char *line);
+int				open_textures_we(t_ori *ori, char *line);
 
 // Utils
 int				contains_char(char *set, char c);
@@ -92,8 +92,10 @@ void			free_tab(char **tab);
 int				free_player(t_player *player);
 int				free_map(char **map);
 int				free_textures(t_ori *ori);
+void			free_gnl(t_ori *ori, char *line);
 // void			free_game(t_ori *ori);
 // void			brexit(t_ori *ori, char *error, char *line);
-int				brexit(t_ori *ori);
+int				brexit(t_ori *ori, char *line);
+int	endgame(t_ori *ori);
 
 #endif

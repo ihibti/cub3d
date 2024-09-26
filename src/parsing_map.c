@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 12:06:20 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:43:50 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,20 @@ int	jump_space(char *str)
 
 static void	parse_line(t_ori *ori, char *line, int i)
 {
-	line += jump_space(line);
+	// line += jump_space(line);
 	if ((!ft_strncmp(line, "NO ", 3) && ori->n_path) || (!ft_strncmp(line,
 				"EA ", 3) && ori->e_path) || (!ft_strncmp(line, "SO ", 3)
 			&& ori->s_path) || (!ft_strncmp(line, "WE ", 3) && ori->w_path))
-		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori));
+		(ft_putstr_fd("Error Path already registered\n", 2), brexit(ori, line));
 	else if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3))
-		(printf("debug testt\n"), parsing_textures(ori, line));
+		parsing_textures(ori, line);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		parsing_colors(ori, line);
 	else if (ori->e_path && ori->n_path && ori->w_path && ori->s_path
 		&& ori->parsed_c && ori->parsed_f && line[0] != '\0')
 	{
-		ori->inside_map = 1;
+		// ori->inside_map = 1;
 		parse_map(ori, line, i);
 	}
 	else if (line[0] == '\0' && !ori->inside_map)
@@ -57,9 +57,9 @@ static void	parse_line(t_ori *ori, char *line, int i)
 	else if (line[0] == '\n' && !ori->inside_map)
 		return ;
 	else
-		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori));
+		(ft_putstr_fd("Error de parsing\n", 2), brexit(ori, line));
 	if (ori->nb_start > 1)
-		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ???\n", 2), brexit(ori));
+		(ft_putstr_fd("Error KAGEBUNSHIN NO JUSTU ??\n", 2), brexit(ori, line));
 }
 
 void	parsing_map(t_ori *ori)
@@ -85,12 +85,14 @@ void	parsing_map(t_ori *ori)
 		free(line);
 	}
 	if (close(ori->fd))
-		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori));
+		(ft_putstr_fd("Error cant close fd\n", 2), brexit(ori, line));
 	ori->nb_line = map_line_count;
 }
 
 int	check_map_leaks(t_ori *ori, int x, int y)
 {
+	// if (ori->map[y][x] == '\0')
+	// 	return (check_map_leaks(ori, x, y + 1));
 	if (ori->map[y][x] == '0' || contains_char("NSWE", ori->map[y][x]))
 	{
 		if (x == 0 || x == ori->map_width - 1 || y == 0 || y == ori->map_height

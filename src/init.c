@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 11:39:30 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:27:30 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	init_player(t_ori *ori)
 {
 	ori->player->ray = malloc(sizeof(t_ray));
 	if (!ori->player->ray)
-		return ((brexit(ori)), 1);
+		return ((brexit(ori, NULL)), 1);
 	if (init_pl(ori))
-		return ((brexit(ori)), 1);
+		return ((brexit(ori, NULL)), 1);
 	init_dirangle(ori);
 	init_var(ori);
 	return (0);
@@ -53,7 +53,7 @@ int	init(t_ori *ori)
 {
 	ori->player = malloc(sizeof(t_player));
 	if (!ori->player)
-		return ((brexit(ori)), 1);
+		return ((brexit(ori, NULL)), 1);
 	ori->recast = true;
 	if (init_player(ori))
 		return (1);

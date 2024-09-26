@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 11:41:58 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 13:51:26 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,22 @@ int	free_textures(t_ori *ori)
 	return (0);
 }
 
-int	brexit(t_ori *ori)
+void	free_gnl(t_ori *ori, char *line)
+{
+	char	*lines_to_free;
+
+	lines_to_free = "";
+	free(line);
+	while (1)
+	{
+		lines_to_free = get_next_line(ori->fd);
+		if (!lines_to_free)
+			break ;
+		free(lines_to_free);
+	}
+}
+
+int	brexit(t_ori *ori, char *line)
 {
 	if (ori->map)
 		(free_map(ori->map), ori->map = NULL);
@@ -95,13 +110,37 @@ int	brexit(t_ori *ori)
 	free(ori->mlxptr);
 	ori->mlxptr = NULL;
 	// (void)ori;
+	free_gnl(ori, line);
 	exit(0);
 	return (0);
 }
 
-int	exit_err(int error, char *msg)
+int	endgame(t_ori *ori)
 {
-	if (error)
-		ft_putstr_fd(msg, 2);
-	return (exit(error), error);
+	free_textures(ori);
+	if (ori->map)
+		free_tab(ori->map);
+	// mlx_destroy_image(ori->mlxptr, ori->display.img);
+	// mlx_destroy_window(ori->mlxptr, ori->mlxwin);
+	// mlx_destroy_display(ori->mlxptr);
+	// free(ori->mlxptr);
+	if (ori->display.img)
+	{
+		mlx_destroy_image(ori->mlxptr, ori->display.img);
+		ori->display.img = NULL;
+		printf("img free\n");
+	}
+	if (ori->mlxwin)
+		(mlx_destroy_window(ori->mlxptr, ori->mlxwin), ori->mlxwin = NULL,
+			printf("win free\n"));
+	if (ori->mlxptr)
+	{
+		mlx_destroy_display(ori->mlxptr);
+		free(ori->mlxptr);
+		ori->mlxptr = NULL;
+		printf("mlx free\n");
+	}
+	// mlx_destroy_display(ori->mlxptr);
+	// free(ori->mlxptr);
+	exit(0);
 }

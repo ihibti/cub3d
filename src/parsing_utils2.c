@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:38:24 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:09:11 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 13:32:24 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	valid_extension(t_ori *ori, char *str)
 	{
 		ori->file = ft_strdup(str);
 		if (!ori->file)
-			(brexit(ori));
+			(brexit(ori, NULL));
 		return ;
 	}
 	else
