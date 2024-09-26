@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 13:27:30 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:09:35 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	init_var(t_ori *ori)
 	ori->player->dir_y = sin(ori->player->dir_angle);
 	ori->recast = 1;
 	ori->nb_line = -1;
-    ori->mouse = 0;
+	ori->mouse = 0;
 	return (0);
 }
 

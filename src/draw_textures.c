@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:48:50 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:48:31 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:13:44 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	draw_floor(t_ori *ori, char *img_data, int x, int y)
 {
 	(void)img_data;
 	while (y < SCREEN_H)
-		*((int *)ori->display.data + y++ * SCREEN_W + x) = create_rgb(0,
+		*((int *)ori->display.data + (y++) * SCREEN_W + x) = create_rgb(0,
 				ori->floor.r, ori->floor.g, ori->floor.b);
 }

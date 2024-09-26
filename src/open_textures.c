@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:50:50 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:56:52 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:09:53 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	open_textures_no(t_ori *ori, char *line)
 {
-
 	if (ori->n_path)
 	{
 		ori->textures[0].img = mlx_xpm_file_to_image(ori->mlxptr, ori->n_path,
@@ -32,7 +31,6 @@ int	open_textures_no(t_ori *ori, char *line)
 
 int	open_textures_so(t_ori *ori, char *line)
 {
-
 	if (ori->s_path)
 	{
 		ori->textures[1].img = mlx_xpm_file_to_image(ori->mlxptr, ori->s_path,
@@ -50,7 +48,6 @@ int	open_textures_so(t_ori *ori, char *line)
 
 int	open_textures_ea(t_ori *ori, char *line)
 {
-
 	if (ori->e_path)
 	{
 		ori->textures[2].img = mlx_xpm_file_to_image(ori->mlxptr, ori->e_path,
@@ -68,7 +65,6 @@ int	open_textures_ea(t_ori *ori, char *line)
 
 int	open_textures_we(t_ori *ori, char *line)
 {
-
 	if (ori->w_path)
 	{
 		ori->textures[3].img = mlx_xpm_file_to_image(ori->mlxptr, ori->w_path,

@@ -6,7 +6,7 @@
 #    By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 12:18:40 by gchenot           #+#    #+#              #
-#    Updated: 2024/09/26 14:53:44 by gchenot          ###   ########.fr        #
+#    Updated: 2024/09/26 17:21:53 by gchenot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ MLXFLAG = -L$(MLXDIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 FILES = main.c \
 		init.c init_utils.c \
 		mlx_main.c \
-		controls.c controls_secu.c controls_slide.c controls_utils.c\
+		controls.c controls_secu.c controls_slide.c controls_utils.c \
 		algorithms.c \
 		raycasting.c raycasting_utils.c \
 		free.c free_utils.c \
@@ -48,8 +48,11 @@ FILES = main.c \
 		create_map.c \
 		draw_textures.c \
 		open_textures.c \
-		parsing.c parsing_utils.c parsing_colors.c parsing_map.c \
-		parsing_map_supersaiyan3.c parsing_utils2.c \
+		parsing.c parsing_utils.c \
+		parsing_colors.c \
+		parsing_textures.c \
+		parsing_map.c parsing_map_supersaiyan3.c \
+		parsing_utils2.c \
 		utils.c
 
 SRCS_DIR := ./src

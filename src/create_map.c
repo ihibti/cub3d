@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 17:02:43 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:09:31 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,31 @@ int	find_longest_line(char **map)
 	return (len);
 }
 
-void	create_map(t_ori *ori)
+static void	fill_map(t_ori *ori, int *i, int *j)
 {
 	char	*line;
+
+	while (1)
+	{
+		line = get_next_line(ori->fd);
+		if (!line)
+			break ;
+		(*j)++;
+		if (*j >= ori->map_start_line)
+		{
+			if (*i >= ori->nb_line)
+				(ft_putstr_fd(ERROR_MAP_SIZE, 2), brexit(ori, line));
+			ori->map[*i] = ft_strdup(line);
+			if (!ori->map[*i])
+				(ft_putstr_fd(ERROR_DUP, 2), brexit(ori, line));
+			(*i)++;
+		}
+		free(line);
+	}
+}
+
+void	create_map(t_ori *ori)
+{
 	int		i;
 	int		j;
 
@@ -41,26 +63,10 @@ void	create_map(t_ori *ori)
 	ori->map = malloc(sizeof(char *) * (ori->nb_line + 1));
 	if (!ori->map)
 		(ft_putstr_fd(ERROR_MALLOC, 2), brexit(ori, NULL));
-	while (1)
-	{
-		line = get_next_line(ori->fd);
-		if (!line)
-			break ;
-		j++;
-		if (j >= ori->map_start_line)
-		{
-			if (i >= ori->nb_line)
-				(ft_putstr_fd(ERROR_MAP_SIZE, 2), brexit(ori, line));
-			ori->map[i] = ft_strdup(line);
-			if (!ori->map[i])
-				(ft_putstr_fd(ERROR_DUP, 2), brexit(ori, line));
-			i++;
-		}
-		free(line);
-	}
+	fill_map(ori, &i, &j);
 	ori->map[i] = NULL;
 	ori->map_height = i;
 	ori->map_width = find_longest_line(ori->map);
 	if (close(ori->fd) < 0)
-		(ft_putstr_fd(ERROR_CLOSEFD, 2), brexit(ori, line));
+		(ft_putstr_fd(ERROR_CLOSEFD, 2), brexit(ori, NULL));
 }
