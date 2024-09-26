@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/25 16:16:22 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:37:31 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_ori
 	char		*w_path;
 	int			parsed_f;
 	int			parsed_c;
+	int			mouse;
 	t_color		floor;
 	t_color		ceiling;
 	t_display	display;

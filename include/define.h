@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/24 18:13:38 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 11:49:48 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # endif
 
 # define MOVE_SPEED 0.01
-# define CAMERA_SPEED 0.2
+# define CAMERA_SPEED 0.05
 # define SCREEN_W 1200
 # define SCREEN_H 500
 // # define PIXEL (M_PI) / (SCREEN_H)

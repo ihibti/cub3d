@@ -6,11 +6,33 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:51:42 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 11:37:24 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/26 12:38:42 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_atoirgb(const char *str)
+{
+	long	i;
+	long	somme;
+
+	somme = 0;
+	i = 0;
+	while ((((str[i] <= 13) && (str[i] >= 9)) || str[i] == ' ') && str[i])
+		i++;
+	if (str[i] == '-')
+		return (-1);
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		somme = (somme * 10) + (str[i++] - '0');
+		if (somme > 255)
+			return (-1);
+	}
+	if (somme == 0)
+		return (0);
+	return (somme);
+}
 
 static char	**valid_color(char *line)
 {
@@ -51,9 +73,9 @@ static void	parse_color_ceiling(t_ori *ori, char *line)
 	rgb = valid_color(line + 2);
 	if (!rgb)
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
-	ori->ceiling.r = ft_atoi(rgb[0]);
-	ori->ceiling.g = ft_atoi(rgb[1]);
-	ori->ceiling.b = ft_atoi(rgb[2]);
+	ori->ceiling.r = ft_atoirgb(rgb[0]);
+	ori->ceiling.g = ft_atoirgb(rgb[1]);
+	ori->ceiling.b = ft_atoirgb(rgb[2]);
 	free_tab(rgb);
 	if (ori->ceiling.r > 255 || ori->ceiling.g > 255 || ori->ceiling.b > 255
 		|| ori->ceiling.r < 0 || ori->ceiling.g < 0 || ori->ceiling.b < 0)
@@ -71,9 +93,9 @@ static void	parse_color_floor(t_ori *ori, char *line)
 	rgb = valid_color(line + 2);
 	if (!rgb)
 		(ft_putstr_fd("RGB impossible [0, 255]", 2), brexit(ori));
-	ori->floor.r = ft_atoi(rgb[0]);
-	ori->floor.g = ft_atoi(rgb[1]);
-	ori->floor.b = ft_atoi(rgb[2]);
+	ori->floor.r = ft_atoirgb(rgb[0]);
+	ori->floor.g = ft_atoirgb(rgb[1]);
+	ori->floor.b = ft_atoirgb(rgb[2]);
 	free_tab(rgb);
 	if (ori->floor.r > 255 || ori->floor.g > 255 || ori->floor.b > 255
 		|| ori->floor.r < 0 || ori->floor.g < 0 || ori->floor.b < 0)

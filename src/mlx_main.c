@@ -6,7 +6,7 @@
 /*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/25 16:32:34 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:32:56 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	mlx_hooks(t_ori *ori)
 	mlx_hook(ori->mlxwin, 3, 2L, han_inp_release, ori);
 	mlx_hook(ori->mlxwin, 2, 1L, han_inp_press, ori);
 	mlx_hook(ori->mlxwin, 17, 1, brexit, ori);
+    mlx_hook(ori->mlxwin, MotionNotify, PointerMotionMask, han_mouse_move, ori);
+	// mlx_mouse_hide(ori->mlxptr, ori->mlxwin);
 	mlx_loop_hook(ori->mlxptr, raycasting, ori);
 	mlx_loop(ori->mlxptr);
 }
