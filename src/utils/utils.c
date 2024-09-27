@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:40:01 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 12:44:16 by ihibti           ###   ########.fr       */
+/*   Updated: 2024/09/27 12:23:23 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,12 @@ int	ft_isspace(char c)
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (1);
 	return (0);
+}
+
+int	brexit_key(void *param)
+{
+	t_ori	*ori;
+
+	ori = (t_ori *)param;
+	return (brexit(ori, NULL));
 }

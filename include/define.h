@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 17:03:09 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:17:25 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 
 # define MOVE_SPEED 0.01
 # define CAMERA_SPEED 0.05
-# define SCREEN_W 1200
-# define SCREEN_H 500
+# define SCREEN_W 1600
+# define SCREEN_H 900
 # define SCREEN_NAME "cub3D des CHAAAAA(3)D !"
 // # define PIXEL (M_PI) / (SCREEN_H)
 # define UP 222
