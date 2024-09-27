@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:41:51 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 17:09:35 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:42:56 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	init_var(t_ori *ori)
 	ori->recast = 1;
 	ori->nb_line = -1;
 	ori->mouse = 0;
+	ori->movespeed = 0.08;
+	ori->cam_speed = 0.05;
 	return (0);
 }
 

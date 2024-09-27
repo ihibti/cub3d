@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 16:52:47 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:11:57 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	slide(t_ori *ori, t_player *player, double dir_m)
 
 	map = ori->map;
 	init_safety(&safetyx, &safetyy, dir_m);
-	new_x = player->pos_x + safetyx + (MOVE_SPEED * cos(dir_m));
-	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m)) + safetyy;
+	new_x = player->pos_x + safetyx + (ori->movespeed * cos(dir_m));
+	new_y = player->pos_y - (ori->movespeed * sin(dir_m)) + safetyy;
 	if (map[(int)new_y][(int)player->pos_x] == '0'
 		&& map[(int)player->pos_y][(int)new_x] == '0')
 		corner_slide(ori, player, dir_m);
@@ -75,16 +75,26 @@ int	corner_slide(t_ori *ori, t_player *player, double dir_m)
 {
 	double	new_x;
 	double	new_y;
+	double	deltax;
+	double	deltay;
 
-	(void)new_x;
-	(void)new_y;
 	new_x = player->pos_x;
 	new_y = player->pos_y;
-	if (fabs(sin(dir_m)) > fabs(cos(dir_m)))
+	if (cos(dir_m) > 0)
+		deltax = (int)player->pos_x + 1 - player->pos_x;
+	else
+		deltax = player->pos_x - (int)player->pos_x;
+	if (sin(dir_m) < 0)
+		deltay = (int)player->pos_y + 1 - player->pos_y;
+	else
+		deltay = player->pos_y - (int)player->pos_y;
+	if (deltax > deltay)
 	{
-		slide_x(ori, player, dir_m, player->pos_y - (MOVE_SPEED * sin(dir_m)));
+		slide_x(ori, player, dir_m, player->pos_y - (ori->movespeed
+				* sin(dir_m)));
 	}
 	else
-		slide_y(ori, player, dir_m, player->pos_x + (MOVE_SPEED * cos(dir_m)));
+		slide_y(ori, player, dir_m, player->pos_x + (ori->movespeed
+				* cos(dir_m)));
 	return (0);
 }

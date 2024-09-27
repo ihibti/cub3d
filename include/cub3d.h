@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:12 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 17:56:21 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:00:29 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int				free_player(t_player *player);
 int				free_textures(t_ori *ori);
 void			free_gnl(t_ori *ori, char *line);
 int				brexit(t_ori *ori, char *line);
+int				brexit_key(void *param);
 
 #endif

@@ -6,14 +6,32 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 16:20:36 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:43:30 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	swap_ms(t_ori *ori)
+{
+	if (ori->movespeed == 0.08)
+	{
+		ori->movespeed = 0.01;
+		ori->cam_speed = 0.001;
+	}
+	else
+	{
+		ori->movespeed = 0.08;
+		ori->cam_speed = 0.05;
+	}
+	ori->mouse = 0;
+	return (0);
+}
+
 int	han_inp_press(int key, t_ori *ori)
 {
+	if (key == XK_p)
+		swap_ms(ori);
 	if (key == XK_Escape || key == XK_q)
 		brexit(ori, NULL);
 	if (key == XK_w)

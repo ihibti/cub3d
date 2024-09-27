@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:30:53 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 16:54:31 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:42:19 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_ori	ori;
 
-	memset(&ori, 0, sizeof(ori));
+	ft_memset(&ori, 0, sizeof(ori));
 	if (ac != 2)
 	{
 		ft_putstr_fd(ERROR_ARGS, 2);

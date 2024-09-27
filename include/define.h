@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:12:04 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/27 12:17:25 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:03:48 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define MOVE_SPEED 0.01
-# define CAMERA_SPEED 0.05
 # define SCREEN_W 1600
 # define SCREEN_H 900
 # define SCREEN_NAME "cub3D des CHAAAAA(3)D !"
@@ -102,7 +100,7 @@
 # define ERROR_WTEXTURE "Error: West texture path is missing\n"
 # define ERROR_CEILINGDUP "Error: ceiling already set man\n"
 # define ERROR_FLOORDUP "Error: floor is lava\n"
-# define ERROR_SPAWN "Error: why you even tryna spawn more than once ?\n"
+# define ERROR_SPAWN "Error: u either not spawning, or too many times!!\n"
 # define ERROR_NOMAP "Error: how can you even play with no map ?\n"
 # define ERROR_VALUE "Error: don't even try, we check the values\n"
 

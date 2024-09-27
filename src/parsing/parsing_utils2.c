@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:38:24 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 17:00:42 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:41:55 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	open_fd(t_ori *ori)
 	if (ori->fd < 0)
 	{
 		ft_putstr_fd(ERROR_OPEN, 2);
-		exit(0);
+		brexit(ori, NULL);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 14:49:26 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:32:29 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	secu(t_ori *ori, t_player *player, double dir_m)
 		safetyx = -0.2;
 	if (sin(dir_m) > 0)
 		safetyy = -0.2;
-	new_x = player->pos_x + safetyx + (MOVE_SPEED * cos(dir_m));
-	new_y = player->pos_y - (MOVE_SPEED * sin(dir_m)) + safetyy;
+	new_x = player->pos_x + safetyx + (ori->movespeed * cos(dir_m));
+	new_y = player->pos_y - (ori->movespeed * sin(dir_m)) + safetyy;
 	if (map[(int)new_y][(int)new_x] != '0')
 		return (1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ihibti <ihibti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:38:43 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/27 12:24:36 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:13:56 by ihibti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	mlx_hooks(t_ori *ori)
 {
 	mlx_hook(ori->mlxwin, 3, 2L, han_inp_release, ori);
 	mlx_hook(ori->mlxwin, 2, 1L, han_inp_press, ori);
-	mlx_hook(ori->mlxwin, 17, 1, brexit_key, ori);
+	mlx_hook(ori->mlxwin, 17, 0, brexit_key, ori);
 	mlx_hook(ori->mlxwin, MotionNotify, PointerMotionMask, han_mouse_move, ori);
 	mlx_loop_hook(ori->mlxptr, raycasting, ori);
 	mlx_loop(ori->mlxptr);

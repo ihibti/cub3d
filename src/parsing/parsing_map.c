@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:52:29 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 17:59:06 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:26:39 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	parse_map(t_ori *ori, char *line, int j)
 {
-	int i;
+	int	i;
 
-	i = 0;
 	ori->nb_line++;
+	i = 0;
 	if (!*line)
 		return ;
 	if (!ori->map_start_line)
@@ -29,20 +29,10 @@ static void	parse_map(t_ori *ori, char *line, int j)
 			ori->nb_start++;
 		else if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != ' ')
+			&& !ft_isspace(line[i]))
 			(ft_putstr_fd(ERROR_VALUE, 2), brexit(ori, line));
 		i++;
 	}
-}
-
-int	jump_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	return (i);
 }
 
 static void	parse_line(t_ori *ori, char *line, int i)
@@ -106,6 +96,8 @@ int	check_map_leaks(t_ori *ori, int x, int y)
 		if (x == 0 || x == ori->map_width - 1 || y == 0 || y == ori->map_height
 			- 1)
 			return (1);
+		if (unsafe(x, y - 1, ori->map) || unsafe(x, y + 1, ori->map))
+			return (1);
 		if (ori->map[y][x + 1] == '\0' || ori->map[y][x - 1] == '\0'
 			|| ori->map[y + 1][x] == '\0' || ori->map[y - 1][x] == '\0')
 			return (1);
@@ -113,7 +105,7 @@ int	check_map_leaks(t_ori *ori, int x, int y)
 			+ 1][x] == ' ' || ori->map[y - 1][x] == ' ')
 			return (1);
 	}
-	if (x < ori->map_width - 1 && ori->map[y][x + 1] != '\0')
+	if (x < ft_strlen(ori->map[y]) - 1 && ori->map[y][x + 1] != '\0')
 		return (check_map_leaks(ori, x + 1, y));
 	else if (y < ori->map_height - 1 && ori->map[y + 1] != NULL)
 		return (check_map_leaks(ori, 0, y + 1));

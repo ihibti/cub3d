@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:55:10 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:27:19 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:43:09 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct s_ori
 	int			parsed_f;
 	int			parsed_c;
 	int			mouse;
+	double		movespeed;
+	double		cam_speed;
 	t_color		floor;
 	t_color		ceiling;
 	t_display	display;

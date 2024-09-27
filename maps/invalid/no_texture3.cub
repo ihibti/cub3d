@@ -1,7 +1,7 @@
-WE ./textures/W.xpm
-NO ./textures/N.xpm
+WE ./textures/WE.xpm
+NO ./textures/NO.xpm
 
-EA ./textures/E.xpm
+EA ./textures/EA.xpm
 
 C 255,100,100
 F 255,50,50

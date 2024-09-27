@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:17:26 by gchenot           #+#    #+#             */
-/*   Updated: 2024/09/26 16:20:30 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:14:41 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	free_gnl(t_ori *ori, char *line)
 {
 	char	*lines_to_free;
 
+	if (!line)
+		return ;
 	lines_to_free = "";
 	free(line);
 	while (1)
@@ -67,6 +69,7 @@ void	free_gnl(t_ori *ori, char *line)
 			break ;
 		free(lines_to_free);
 	}
+	close(ori->fd);
 }
 
 int	brexit(t_ori *ori, char *line)

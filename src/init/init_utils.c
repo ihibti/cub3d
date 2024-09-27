@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:00 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/24 18:09:47 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:42:42 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	init_dirangle(t_ori *ori)
 	ori->map[y][x] = '0';
 }
 
-// TODO : free ori pour juste return
 int	check_init_p(t_ori *ori)
 {
 	t_player	*player;

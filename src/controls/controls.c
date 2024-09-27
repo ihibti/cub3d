@@ -6,7 +6,7 @@
 /*   By: gchenot <gchenot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:53:27 by ihibti            #+#    #+#             */
-/*   Updated: 2024/09/26 16:47:38 by gchenot          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:32:29 by gchenot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	move_a(t_ori *ori, t_player *player)
 	double	new_y;
 
 	dir_m = player->dir_angle + (M_PI / 2);
-	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	new_y = player->pos_y - (ori->movespeed * (sin(dir_m)));
+	new_x = player->pos_x + (ori->movespeed * (cos(dir_m)));
 	if (!secu(ori, player, dir_m))
 	{
 		player->pos_x = new_x;
@@ -40,8 +40,8 @@ void	move_d(t_ori *ori, t_player *player)
 	double	new_y;
 
 	dir_m = (player->dir_angle - (M_PI / 2));
-	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	new_y = player->pos_y - (ori->movespeed * (sin(dir_m)));
+	new_x = player->pos_x + (ori->movespeed * (cos(dir_m)));
 	if (!secu(ori, player, dir_m))
 	{
 		player->pos_x = new_x;
@@ -61,8 +61,8 @@ void	move_s(t_ori *ori, t_player *player)
 	double	new_y;
 
 	dir_m = player->dir_angle + M_PI;
-	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	new_y = player->pos_y - (ori->movespeed * (sin(dir_m)));
+	new_x = player->pos_x + (ori->movespeed * (cos(dir_m)));
 	if (!secu(ori, player, dir_m))
 	{
 		player->pos_x = new_x;
@@ -82,8 +82,8 @@ void	move_w(t_ori *ori, t_player *player)
 	double	new_y;
 
 	dir_m = player->dir_angle;
-	new_y = player->pos_y - (MOVE_SPEED * (sin(dir_m)));
-	new_x = player->pos_x + (MOVE_SPEED * (cos(dir_m)));
+	new_y = player->pos_y - (ori->movespeed * (sin(dir_m)));
+	new_x = player->pos_x + (ori->movespeed * (cos(dir_m)));
 	if (!secu(ori, player, dir_m))
 	{
 		player->pos_x = new_x;
