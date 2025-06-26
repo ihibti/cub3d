@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:09:44 by kasingh           #+#    #+#             */
-/*   Updated: 2024/12/30 17:19:03 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/06/04 21:07:06 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@
 # define E 3
 # define F 4
 # define D 5
-# define WINX 1520
-# define WINY 1080
+# define WINX 1200
+# define WINY 700
 # if WINX < WINY
 #  define M WINX
 # else
